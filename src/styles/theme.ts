@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
-const theme: DefaultTheme = {
+export const theme: DefaultTheme = {
   color: {
     white: '#f9f9f9',
     black: '#181818',
@@ -12,9 +12,6 @@ const theme: DefaultTheme = {
     pink02: '#FEE5E0',
   },
 };
-
-export default theme;
-
 // --light-blue: #A8D1E7;  -> skyblue01
 // --scandal: #B3DBD8; -> mint
 // --clear-day: #EFF7F6;  -> skyblue02

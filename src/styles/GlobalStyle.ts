@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   ${reset}
 
   @font-face {
@@ -44,4 +44,3 @@ const GlobalStyle = createGlobalStyle`
     overflow: scroll;
   }
 `;
-export default GlobalStyle;
