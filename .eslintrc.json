@@ -20,6 +20,12 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": "off",
+    "no-multiple-empty-lines": "error",
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "react/display-name": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
   }
 }
