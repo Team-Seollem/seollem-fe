@@ -20,15 +20,14 @@
       "@apis/*": ["src/apis/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
       "@routes/*": ["src/routes/*"],
-      "@constants/*": ["src/constants/*"],
-      "@types": ["src/types/*"],
-      "@styles": ["src/styles/*"],
-      "@theme": ["src/theme/*"]
+      "@styles/*": ["src/styles/*"],
+      "@theme": ["src/theme/*"],
+      "@utils/*": ["src/utils/*"],
+      "@types": ["src/types/*"]
     }
   },
   "include": ["vite.config.ts", ".eslintrc.json", "src"],
