@@ -20,16 +20,14 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-var": "error",
-    "eqeqeq": ["error", "always", { "null": "ignore" }],
-    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
-    "no-multiple-empty-lines": "error",
-    "no-use-before-define": "off",
-    "import/prefer-default-export": "off",
-    "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "no-var": "error",
+    "no-multiple-empty-lines": "error",
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-use-before-define": ["error", { "variables": false }]
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "react/display-name": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "import/prefer-default-export": "off"
   }
 }
