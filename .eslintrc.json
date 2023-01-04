@@ -20,19 +20,16 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "react/react-in-jsx-scope": "off",
     "no-var": "error",
-    "no-multiple-empty-lines": "error",
     "eqeqeq": ["error", "always", { "null": "ignore" }],
-    "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
-    "react/display-name": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "no-multiple-empty-lines": "error",
+    "no-use-before-define": "off",
     "import/prefer-default-export": "off",
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      { "variables": false }
-    ],
+    "react/display-name": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "jsx-a11y/label-has-associated-control": [
       2,
       {
@@ -40,5 +37,8 @@
       }
     ],
     "react/no-array-index-key": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { "variables": false }]
+
   }
 }

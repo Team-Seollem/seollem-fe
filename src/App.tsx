@@ -15,7 +15,5 @@ function App() {
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  );
-}
 
 export default App;
