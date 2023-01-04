@@ -1,9 +1,9 @@
 import DetailBookInfoPage from '@pages/DetailBookInfoPage';
 import PostBookPage from '@pages/PostBookPage';
-import SearchBookPage from '@pages/SearchBookPage';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { SearchBookPage } from '@pages/index';
 import App from './App';
 import { PAGEURL } from './constants';
 
