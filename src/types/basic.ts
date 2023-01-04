@@ -15,6 +15,7 @@ export interface SearchBookInfo {
 }
 export interface BookInfoProps {
   bookInfoData: SearchBookInfo;
+
 }
 export interface SearchProps {
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
