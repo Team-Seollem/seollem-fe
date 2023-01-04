@@ -5,6 +5,9 @@ export const PAGEURL = {
   SIGNUP: '/auth/signup',
   MYSTAT: '/mystat',
   MYPAGE: '/mypage',
+  SEARCHBOOK: '/search/book',
+  POSTBOOK: '/post/book/:param',
+  DETAILBOOKINFO: '/detail/book/:param',
 };
 
 // TODO
