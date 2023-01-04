@@ -33,9 +33,7 @@
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "jsx-a11y/label-has-associated-control": [
       2,
-      {
-        "labelAttributes": ["htmlFor"]
-      }
+      { "labelAttributes": ["htmlFor"] }
     ],
     "react/no-array-index-key": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
