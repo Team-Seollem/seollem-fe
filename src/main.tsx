@@ -1,3 +1,6 @@
+import DetailBookInfoPage from '@pages/DetailBookInfoPage';
+import PostBookPage from '@pages/PostBookPage';
+import SearchBookPage from '@pages/SearchBookPage';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -11,6 +14,9 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <div>main page</div> },
       { path: PAGEURL.NOTFOUND, element: <div>not found</div> },
+      { path: PAGEURL.SEARCHBOOK, element: <SearchBookPage /> },
+      { path: PAGEURL.POSTBOOK, element: <PostBookPage /> },
+      { path: PAGEURL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
     ],
   },
 ]);
