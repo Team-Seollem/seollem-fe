@@ -36,9 +36,8 @@
         "labelAttributes": ["htmlFor"]
       }
     ],
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-use-before-define": ["error", { "variables": false }]
-
   }
 }
