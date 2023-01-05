@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import imgUrl from '@assets/logo.png';
 import { IoNotifications, IoPerson, IoLogOutOutline } from 'react-icons/io5';
 import { Button } from '@components/common';
-import { PAGEURL } from '@constants/index';
+import { PAGEURL } from '@constants';
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

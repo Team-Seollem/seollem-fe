@@ -1,8 +1,8 @@
-import Layout from '@components/layout/Layout';
+import { Layout } from '@components/layout';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { GlobalStyle, theme } from './styles';
+import { GlobalStyle, theme } from '@styles';
 
 const queryClient = new QueryClient();
 
