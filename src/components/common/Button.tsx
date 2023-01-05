@@ -53,14 +53,16 @@ const STYLETYPE = {
   solidDisabled: css`
     background-color: ${({ theme }) => theme.color.gray03};
     color: ${({ theme }) => theme.color.gray04};
+    cursor: not-allowed;
   `,
   neutral: css`
-    color: ${({ theme }) => theme.color.gray};
-    border: 1px solid ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.gray01};
+    border: 1px solid ${({ theme }) => theme.color.gray01};
   `,
   outlineDisabled: css`
     border: 1px solid ${({ theme }) => theme.color.gray02};
     color: ${({ theme }) => theme.color.gray02};
+    cursor: not-allowed;
   `,
   outlineNegative: css`
     border: 1px solid ${({ theme }) => theme.color.negative};
@@ -84,21 +86,17 @@ const SIZETYPE = {
   `,
 };
 
-const DISABLED = css`
-  cursor: not-allowed;
-`;
-
 const SButton = styled.button<Props>`
   cursor: pointer;
-  font-size: 0.825rem;
+  font-size: ${({ theme }) => theme.fontSize.sm};
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: nowrap;
   font-weight: 800;
+  font-family: 'Pretendard';
   border: none;
   border-radius: 0.3rem;
   background-color: ${({ theme }) => theme.color.white};
   ${(props) => props.styleType && STYLETYPE[props.styleType]}
   ${(props) => props.size && SIZETYPE[props.size]}
-  ${(props) => props.disabled && DISABLED}
 `;

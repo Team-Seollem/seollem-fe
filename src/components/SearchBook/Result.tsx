@@ -50,9 +50,9 @@ const SBookContents = styled.li`
   padding: 1rem 1.5rem;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
-  border: ${(props) => props.theme.color.gray};
+  border: ${(props) => props.theme.color.gray01};
   &:hover {
-    box-shadow: ${(props) => props.theme.color.gray};
+    box-shadow: ${(props) => props.theme.color.gray01};
     transform: translate(-0.1rem);
     cursor: pointer;
   }

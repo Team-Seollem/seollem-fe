@@ -30,7 +30,7 @@ const SSearchForm = styled.form`
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
-  border: 1px soild ${(props) => props.theme.color.gray};
+  border: 1px soild ${(props) => props.theme.color.gray01};
   border-radius: 0.25rem;
   padding: 0.5rem 0.75rem;
 
@@ -40,7 +40,7 @@ const SSearchForm = styled.form`
     outline: none;
     border: none;
     width: 100%;
-    color: ${(props) => props.theme.color.gray};
+    color: ${(props) => props.theme.color.gray01};
     margin-left: 0.25rem;
     font-family: 'Pretendard-Regular';
 

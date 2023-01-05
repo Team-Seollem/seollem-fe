@@ -52,7 +52,7 @@ export const SFormWrapper = styled.div`
     margin-bottom: 0.5rem;
     font-weight: 300;
     font-size: 1.2rem;
-    color: ${(props) => props.theme.color.gray};
+    color: ${(props) => props.theme.color.gray01};
   }
   input,
   select {
@@ -61,7 +61,7 @@ export const SFormWrapper = styled.div`
     border: 0.1rem solid ${(props) => props.theme.color.skyblue02};
     border-radius: 0.25rem;
     outline: none;
-    color: ${(props) => props.theme.color.gray};
+    color: ${(props) => props.theme.color.gray01};
     font-family: 'Pretendard-Regular';
     width: 100%;
   }
