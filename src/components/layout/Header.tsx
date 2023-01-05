@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import imgUrl from '@assets/logo.png';
 import { IoNotifications, IoPerson, IoLogOutOutline } from 'react-icons/io5';
+import { Button } from '@components/common';
 import { PAGEURL } from '@constants/index';
 
 export default function Header() {
@@ -15,20 +16,24 @@ export default function Header() {
       {isLoggedIn && (
         <SMenu>
           <IoNotifications />
-          <Link to={PAGEURL.MYPAGE}>
+          <SLink to={PAGEURL.MYPAGE}>
             <IoPerson />
-          </Link>
+          </SLink>
           <IoLogOutOutline />
         </SMenu>
       )}
       {!isLoggedIn && (
         <SMenu>
-          <Link to={PAGEURL.SIGNIN}>
-            <button type="button">로그인</button>
-          </Link>
-          <Link to={PAGEURL.SIGNUP}>
-            <button type="button">회원가입</button>
-          </Link>
+          <SLink to={PAGEURL.SIGNIN}>
+            <Button type="button" styleType="neutral" size="small">
+              로그인
+            </Button>
+          </SLink>
+          <SLink to={PAGEURL.SIGNUP}>
+            <Button type="button" styleType="solidPositive" size="small">
+              회원가입
+            </Button>
+          </SLink>
         </SMenu>
       )}
     </SHeader>
@@ -67,4 +72,8 @@ const SMenu = styled.div`
     font-size: 1.8rem;
     color: ${({ theme }) => theme.color.mint};
   }
+`;
+
+const SLink = styled(Link)`
+  text-decoration: none;
 `;
