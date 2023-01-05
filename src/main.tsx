@@ -6,7 +6,7 @@ import {
   SearchBookPage,
   PostBookPage,
   Landing,
-} from '@pages/index';
+} from '@pages';
 import App from './App';
 import { PAGEURL } from './constants';
 

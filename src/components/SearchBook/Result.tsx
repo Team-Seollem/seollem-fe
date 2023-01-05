@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { BsPlusSquare } from 'react-icons/bs';
 import styled from 'styled-components';
 import { AxiosError } from 'axios';
-import { SearchBookInfo, SearchProps } from '../../types/basic';
-import { getBookInfo } from '../../apis/index';
+import { getBookInfo } from '@apis';
+import { SearchBookInfo, SearchProps } from '@projects/types/basic';
 
 function Result({ keyword }: Pick<SearchProps, 'keyword'>) {
   const { data, isLoading, isError, error } = useQuery<
