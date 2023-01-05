@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface Props {
   title?: string;
-  onClick?: (event: React.MouseEvent<HTMLImageElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   children: React.ReactNode;
 }
 
@@ -27,4 +27,6 @@ const Wrapper = styled.section`
   border-radius: 0.3rem;
   padding: 1.5rem;
   font-size: ${({ theme }) => theme.fontSize.base};
+  display: flex;
+  flex-direction: column;
 `;
