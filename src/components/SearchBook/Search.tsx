@@ -10,7 +10,7 @@ function Search({ onChangeInput, keyword }: SearchProps) {
     }
   };
   return (
-    <SearchForm>
+    <SSearchForm>
       <FiSearch size="1.5rem" />
       <input
         type="text"
@@ -19,13 +19,13 @@ function Search({ onChangeInput, keyword }: SearchProps) {
         onKeyDown={preventEnter}
         onChange={onChangeInput}
       />
-    </SearchForm>
+    </SSearchForm>
   );
 }
 
 export default Search;
 
-const SearchForm = styled.form`
+const SSearchForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;

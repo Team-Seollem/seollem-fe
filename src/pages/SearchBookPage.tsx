@@ -1,4 +1,4 @@
-import Result from '@components/SearchBook/result';
+import Result from '@components/SearchBook/Result';
 import Search from '@components/SearchBook/Search';
 import { useState } from 'react';
 

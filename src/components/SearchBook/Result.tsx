@@ -23,20 +23,20 @@ function Result({ keyword }: Pick<SearchProps, 'keyword'>) {
 
   return (
     <ul>
-      <BookContents>
+      <SBookContents>
         <BsPlusSquare />
         <div className="noResults">찾으시는 책이 없다면 직접 등록해보세요</div>
-      </BookContents>
+      </SBookContents>
 
       {data.map((book: SearchBookInfo, idx: number) => {
         return (
-          <BookContents key={idx}>
+          <SBookContents key={idx}>
             <img src={book.cover} alt="도서 이미지" />
-            <BookContentKeyword>
+            <SBookContentKeyword>
               <div>{book.title}</div>
               <div>{book.author}</div>
-            </BookContentKeyword>
-          </BookContents>
+            </SBookContentKeyword>
+          </SBookContents>
         );
       })}
     </ul>
@@ -45,7 +45,7 @@ function Result({ keyword }: Pick<SearchProps, 'keyword'>) {
 
 export default Result;
 
-const BookContents = styled.li`
+const SBookContents = styled.li`
   display: flex;
   padding: 1rem 1.5rem;
   border-radius: 0.25rem;
@@ -60,7 +60,7 @@ const BookContents = styled.li`
     margin-left: 1rem;
   }
 `;
-const BookContentKeyword = styled.div`
+const SBookContentKeyword = styled.div`
   font-weight: 700;
   font-size: 1.2rem;
   display: flex;
