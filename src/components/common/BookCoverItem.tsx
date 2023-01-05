@@ -6,7 +6,11 @@ type Props = {
   width?: string;
 };
 
-export default function BookCoverItem({ src, onClick, width }: Props) {
+export default function BookCoverItem({
+  src,
+  onClick,
+  width = '5.3rem',
+}: Props) {
   return (
     <Wrapper>
       <Img src={src} alt="book_cover" onClick={onClick} width={width} />
@@ -30,5 +34,5 @@ const Img = styled.img<Props>`
   border-radius: 0.3rem;
   box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
   ${(props) => props.onClick && ACTIVE}
-  width: ${(props) => props.width || '5.3rem'};
+  width: ${(props) => props.width};
 `;
