@@ -70,7 +70,7 @@ const SMenu = styled.div`
     margin: 0 0.4rem;
     padding: 0.6rem auto;
     font-size: 1.8rem;
-    color: ${({ theme }) => theme.color.mint};
+    color: ${({ theme }) => theme.color.primary};
   }
 `;
 

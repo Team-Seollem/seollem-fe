@@ -25,24 +25,23 @@ const Wrapper = styled.div`
   min-width: 355px;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.gray01};
   padding-bottom: 0.5rem;
-  margin-bottom: 1.2rem;
-  border-bottom: solid 0.7px ${({ theme }) => theme.color.gray};
+  margin-bottom: 1rem;
+  border-bottom: solid 3px ${({ theme }) => theme.color.gray03};
   svg {
     cursor: pointer;
     font-size: 2rem;
     margin: 0 0.5rem 0 0.2rem;
-    &:focus {
-      color: ${({ theme }) => theme.color.mint};
-    }
+    color: ${({ theme }) => theme.color.gray02};
   }
   h1 {
-    font-size: 1.2rem;
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    font-weight: 900;
   }
 `;
 
 const SLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.gray01};
 `;
