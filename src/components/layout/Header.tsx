@@ -4,19 +4,19 @@ import styled from 'styled-components';
 import imgUrl from '@assets/logo.png';
 import { IoNotifications, IoPerson, IoLogOutOutline } from 'react-icons/io5';
 import { Button } from '@components/common';
-import { PAGEURL } from '@constants';
+import { PAGE_URL } from '@constants';
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <SHeader>
-      <Logo to={PAGEURL.ROOT}>
+      <Logo to={PAGE_URL.ROOT}>
         <img src={imgUrl} alt="logo_icon" />
       </Logo>
       {isLoggedIn && (
         <SMenu>
           <IoNotifications />
-          <SLink to={PAGEURL.MYPAGE}>
+          <SLink to={PAGE_URL.MYPAGE}>
             <IoPerson />
           </SLink>
           <IoLogOutOutline />
@@ -24,12 +24,12 @@ export default function Header() {
       )}
       {!isLoggedIn && (
         <SMenu>
-          <SLink to={PAGEURL.SIGNIN}>
+          <SLink to={PAGE_URL.SIGN_IN}>
             <Button type="button" styleType="neutral" size="small">
               로그인
             </Button>
           </SLink>
-          <SLink to={PAGEURL.SIGNUP}>
+          <SLink to={PAGE_URL.SIGN_UP}>
             <Button type="button" styleType="solidPositive" size="small">
               회원가입
             </Button>
