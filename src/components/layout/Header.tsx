@@ -48,6 +48,7 @@ const SHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 6px rgb(32 33 36 / 10%);
   min-width: 375px;
 `;
