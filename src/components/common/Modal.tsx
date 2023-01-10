@@ -3,27 +3,30 @@ import Button from './Button';
 import ReactPortal from './ReactPortal';
 
 interface Props {
+  isOpen: boolean;
   closeModal: () => void;
   children: React.ReactNode;
 }
-export default function Modal({ closeModal, children }: Props) {
+export default function Modal({ closeModal, isOpen, children }: Props) {
   return (
     <ReactPortal wrapperId="modal-root">
-      <ModalBackground onClick={closeModal}>
-        <ModalContainer
-          onClick={(event: React.MouseEvent) => event.stopPropagation()}
-        >
-          <CloseButton
-            type="button"
-            styleType="ghost"
-            size="small"
-            onClick={closeModal}
+      {isOpen && (
+        <ModalBackground onClick={closeModal}>
+          <ModalContainer
+            onClick={(event: React.MouseEvent) => event.stopPropagation()}
           >
-            X
-          </CloseButton>
-          {children}
-        </ModalContainer>
-      </ModalBackground>
+            <CloseButton
+              type="button"
+              styleType="ghost"
+              size="small"
+              onClick={closeModal}
+            >
+              X
+            </CloseButton>
+            {children}
+          </ModalContainer>
+        </ModalBackground>
+      )}
     </ReactPortal>
   );
 }
