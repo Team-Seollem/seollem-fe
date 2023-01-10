@@ -25,14 +25,14 @@ export default function Header() {
       {!isLoggedIn && (
         <SMenu>
           <SLink to={PAGE_URL.SIGN_IN}>
-            <Button type="button" styleType="neutral" size="small">
+            <HeaderButton type="button" styleType="neutral" size="small">
               로그인
-            </Button>
+            </HeaderButton>
           </SLink>
           <SLink to={PAGE_URL.SIGN_UP}>
-            <Button type="button" styleType="solidPositive" size="small">
+            <HeaderButton type="button" styleType="solidPositive" size="small">
               회원가입
-            </Button>
+            </HeaderButton>
           </SLink>
         </SMenu>
       )}
@@ -63,9 +63,6 @@ const Logo = styled(Link)`
 
 const SMenu = styled.div`
   display: flex;
-  button {
-    margin: 0 0.4rem;
-  }
   svg {
     cursor: pointer;
     margin: 0 0.4rem;
@@ -77,4 +74,8 @@ const SMenu = styled.div`
 
 const SLink = styled(Link)`
   text-decoration: none;
+`;
+
+const HeaderButton = styled(Button)`
+  margin: 0 0.4rem;
 `;
