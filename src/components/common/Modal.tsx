@@ -13,14 +13,14 @@ export default function Modal({ closeModal, children }: Props) {
         <ModalContainer
           onClick={(event: React.MouseEvent) => event.stopPropagation()}
         >
-          <Button
+          <CloseButton
             type="button"
             styleType="ghost"
             size="small"
             onClick={closeModal}
           >
             X
-          </Button>
+          </CloseButton>
           {children}
         </ModalContainer>
       </ModalBackground>
@@ -32,35 +32,33 @@ const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(160, 158, 158, 0.5);
-  z-index: 10;
 `;
 const ModalContainer = styled.div`
-  padding: 1.875rem;
-  padding-top: 3rem;
-  border-radius: 0.3rem;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 22rem;
+  min-height: 100px;
+  padding: 1.25rem;
+  padding-top: 3rem;
+  border-radius: 0.3rem;
   background-color: ${({ theme }) => theme.color.white};
   color: ${({ theme }) => theme.color.gray01};
 `;
-/**
- * 배경을 클릭하면 모달이 닫힌다
- * x 버튼을 클릭하면 모달이 닫힌다 -> 위치는 고정되어도 될 것 같음
- * width, height 값을 props로 전달받을 수 있도록 한다.
- *
- * 모달을 보이게 하고(isOpen) closeModal => useModal 훅으로 만든다.
- *
- * (전역 상태로 만들 필요는 없을 듯 )
- * potal을 사용할 것으로 예상되는 부분이 있다면 createPortal을 따로 컴포넌트로 만든다.
- *
- *
- */
+
+const CloseButton = styled(Button)`
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.color.gray01};
+`;
