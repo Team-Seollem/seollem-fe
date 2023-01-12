@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       { path: PAGE_URL.SEARCHBOOK, element: <SearchBookPage /> },
       { path: PAGE_URL.POSTBOOK, element: <PostBookPage /> },
       { path: PAGE_URL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
-      { path: PAGE_URL.SIGNIN, element: <SignInPage /> },
+      { path: PAGE_URL.SIGN_IN, element: <SignInPage /> },
     ],
   },
 ]);
