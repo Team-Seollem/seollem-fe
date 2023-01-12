@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserInfo } from '@projects/types/basic';
 import Button from '@components/common/Button';
-import Input from '@components/SignIn/Input';
+import SignInput from '@components/common/Input';
 import { postSignIn } from '@apis/index';
 import { useMutation } from '@tanstack/react-query';
-import { EMAIL_REGEX, PAGEURL, PASSWORD_REGEX } from '@constants';
+import { EMAIL_REGEX, PAGE_URL, PASSWORD_REGEX } from '@constants';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -36,7 +36,7 @@ function SignIn(): JSX.Element {
   return (
     <SContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
+        <SignInput
           label="email"
           type="email"
           placeholder="이메일"
@@ -47,7 +47,7 @@ function SignIn(): JSX.Element {
         {errors.email && (
           <SErrorMessage>이메일 형식에 맞게 작성해주세요.</SErrorMessage>
         )}
-        <Input
+        <SignInput
           label="password"
           type="password"
           placeholder="비밀번호"
@@ -64,7 +64,7 @@ function SignIn(): JSX.Element {
           로그인하기
         </Button>
       </form>
-      <SLink to={PAGEURL.SIGNUP}>아직 회원이 아니신가요?</SLink>
+      <SLink to={PAGE_URL.SIGN_UP}>아직 회원이 아니신가요?</SLink>
     </SContainer>
   );
 }
