@@ -13,6 +13,7 @@ type ButtonStyleType =
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   styleType: ButtonStyleType;
   size: 'small' | 'medium' | 'large';
+  className?: string;
 }
 
 export default function Button({
@@ -21,6 +22,7 @@ export default function Button({
   styleType,
   size,
   children,
+  className,
 }: Props) {
   return (
     <SButton
@@ -28,6 +30,7 @@ export default function Button({
       onClick={onClick}
       styleType={styleType}
       size={size}
+      className={className}
     >
       {children}
     </SButton>

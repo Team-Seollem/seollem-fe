@@ -9,19 +9,19 @@ import {
   SignInPage,
 } from '@pages';
 import App from './App';
-import { PAGEURL } from './constants';
+import { PAGE_URL } from './constants';
 
 const router = createBrowserRouter([
   {
-    path: PAGEURL.ROOT,
+    path: PAGE_URL.ROOT,
     element: <App />,
     children: [
       { index: true, element: <Landing /> },
-      { path: PAGEURL.NOTFOUND, element: <div>not found</div> },
-      { path: PAGEURL.SEARCHBOOK, element: <SearchBookPage /> },
-      { path: PAGEURL.POSTBOOK, element: <PostBookPage /> },
-      { path: PAGEURL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
-      { path: PAGEURL.SIGNIN, element: <SignInPage /> },
+      { path: PAGE_URL.NOT_FOUND, element: <div>not found</div> },
+      { path: PAGE_URL.SEARCHBOOK, element: <SearchBookPage /> },
+      { path: PAGE_URL.POSTBOOK, element: <PostBookPage /> },
+      { path: PAGE_URL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
+      { path: PAGE_URL.SIGNIN, element: <SignInPage /> },
     ],
   },
 ]);

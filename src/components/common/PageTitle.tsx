@@ -13,11 +13,11 @@ export default function PageTitle({ title, path }: Props) {
     <Wrapper>
       {path && (
         <SLink to={path}>
-          <BiLeftArrowAlt />
+          <LeftIcon />
         </SLink>
       )}
-      {!path && <BiLeftArrowAlt onClick={() => navigate(-1)} />}
-      <h1>{title}</h1>
+      {!path && <LeftIcon onClick={() => navigate(-1)} />}
+      <Title>{title}</Title>
     </Wrapper>
   );
 }
@@ -29,16 +29,18 @@ const Wrapper = styled.div`
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
   border-bottom: solid 3px ${({ theme }) => theme.color.gray03};
-  svg {
-    cursor: pointer;
-    font-size: 2rem;
-    margin: 0 0.5rem 0 0.2rem;
-    color: ${({ theme }) => theme.color.gray02};
-  }
-  h1 {
-    font-size: ${({ theme }) => theme.fontSize.lg};
-    font-weight: 900;
-  }
+`;
+
+const LeftIcon = styled(BiLeftArrowAlt)`
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0 0.5rem 0 0.2rem;
+  color: ${({ theme }) => theme.color.gray02};
+`;
+
+const Title = styled.h1`
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: 900;
 `;
 
 const SLink = styled(Link)`

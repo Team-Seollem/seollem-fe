@@ -4,19 +4,19 @@ import styled from 'styled-components';
 import imgUrl from '@assets/logo.png';
 import { IoNotifications, IoPerson, IoLogOutOutline } from 'react-icons/io5';
 import { Button } from '@components/common';
-import { PAGEURL } from '@constants';
+import { PAGE_URL } from '@constants';
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <SHeader>
-      <Logo to={PAGEURL.ROOT}>
+      <Logo to={PAGE_URL.ROOT}>
         <img src={imgUrl} alt="logo_icon" />
       </Logo>
       {isLoggedIn && (
         <SMenu>
           <IoNotifications />
-          <SLink to={PAGEURL.MYPAGE}>
+          <SLink to={PAGE_URL.MYPAGE}>
             <IoPerson />
           </SLink>
           <IoLogOutOutline />
@@ -24,15 +24,15 @@ export default function Header() {
       )}
       {!isLoggedIn && (
         <SMenu>
-          <SLink to={PAGEURL.SIGNIN}>
-            <Button type="button" styleType="neutral" size="small">
+          <SLink to={PAGE_URL.SIGN_IN}>
+            <HeaderButton type="button" styleType="neutral" size="small">
               로그인
-            </Button>
+            </HeaderButton>
           </SLink>
-          <SLink to={PAGEURL.SIGNUP}>
-            <Button type="button" styleType="solidPositive" size="small">
+          <SLink to={PAGE_URL.SIGN_UP}>
+            <HeaderButton type="button" styleType="solidPositive" size="small">
               회원가입
-            </Button>
+            </HeaderButton>
           </SLink>
         </SMenu>
       )}
@@ -48,6 +48,7 @@ const SHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 6px rgb(32 33 36 / 10%);
   min-width: 375px;
 `;
@@ -62,9 +63,6 @@ const Logo = styled(Link)`
 
 const SMenu = styled.div`
   display: flex;
-  button {
-    margin: 0 0.4rem;
-  }
   svg {
     cursor: pointer;
     margin: 0 0.4rem;
@@ -76,4 +74,8 @@ const SMenu = styled.div`
 
 const SLink = styled(Link)`
   text-decoration: none;
+`;
+
+const HeaderButton = styled(Button)`
+  margin: 0 0.4rem;
 `;
