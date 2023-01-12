@@ -1,7 +1,8 @@
 import { SignInInputProps } from '@projects/types/basic';
 import styled from 'styled-components';
 
-function Input({
+// 로그인/회원가입 input
+function SignInput({
   label,
   type,
   placeholder,
@@ -22,7 +23,7 @@ function Input({
   );
 }
 
-export default Input;
+export default SignInput;
 export const FormWrapper = styled.div`
   width: 100%;
   label {
