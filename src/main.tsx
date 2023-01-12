@@ -6,6 +6,7 @@ import {
   SearchBookPage,
   PostBookPage,
   Landing,
+  SignInPage,
 } from '@pages';
 import App from './App';
 import { PAGE_URL } from './constants';
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: PAGE_URL.SEARCHBOOK, element: <SearchBookPage /> },
       { path: PAGE_URL.POSTBOOK, element: <PostBookPage /> },
       { path: PAGE_URL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
+      { path: PAGE_URL.SIGNIN, element: <SignInPage /> },
     ],
   },
 ]);
