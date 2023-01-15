@@ -7,13 +7,30 @@ export const getBookInfo = async (keyword: string) => {
   return data;
 };
 
-export const postSignIn = async (userInfoData: Omit<UserInfo, 'name'>) => {
+// 로그인
+export const postSignIn = async (
+  SignInuserInfoData: Pick<UserInfo, 'email' | 'password'>
+) => {
   const response = await axios.post(
     `https://seollem.link/login`,
-    userInfoData,
+    SignInuserInfoData,
     {
       withCredentials: true,
     }
   );
   return response.headers.authorization;
+};
+
+// 회원가입
+export const postSignUp = async (
+  SignUpuserInfoData: Omit<UserInfo, 'password_confirm'>
+) => {
+  const response = await axios.post(
+    `https://seollem.link/join`,
+    SignUpuserInfoData,
+    {
+      withCredentials: true,
+    }
+  );
+  return response;
 };
