@@ -1,4 +1,4 @@
-import { UseFormRegister, Path } from 'react-hook-form';
+import { FieldErrorsImpl, Path, UseFormRegister } from 'react-hook-form';
 
 export interface Book {
   itemId: number;
@@ -22,17 +22,24 @@ export interface SearchProps {
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   keyword: string;
 }
+type SignInputLabel = '이름' | '이메일' | '비밀번호' | '비밀번호 확인';
+
 export interface UserInfo {
   name: string;
   email: string;
   password: string;
+  password_confirm: string;
 }
-
-export interface SignInInputProps {
-  label: Path<Omit<UserInfo, 'name'>>;
+export interface SignInputProps {
+  label: SignInputLabel;
+  register: UseFormRegister<UserInfo>;
+  errors: Partial<FieldErrorsImpl<UserInfo>>;
+  id: Path<UserInfo>;
   type: string;
   placeholder: string;
-  pattern: RegExp;
-  register: UseFormRegister<Omit<UserInfo, 'name'>>;
   required: boolean;
+  validate?: (value: string) => boolean;
+  setValueAs?: (vlaue: string) => string;
+  pattern?: RegExp;
+  errMessage: string;
 }
