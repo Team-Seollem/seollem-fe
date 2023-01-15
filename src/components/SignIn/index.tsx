@@ -1,31 +1,42 @@
-import styled from 'styled-components';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserInfo } from '@projects/types/basic';
-import Button from '@components/common/Button';
-import SignInput from '@components/common/Input';
 import { postSignIn } from '@apis/index';
 import { useMutation } from '@tanstack/react-query';
 import { EMAIL_REGEX, PAGE_URL, PASSWORD_REGEX } from '@constants';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Button, SignContainer, SignInput } from '@components/common';
+import styled from 'styled-components';
 
 function SignIn(): JSX.Element {
   const navigate = useNavigate();
 
-  const { mutate, isSuccess, data } = useMutation(postSignIn);
-  const onSubmit: SubmitHandler<Omit<UserInfo, 'name'>> = (userInfoData) => {
-    mutate(userInfoData);
-    if (isSuccess && data) {
-      localStorage.setItem('token', data);
-      navigate('/search/book');
-    }
+  const { mutate } = useMutation(postSignIn);
+  const onSubmit: SubmitHandler<Pick<UserInfo, 'email' | 'password'>> = (
+    userInfoData
+  ) => {
+    mutate(userInfoData, {
+      onSuccess(data) {
+        if (data) {
+          localStorage.setItem('token', data);
+          navigate('/search/book');
+        }
+      },
+      onError(err) {
+        if (err) {
+          alert(
+            '등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다.'
+          );
+        }
+      },
+    });
   };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Omit<UserInfo, 'name'>>();
+  } = useForm<UserInfo>();
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -34,71 +45,42 @@ function SignIn(): JSX.Element {
   }, [navigate]);
 
   return (
-    <SContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <SignInput
-          label="email"
-          type="email"
-          placeholder="이메일"
-          pattern={EMAIL_REGEX}
-          register={register}
-          required
-        />
-        {errors.email && (
-          <SErrorMessage>이메일 형식에 맞게 작성해주세요.</SErrorMessage>
-        )}
-        <SignInput
-          label="password"
-          type="password"
-          placeholder="비밀번호"
-          pattern={PASSWORD_REGEX}
-          register={register}
-          required
-        />
-        {errors.password && (
-          <SErrorMessage>
-            6자 이상 영문 대 소문자, 숫자와 특수기호만 사용가능합니다.
-          </SErrorMessage>
-        )}
-        <Button styleType="solidPositive" size="large">
-          로그인하기
-        </Button>
-      </form>
+    <SignContainer
+      width="22rem"
+      height="22rem"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <SignInput
+        label="이메일"
+        id="email"
+        type="email"
+        placeholder="이메일"
+        errMessage="이메일 형식에 맞게 작성해주세요."
+        pattern={EMAIL_REGEX}
+        register={register}
+        errors={errors}
+        required
+      />
+      <SignInput
+        label="비밀번호"
+        id="password"
+        type="password"
+        placeholder="비밀번호"
+        errMessage="6자 이상 영문 대 소문자, 숫자와 특수기호만 사용가능합니다."
+        pattern={PASSWORD_REGEX}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Button styleType="solidPositive" size="large">
+        로그인하기
+      </Button>
       <SLink to={PAGE_URL.SIGN_UP}>아직 회원이 아니신가요?</SLink>
-    </SContainer>
+    </SignContainer>
   );
 }
 
 export default SignIn;
-
-const SContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20rem;
-  height: 20rem;
-  border-radius: 0.25rem;
-  box-shadow: 0rem 0rem 0.25rem 0rem rgba(0 0 0 / 20%);
-  padding: 1.5rem 2rem;
-
-  form {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-`;
-
-const SErrorMessage = styled.div`
-  color: ${(props) => props.theme.color.negative};
-  font-size: 0.6rem;
-`;
 
 const SLink = styled(Link)`
   font-size: 0.5rem;
