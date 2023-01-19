@@ -4,11 +4,17 @@ interface Props {
   title?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-export default function Boxcontainer({ title, onClick, children }: Props) {
+export default function Boxcontainer({
+  title,
+  onClick,
+  children,
+  className,
+}: Props) {
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={onClick} className={className}>
       {title && <Title>{title}</Title>}
       {children}
     </Wrapper>
@@ -21,8 +27,13 @@ const Title = styled.h1`
   margin-bottom: 1rem;
   font-weight: 900;
 `;
-
 const Wrapper = styled.section`
+  &.recommendedBooks {
+    flex-direction: row;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
   box-shadow: 0 0 0.25rem 0 rgba(0 0 0 / 20%);
   border-radius: 0.3rem;
   padding: 1.5rem;
