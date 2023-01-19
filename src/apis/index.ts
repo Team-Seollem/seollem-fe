@@ -7,6 +7,12 @@ export const getBookInfo = async (keyword: string) => {
   return data;
 };
 
+// 베스트셀러 조회 | 주목할만한 신간 리스트 조회 외부(API)
+export const getRecommendedBooksList = async (sort: string) => {
+  const { data } = await axios.get(`https://seollem.link/ext-lib/${sort}`);
+  return data;
+};
+
 // 로그인
 export const postSignIn = async (
   SignInuserInfoData: Pick<UserInfo, 'email' | 'password'>
