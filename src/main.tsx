@@ -9,6 +9,7 @@ import {
   SignInPage,
   SignUpPage,
 } from '@pages';
+import RecommendedBooksPage from '@pages/RecommendedBooksPage';
 import App from './App';
 import { PAGE_URL } from './constants';
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: PAGE_URL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
       { path: PAGE_URL.SIGN_IN, element: <SignInPage /> },
       { path: PAGE_URL.SIGN_UP, element: <SignUpPage /> },
+      { path: PAGE_URL.RECOMMENDEDBOOKS, element: <RecommendedBooksPage /> },
     ],
   },
 ]);
