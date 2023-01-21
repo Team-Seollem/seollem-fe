@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-import { SearchProps } from '../../types/basic';
 
-function Search({ onChangeInput, keyword }: SearchProps) {
+type SearchProps = {
+  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  keyword: string;
+};
+function SearchKeyword({ onChangeInput, keyword }: SearchProps) {
   // onKeyDown 'Enter' 일때 새로고침 막기
   const preventEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -14,7 +17,7 @@ function Search({ onChangeInput, keyword }: SearchProps) {
       <FiSearch size="1.5rem" />
       <input
         type="text"
-        placeholder="책 제목 혹은 저자 입력 후 ENTER"
+        placeholder="책 제목 혹은 저자를 입력해주세요."
         value={keyword}
         onKeyDown={preventEnter}
         onChange={onChangeInput}
@@ -23,7 +26,7 @@ function Search({ onChangeInput, keyword }: SearchProps) {
   );
 }
 
-export default Search;
+export default SearchKeyword;
 
 const SSearchForm = styled.form`
   display: flex;
