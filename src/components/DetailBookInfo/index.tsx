@@ -1,6 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BookInfoProps } from '@projects/types/basic';
+import { SearchBookInfo } from '@projects/types/basic';
+
+type BookInfoProps = {
+  bookInfoData: SearchBookInfo;
+};
 
 function DetailBookInfo({ bookInfoData }: BookInfoProps) {
   const navigate = useNavigate();
