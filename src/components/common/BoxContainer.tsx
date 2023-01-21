@@ -28,10 +28,13 @@ const Title = styled.h1`
   font-weight: 900;
 `;
 const Wrapper = styled.section`
-  &.recommendedBooks {
+  &.bookInfo {
     flex-direction: row;
-    cursor: pointer;
     margin-bottom: 1rem;
+    &:hover {
+      cursor: pointer;
+      transform: translate(-0.2rem);
+    }
   }
 
   box-shadow: 0 0 0.25rem 0 rgba(0 0 0 / 20%);
