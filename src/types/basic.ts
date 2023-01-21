@@ -7,7 +7,6 @@ export interface Book {
   cover: string;
   publisher: string;
 }
-
 export interface SearchBookInfo {
   itemPage: number;
   title: string;
@@ -15,13 +14,7 @@ export interface SearchBookInfo {
   cover: string;
   publisher: string;
 }
-export interface BookInfoProps {
-  bookInfoData: SearchBookInfo;
-}
-export interface SearchProps {
-  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  keyword: string;
-}
+
 type SignInputLabel = '이름' | '이메일' | '비밀번호' | '비밀번호 확인';
 
 export interface UserInfo {
