@@ -1,9 +1,9 @@
 import BookCoverItem from '@components/common/BookCoverItem';
+import BookInfoItem from '@components/common/BookInfoItem';
 import Boxcontainer from '@components/common/BoxContainer';
 import { RecommendedBooksQuery } from '@hooks/query';
 import { SearchBookInfo } from '@projects/types/basic';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { HandleClickBookInfo } from '@utils';
 
 type Props = {
   sort: string;
@@ -11,41 +11,23 @@ type Props = {
 
 function RecommendedResult({ sort }: Props) {
   const { data, isSuccess } = RecommendedBooksQuery(sort);
-  const navigate = useNavigate();
   return (
-    <ul>
+    <div>
       {isSuccess &&
         data.map((bookInfoData: SearchBookInfo, idx: number) => {
           return (
             <Boxcontainer
-              className="recommendedBooks"
               key={idx}
-              onClick={() => {
-                navigate(`/detail/book/${bookInfoData.title}`, {
-                  state: {
-                    bookInfoData,
-                  },
-                });
-              }}
+              className="bookInfo"
+              onClick={() => HandleClickBookInfo(bookInfoData)}
             >
               <BookCoverItem src={bookInfoData.cover} />
-              <SSection>
-                <div>{bookInfoData.title}</div>
-                <div>{bookInfoData.author}</div>
-              </SSection>
+              <BookInfoItem bookInfo={bookInfoData} />
             </Boxcontainer>
           );
         })}
-    </ul>
+    </div>
   );
 }
 
 export default RecommendedResult;
-
-const SSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: 1rem;
-  padding: 0.3rem;
-`;
