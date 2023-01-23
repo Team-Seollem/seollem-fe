@@ -43,4 +43,5 @@ const Wrapper = styled.section`
   font-size: ${({ theme }) => theme.fontSize.base};
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
