@@ -19,7 +19,7 @@ function SignIn(): JSX.Element {
       onSuccess(data) {
         if (data) {
           localStorage.setItem('token', data);
-          navigate('/search/book');
+          navigate('/book/search');
         }
       },
       onError(err) {
@@ -40,7 +40,7 @@ function SignIn(): JSX.Element {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      navigate('/search/book');
+      navigate('/book/search');
     }
   }, [navigate]);
 
