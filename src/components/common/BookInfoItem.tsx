@@ -2,14 +2,16 @@ import { SearchBookInfo } from '@projects/types/basic';
 import styled from 'styled-components';
 
 type Props = {
-  bookInfo: Pick<SearchBookInfo, 'title' | 'author'>;
+  bookInfoData: Pick<SearchBookInfo, 'title' | 'author'>;
 };
 
-function BookInfoItem({ bookInfo }: Props) {
+// 책 검색 페이지 및 추천 페이지 책 정보 UI 컴포넌트
+function BookInfoItem({ bookInfoData }: Props) {
+  const { title, author } = bookInfoData;
   return (
     <Wrapper>
-      <div>{bookInfo.title}</div>
-      <div>{bookInfo.author}</div>
+      <div>{title}</div>
+      <div>{author}</div>
     </Wrapper>
   );
 }
@@ -22,13 +24,4 @@ const Wrapper = styled.section`
   justify-content: space-around;
   margin-left: 1rem;
   padding: 0.3rem;
-`;
-
-const SBookContentKeyword = styled.div`
-  font-weight: 700;
-  font-size: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: 1rem;
 `;
