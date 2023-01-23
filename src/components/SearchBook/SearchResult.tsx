@@ -2,10 +2,8 @@ import { BsPlusSquare } from 'react-icons/bs';
 import styled from 'styled-components';
 import { SearchBookInfo } from '@projects/types/basic';
 import { SearchBookQuery } from '@hooks/query';
-import Boxcontainer from '@components/common/BoxContainer';
-import BookCoverItem from '@components/common/BookCoverItem';
-import BookInfoItem from '@components/common/BookInfoItem';
-import { HandleClickBookInfo } from '@utils';
+import { BookCoverItem, BookInfoItem, Boxcontainer } from '@components/common';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   searchQuery: string;
@@ -13,6 +11,7 @@ type Props = {
 
 function SearchResult({ searchQuery }: Props) {
   const { data, isSuccess } = SearchBookQuery(searchQuery);
+  const navigate = useNavigate();
   return (
     <>
       <SSection>
@@ -26,10 +25,16 @@ function SearchResult({ searchQuery }: Props) {
             <Boxcontainer
               key={idx}
               className="bookInfo"
-              onClick={() => HandleClickBookInfo(bookInfoData)}
+              onClick={() =>
+                navigate(`/book/detail/${bookInfoData.title}`, {
+                  state: {
+                    bookInfoData,
+                  },
+                })
+              }
             >
               <BookCoverItem src={bookInfoData.cover} />
-              <BookInfoItem bookInfo={bookInfoData} />
+              <BookInfoItem bookInfoData={bookInfoData} />
             </Boxcontainer>
           );
         })}

@@ -1,9 +1,7 @@
-import BookCoverItem from '@components/common/BookCoverItem';
-import BookInfoItem from '@components/common/BookInfoItem';
-import Boxcontainer from '@components/common/BoxContainer';
+import { BookCoverItem, BookInfoItem, Boxcontainer } from '@components/common';
 import { RecommendedBooksQuery } from '@hooks/query';
 import { SearchBookInfo } from '@projects/types/basic';
-import { HandleClickBookInfo } from '@utils';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   sort: string;
@@ -11,6 +9,7 @@ type Props = {
 
 function RecommendedResult({ sort }: Props) {
   const { data, isSuccess } = RecommendedBooksQuery(sort);
+  const navigate = useNavigate();
   return (
     <div>
       {isSuccess &&
@@ -19,10 +18,16 @@ function RecommendedResult({ sort }: Props) {
             <Boxcontainer
               key={idx}
               className="bookInfo"
-              onClick={() => HandleClickBookInfo(bookInfoData)}
+              onClick={() =>
+                navigate(`/book/detail/${bookInfoData.title}`, {
+                  state: {
+                    bookInfoData,
+                  },
+                })
+              }
             >
               <BookCoverItem src={bookInfoData.cover} />
-              <BookInfoItem bookInfo={bookInfoData} />
+              <BookInfoItem bookInfoData={bookInfoData} />
             </Boxcontainer>
           );
         })}
