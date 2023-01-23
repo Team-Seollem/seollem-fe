@@ -7,10 +7,10 @@ export const PAGE_URL = {
   SIGN_UP: '/auth/signup',
   MYSTAT: '/mystat',
   MYPAGE: '/mypage',
-  SEARCHBOOK: '/search/book',
-  POSTBOOK: '/post/book/:param',
-  DETAILBOOKINFO: '/detail/book/:param',
-  RECOMMENDEDBOOKS: '/recommended/books',
+  SEARCHBOOK: '/book/search',
+  POSTBOOK: '/book/register/:id',
+  DETAILBOOKINFO: '/book/detail/:id',
+  RECOMMENDEDBOOKS: '/book/recommended',
 };
 export const EMAIL_REGEX =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
