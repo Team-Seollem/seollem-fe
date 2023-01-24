@@ -16,7 +16,6 @@ export interface SearchBookInfo {
 }
 
 type SignInputLabel = '이름' | '이메일' | '비밀번호' | '비밀번호 확인';
-
 export interface UserInfo {
   name: string;
   email: string;
