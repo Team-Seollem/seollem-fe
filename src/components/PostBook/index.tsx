@@ -1,14 +1,25 @@
-import { SBookContainer, SFormWrapper } from '@components/DetailBookInfo';
+import {
+  BookCoverItem,
+  BookDetailInfoItem,
+  Boxcontainer,
+  Button,
+  PageTitle,
+} from '@components/common';
 import React, { useState } from 'react';
-import { BookInfoProps } from '../../types/basic';
+import { SearchBookInfo } from '../../types/basic';
 
-function PostBook({ bookInfoData }: BookInfoProps) {
+type Props = {
+  bookInfoData: SearchBookInfo;
+};
+
+function PostBook({ bookInfoData }: Props) {
+  const { cover, title, author, publisher, itemPage } = bookInfoData;
   const [postBookInfoData, setPostBookInfoData] = useState({
-    cover: bookInfoData.cover,
-    title: bookInfoData.title,
-    author: bookInfoData.author,
-    publisher: bookInfoData.publisher,
-    itemPage: bookInfoData.itemPage,
+    cover,
+    title,
+    author,
+    publisher,
+    itemPage,
   });
   const handleChangePostBookInfoData = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -24,7 +35,6 @@ function PostBook({ bookInfoData }: BookInfoProps) {
   const [readEndDate, setReadEndDate] = useState<string>('');
 
   const selectList = [
-    { typeValue: '', typeText: '📖 읽기 상태를 선택해주세요' },
     { typeValue: 'YET', typeText: '읽고 싶은 책' },
     { typeValue: 'ING', typeText: '읽고 있는 책' },
     { typeValue: 'DONE', typeText: '다 읽은 책' },
@@ -36,19 +46,11 @@ function PostBook({ bookInfoData }: BookInfoProps) {
 
   return (
     <>
-      <div>등록</div>
-      <SBookContainer>
-        <form>
-          <img src={postBookInfoData.cover} alt="도서 이미지" />
-          <SFormWrapper>
-            <label htmlFor="title">책 제목</label>
-            <input
-              id="title"
-              name="title"
-              type="text"
-              value={postBookInfoData.title}
-              onChange={handleChangePostBookInfoData}
-            />
+      <PageTitle title="등록" />
+      <Boxcontainer title={postBookInfoData.title}>
+        <BookCoverItem src={postBookInfoData.cover} />
+        <BookDetailInfoItem>
+          <form>
             <label htmlFor="author">저자</label>
             <input
               id="author"
@@ -85,42 +87,39 @@ function PostBook({ bookInfoData }: BookInfoProps) {
                 </option>
               ))}
             </select>
-          </SFormWrapper>
-          {bookStatus === 'ING' ? (
-            <SFormWrapper>
-              <label htmlFor="readStartDate">읽기 시작한 날 </label>
-              <input
-                id="readStartDate"
-                type="datetime-local"
-                value={readStartDate}
-                onChange={(e) => setReadStartDate(`${e.target.value}:00`)}
-              />
-            </SFormWrapper>
-          ) : null}
-          {bookStatus === 'DONE' ? (
-            <>
-              <SFormWrapper>
+            {bookStatus === 'ING' && (
+              <>
+                <label htmlFor="readStartDate">읽기 시작한 날 </label>
+                <input
+                  id="readStartDate"
+                  type="datetime-local"
+                  value={readStartDate}
+                  onChange={(e) => setReadStartDate(`${e.target.value}:00`)}
+                />
+              </>
+            )}
+            {bookStatus === 'DONE' && (
+              <>
                 <label htmlFor="readStartDate">읽기 시작한 날</label>
                 <input
                   id="readStartDate"
                   type="datetime-local"
                   onChange={(e) => setReadStartDate(`${e.target.value}:00`)}
                 />
-              </SFormWrapper>
-              <SFormWrapper>
                 <label htmlFor="readEndDate">다 읽은 날</label>
                 <input
                   id="readEndDate"
                   type="datetime-local"
                   onChange={(e) => setReadEndDate(`${e.target.value}:00`)}
                 />
-              </SFormWrapper>
-            </>
-          ) : null}
-
-          <button type="button">등록하기</button>
-        </form>
-      </SBookContainer>
+              </>
+            )}
+            <Button size="small" styleType="solidPositive">
+              등록하기
+            </Button>
+          </form>
+        </BookDetailInfoItem>
+      </Boxcontainer>
     </>
   );
 }

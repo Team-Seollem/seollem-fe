@@ -11,7 +11,7 @@ function BookDetailInfoItem({ children }: Props) {
 
 export default BookDetailInfoItem;
 
-export const FormWrapper = styled.form`
+const FormWrapper = styled.div`
   width: 100%;
   label {
     display: inline-block;
