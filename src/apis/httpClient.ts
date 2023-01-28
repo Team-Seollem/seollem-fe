@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-interface HttpClient {
+export interface HttpClient {
   get: <T>(
     endPoint: string,
     config?: AxiosRequestConfig
