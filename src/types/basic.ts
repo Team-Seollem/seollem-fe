@@ -22,6 +22,10 @@ export interface UserInfo {
   password: string;
   password_confirm: string;
 }
+
+export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
+export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
+
 export interface SignInputProps {
   label: SignInputLabel;
   register: UseFormRegister<UserInfo>;
