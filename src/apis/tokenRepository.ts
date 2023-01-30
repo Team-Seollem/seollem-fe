@@ -1,17 +1,7 @@
-import jwtDecode from 'jwt-decode';
-
-type JwtPayload = {
-  sub: string;
-  id: number;
-  exp: number;
-  email: string;
-};
-
 interface TokenRepository {
   saveToken: (token: string) => void;
   getToken: () => string | null;
   removeToken: () => void;
-  isValidToken: () => boolean;
 }
 
 export class TokenRepositoryImpl implements TokenRepository {
@@ -27,19 +17,6 @@ export class TokenRepositoryImpl implements TokenRepository {
 
   removeToken = () => {
     localStorage.removeItem(this.TOKEN_KEY);
-  };
-
-  isValidToken = () => {
-    const token = this.getToken();
-
-    if (token) {
-      const { exp: expireTime } = jwtDecode<JwtPayload>(token);
-      const currentTime = Math.floor(Date.now() / 1000);
-
-      return currentTime < expireTime;
-    }
-
-    return false;
   };
 }
 
