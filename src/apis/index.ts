@@ -4,14 +4,22 @@ import { AuthService } from './authService';
 import { HttpClientImpl } from './httpClient';
 import { TokenRepositoryImpl } from './tokenRepository';
 import { ExternalServiceImpl } from './externalService';
+import { ProfileServiceImpl } from './profileService';
+import { HttpClientAuthImpl } from './httpClientAuth';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
 export const tokenRepository = new TokenRepositoryImpl();
 export const httpClient = new HttpClientImpl(BASE_URL);
+export const httpClientAuth = new HttpClientAuthImpl(BASE_URL, tokenRepository);
 
 export const authService = new AuthService(httpClient, tokenRepository);
 export const externalService = new ExternalServiceImpl(httpClient);
+export const profileService = new ProfileServiceImpl(
+  httpClientAuth,
+  tokenRepository
+);
+
 // 책 검색 (외부API)
 export const getBookInfo = async (keyword: string) => {
   const { data } = await axios.get(`${BASE_URL}/ext-lib/${keyword}`);

@@ -22,7 +22,7 @@ export interface UserInfo {
   password: string;
   password_confirm: string;
 }
-
+export type Profile = Pick<UserInfo, 'email' | 'name'>;
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
 export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
 
