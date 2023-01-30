@@ -26,6 +26,8 @@ export interface UserInfo {
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
 export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
 
+export type RecommendSort = 'best-seller' | 'item-new-special';
+
 export interface SignInputProps {
   label: SignInputLabel;
   register: UseFormRegister<UserInfo>;
