@@ -24,7 +24,9 @@ export interface UserInfo {
 }
 export type Profile = Pick<UserInfo, 'email' | 'name'>;
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
-export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
+export type SignUpInput = Omit<UserInfo, 'password_confirm'> & {
+  authenticationCode: string;
+};
 
 export type RecommendSort = 'best-seller' | 'item-new-special';
 
