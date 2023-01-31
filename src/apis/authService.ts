@@ -2,6 +2,14 @@ import type { SignInInput, SignUpInput } from '@projects/types/basic';
 import type { HttpClientImpl } from './httpClient';
 import type { TokenRepositoryImpl } from './tokenRepository';
 
+type EmailAuthCodeParams = {
+  joinAuthCodeEmail: string;
+};
+
+type TempPasswordParams = {
+  tempPasswordEmail: string;
+};
+
 export class AuthService {
   constructor(
     private httpClient: HttpClientImpl,
@@ -33,5 +41,29 @@ export class AuthService {
 
   signOut = () => {
     this.tokenRepository.removeToken();
+  };
+
+  getEmailAuthCode = async (email: string) => {
+    const response = await this.httpClient.post<string, EmailAuthCodeParams>(
+      'email/join',
+      {
+        joinAuthCodeEmail: email,
+      }
+    );
+    return response.status === 201
+      ? '입력하신 이메일로 인증번호가 발송되었습니다.'
+      : '';
+  };
+
+  getTempPassword = async (email: string) => {
+    const response = await this.httpClient.post<string, TempPasswordParams>(
+      'email/join',
+      {
+        tempPasswordEmail: email,
+      }
+    );
+    return response.status === 201
+      ? '입력하신 이메일로 임시 비밀번호가 발송되었습니다.'
+      : '';
   };
 }
