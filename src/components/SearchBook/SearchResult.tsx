@@ -1,12 +1,13 @@
-import { BsPlusSquare } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { SearchBookInfo } from '@projects/types/basic';
+import { BsPlusSquare } from 'react-icons/bs';
+
+import type { RecommendSort, SearchBookInfo } from '@projects/types/basic';
 import { SearchBookQuery } from '@hooks/query';
 import { BookCoverItem, BookInfoItem, Boxcontainer } from '@components/common';
-import { useNavigate } from 'react-router-dom';
 
 type Props = {
-  searchQuery: string;
+  searchQuery: RecommendSort;
 };
 
 function SearchResult({ searchQuery }: Props) {

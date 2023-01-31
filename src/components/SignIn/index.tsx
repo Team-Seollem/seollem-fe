@@ -1,32 +1,23 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { UserInfo } from '@projects/types/basic';
-import { postSignIn } from '@apis/index';
-import { useMutation } from '@tanstack/react-query';
-import { EMAIL_REGEX, PAGE_URL, PASSWORD_REGEX } from '@constants';
-import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Button, SignContainer, SignInput } from '@components/common';
+import { Link, useNavigate } from 'react-router-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 import styled from 'styled-components';
+
+import type { UserInfo, SignInInput } from '@projects/types/basic';
+import { authService } from '@apis/index';
+import { EMAIL_REGEX, PAGE_URL, PASSWORD_REGEX } from '@constants';
+import { Button, SignContainer, SignInput } from '@components/common';
 
 function SignIn(): JSX.Element {
   const navigate = useNavigate();
 
-  const { mutate } = useMutation(postSignIn);
-  const onSubmit: SubmitHandler<Pick<UserInfo, 'email' | 'password'>> = (
-    userInfoData
-  ) => {
+  const { mutate } = useMutation(authService.signIn);
+  const onSubmit: SubmitHandler<SignInInput> = (userInfoData) => {
     mutate(userInfoData, {
       onSuccess(data) {
         if (data) {
-          localStorage.setItem('token', data);
           navigate('/book/search');
-        }
-      },
-      onError(err) {
-        if (err) {
-          alert(
-            '등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다.'
-          );
         }
       },
     });
