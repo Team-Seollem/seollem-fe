@@ -2,6 +2,7 @@ import { Layout } from '@components/layout';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { RecoilRoot } from 'recoil';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,8 +25,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout />
+        <RecoilRoot>
+          <GlobalStyle />
+          <Layout />
+        </RecoilRoot>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
       <ToastContainer position="top-center" pauseOnFocusLoss theme="light" />
