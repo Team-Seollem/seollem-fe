@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     path: PAGE_URL.ROOT,
     element: <App />,
     children: [
+      { index: true, element: <Landing /> },
+      { path: PAGE_URL.NOT_FOUND, element: <div>not found</div> },
       {
         element: <PublicRoute />,
         children: [
-          { index: true, element: <Landing /> },
-          { path: PAGE_URL.NOT_FOUND, element: <div>not found</div> },
           { path: PAGE_URL.SIGN_IN, element: <SignInPage /> },
           { path: PAGE_URL.SIGN_UP, element: <SignUpPage /> },
         ],
