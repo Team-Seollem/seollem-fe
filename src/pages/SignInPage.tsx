@@ -1,8 +1,7 @@
-import SininIn from '@components/SignIn';
-import React from 'react';
+import SignIn from '@components/SignIn';
 
 function SignInPage() {
-  return <SininIn />;
+  return <SignIn />;
 }
 
 export default SignInPage;
