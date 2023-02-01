@@ -1,27 +1,38 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+
 import imgUrl from '@assets/logo.png';
 import { IoNotifications, IoPerson, IoLogOutOutline } from 'react-icons/io5';
 import { Button } from '@components/common';
 import { PAGE_URL } from '@constants';
+import { authService } from '@apis';
+import { loginState } from '@state/atom';
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
+
+  const handleLogout = () => {
+    authService.signOut();
+    setIsLoggedIn(false);
+  };
+
   return (
     <SHeader>
       <Logo to={PAGE_URL.ROOT}>
         <img src={imgUrl} alt="logo_icon" />
       </Logo>
+
       {isLoggedIn && (
         <SMenu>
           <IoNotifications />
           <SLink to={PAGE_URL.MYPAGE}>
             <IoPerson />
           </SLink>
-          <IoLogOutOutline />
+          <IoLogOutOutline onClick={handleLogout} />
         </SMenu>
       )}
+
       {!isLoggedIn && (
         <SMenu>
           <SLink to={PAGE_URL.SIGN_IN}>
