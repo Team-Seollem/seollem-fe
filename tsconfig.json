@@ -26,6 +26,8 @@
       "@hooks": ["hooks"],
       "@pages/*": ["pages/*"],
       "@pages": ["pages"],
+      "@routes": ["routes"],
+      "@state/*": ["state/*"],
       "@styles/*": ["styles/*"],
       "@styles": ["styles"],
       "@theme/*": ["theme/*"],

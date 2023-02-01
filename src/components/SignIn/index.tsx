@@ -1,22 +1,24 @@
-import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import type { UserInfo, SignInInput } from '@projects/types/basic';
-import { authService } from '@apis/index';
+import { authService } from '@apis';
 import { EMAIL_REGEX, PAGE_URL, PASSWORD_REGEX } from '@constants';
 import { Button, SignContainer, SignInput } from '@components/common';
+import { loginState } from '@state/atom';
 
 function SignIn(): JSX.Element {
   const navigate = useNavigate();
-
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
   const { mutate } = useMutation(authService.signIn);
   const onSubmit: SubmitHandler<SignInInput> = (userInfoData) => {
     mutate(userInfoData, {
       onSuccess(data) {
         if (data) {
+          setIsLoggedIn(true);
           navigate('/book/search');
         }
       },
@@ -28,12 +30,6 @@ function SignIn(): JSX.Element {
     handleSubmit,
     formState: { errors },
   } = useForm<UserInfo>();
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      navigate('/book/search');
-    }
-  }, [navigate]);
 
   return (
     <SignContainer
