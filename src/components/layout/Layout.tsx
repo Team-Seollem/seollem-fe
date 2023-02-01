@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
+import useLoginState from '@hooks/useLoginState';
 import Header from './Header';
 
 export default function Layout() {
+  const { isLoggedIn } = useLoginState();
   return (
     <>
       <Header />
