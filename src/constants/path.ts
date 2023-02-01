@@ -9,4 +9,5 @@ export const PAGE_URL = {
   POSTBOOK: '/book/register/:id',
   DETAILBOOKINFO: '/book/detail/:id',
   RECOMMENDEDBOOKS: '/book/recommended',
+  LIBRARY: '/book/library',
 };
