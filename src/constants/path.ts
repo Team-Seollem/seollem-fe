@@ -10,4 +10,4 @@ export const PAGE_URL = {
   DETAILBOOKINFO: '/book/detail/:id',
   RECOMMENDEDBOOKS: '/book/recommended',
   LIBRARY: '/book/library',
-};
+} as const;
