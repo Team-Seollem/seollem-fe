@@ -11,7 +11,7 @@ const color = {
   pink02: '#FEE5E0',
   primary: '#90DED8',
   negative: '#EA5966',
-};
+} as const;
 
 const fontSize = {
   xs: '0.5rem',
@@ -19,7 +19,7 @@ const fontSize = {
   base: '1rem',
   md: '1.25rem',
   lg: '1.5rem',
-};
+} as const;
 const boxShadow = {};
 
 export type ColorType = typeof color;
