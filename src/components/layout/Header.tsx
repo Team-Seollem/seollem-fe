@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -12,9 +12,11 @@ import { loginState } from '@state/atom';
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
 
+  const navigate = useNavigate();
   const handleLogout = () => {
     authService.signOut();
     setIsLoggedIn(false);
+    navigate(PAGE_URL.ROOT);
   };
 
   return (
