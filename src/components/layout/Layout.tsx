@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import useLoginState from '@hooks/useLoginState';
 import Header from './Header';
+import GNB from './GNB';
 
 export default function Layout() {
   const { isLoggedIn } = useLoginState();
@@ -11,12 +12,13 @@ export default function Layout() {
       <SMain>
         <Outlet />
       </SMain>
-      {/* GNB Component  */}
+      {isLoggedIn && <GNB />}
     </>
   );
 }
 const SMain = styled.main`
   margin: 0.9rem 0.75rem 1.25rem 0.75rem;
+  padding-bottom: 4rem;
   display: flex;
   flex-direction: column;
 `;
