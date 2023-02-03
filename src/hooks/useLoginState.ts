@@ -11,7 +11,8 @@ const useLoginState = () => {
   useEffect(() => {
     const token = tokenRepository.getToken();
     setIsLoggedIn(isValidToken(token));
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { isLoggedIn };
 };
