@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 
 import { PAGE_URL } from '@constants';
-import { loginState } from '@state/atom';
+import { tokenRepository } from '@apis/index';
+import { isValidToken } from '@utils';
 
 function PrivateRoute() {
-  const [isLoggedIn] = useRecoilState(loginState);
+  const token = tokenRepository.getToken();
 
-  if (!isLoggedIn) return <Navigate to={PAGE_URL.SIGN_IN} />;
+  if (!isValidToken(token)) return <Navigate to={PAGE_URL.SIGN_IN} />;
 
   return <Outlet />;
 }
