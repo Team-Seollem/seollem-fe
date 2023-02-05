@@ -10,4 +10,6 @@ export const PAGE_URL = {
   DETAILBOOKINFO: '/book/detail/:id',
   RECOMMENDEDBOOKS: '/book/recommended',
   LIBRARY: '/book/library',
+  MEMO_BOOK: '/memobook',
+  COMMUNITY: '/community',
 } as const;
