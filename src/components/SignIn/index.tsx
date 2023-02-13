@@ -32,11 +32,7 @@ function SignIn(): JSX.Element {
   } = useForm<UserInfo>();
 
   return (
-    <SignContainer
-      width="22rem"
-      height="22rem"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <SignContainer height="22rem" onSubmit={handleSubmit(onSubmit)}>
       <SignInput
         label="이메일"
         id="email"
