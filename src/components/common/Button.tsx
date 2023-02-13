@@ -23,6 +23,7 @@ export default function Button({
   size,
   children,
   className,
+  type,
 }: Props) {
   return (
     <SButton
@@ -31,6 +32,7 @@ export default function Button({
       styleType={styleType}
       size={size}
       className={className}
+      type={type}
     >
       {children}
     </SButton>

@@ -15,18 +15,22 @@ export interface SearchBookInfo {
   publisher: string;
 }
 
-type SignInputLabel = '이름' | '이메일' | '비밀번호' | '비밀번호 확인';
+type SignInputLabel =
+  | '이름'
+  | '이메일'
+  | '이메일 인증 번호'
+  | '비밀번호'
+  | '비밀번호 확인';
 export interface UserInfo {
   name: string;
   email: string;
+  authenticationCode: string;
   password: string;
   password_confirm: string;
 }
 export type Profile = Pick<UserInfo, 'email' | 'name'>;
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
-export type SignUpInput = Omit<UserInfo, 'password_confirm'> & {
-  authenticationCode: string;
-};
+export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
 
 export type RecommendSort = 'best-seller' | 'item-new-special';
 

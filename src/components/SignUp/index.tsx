@@ -1,28 +1,24 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { postSignUp } from '@apis/index';
+import { authService } from '@apis/index';
 import { useMutation } from '@tanstack/react-query';
-import { UserInfo } from '@projects/types/basic';
+import { SignUpInput, UserInfo } from '@projects/types/basic';
 import { Button, SignContainer, SignInput } from '@components/common';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '@constants';
 import { useRef } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 function SignUp() {
   const navigate = useNavigate();
 
-  const { mutate } = useMutation(postSignUp);
-  const onSubmit: SubmitHandler<Omit<UserInfo, 'password_confirm'>> = (
-    userInfoData
-  ) => {
+  const { mutate } = useMutation(authService.signUp);
+  const onSubmit: SubmitHandler<SignUpInput> = (userInfoData) => {
     mutate(userInfoData, {
       onSuccess(data) {
         if (data) {
-          alert('회원 가입에 성공하셨습니다. 로그인 페이지로 이동합니다.');
+          toast.success('회원 가입에 성공했습니다.');
           navigate('/auth/signin');
         }
-      },
-      onError(err) {
-        if (err) alert('이미 존재하는 회원입니다.');
       },
     });
   };
@@ -30,18 +26,25 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
     watch,
   } = useForm<UserInfo>();
 
   const password = useRef('');
   password.current = watch('password');
 
+  const emailHandleClick = async () => {
+    const value = getValues('email');
+    if (EMAIL_REGEX.test(value)) {
+      const result = await authService.getEmailAuthCode(value);
+      toast.success(result);
+    } else {
+      toast.error('이메일 형식이어야 합니다.');
+    }
+  };
+
   return (
-    <SignContainer
-      width="30rem"
-      height="30rem"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <SignContainer height="38rem" onSubmit={handleSubmit(onSubmit)}>
       <SignInput
         id="name"
         label="이름"
@@ -62,6 +65,25 @@ function SignUp() {
         register={register}
         errors={errors}
         errMessage="이메일 형식이어야 합니다."
+        required
+      />
+      <Button
+        onClick={emailHandleClick}
+        styleType="neutral"
+        size="small"
+        type="button"
+      >
+        이메일 인증 번호 요청
+      </Button>
+      <SignInput
+        id="authenticationCode"
+        label="이메일 인증 번호"
+        type="text"
+        placeholder="이메일 인증 번호"
+        pattern={/^\d{6,}$/}
+        register={register}
+        errors={errors}
+        errMessage="이메일 인증 번호를 입력해주세요."
         required
       />
       <SignInput

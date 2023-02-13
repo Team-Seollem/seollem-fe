@@ -19,12 +19,3 @@ export const profileService = new ProfileServiceImpl(
   httpClientAuth,
   tokenRepository
 );
-// 회원가입
-export const postSignUp = async (
-  SignUpuserInfoData: Omit<UserInfo, 'password_confirm'>
-) => {
-  const response = await axios.post(`${BASE_URL}/join`, SignUpuserInfoData, {
-    withCredentials: true,
-  });
-  return response;
-};
