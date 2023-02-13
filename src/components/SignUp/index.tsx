@@ -6,7 +6,7 @@ import { SignUpInput, UserInfo } from '@projects/types/basic';
 import { Button, SignContainer, SignInput } from '@components/common';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '@constants';
 import { useRef } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function SignUp() {
   const navigate = useNavigate();
