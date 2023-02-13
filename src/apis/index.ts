@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { UserInfo } from '@projects/types/basic';
 import { TokenRepositoryImpl } from './tokenRepository';
 import { HttpClientImpl } from './httpClient';
 import { HttpClientAuthImpl } from './httpClientAuth';
