@@ -40,7 +40,7 @@ export class HttpClientImpl implements HttpClient {
   };
 
   patch = <T, D>(endPoint: string, data: D, config?: AxiosRequestConfig<D>) => {
-    return this.instance.put<T, AxiosResponse<T>, D>(endPoint, data, config);
+    return this.instance.patch<T, AxiosResponse<T>, D>(endPoint, data, config);
   };
 
   delete = <T>(endPoint: string, config?: AxiosRequestConfig) => {
