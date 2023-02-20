@@ -7,6 +7,7 @@ import { Button, SignContainer, SignInput } from '@components/common';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '@constants';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
+import { AxiosError } from 'axios';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -36,8 +37,13 @@ function SignUp() {
   const emailHandleClick = async () => {
     const value = getValues('email');
     if (EMAIL_REGEX.test(value)) {
-      const result = await authService.getEmailAuthCode(value);
-      toast.success(result);
+      authService
+        .getEmailAuthCode(value)
+        .then((res) => toast.success(res))
+        .catch((error: unknown) => {
+          if (error instanceof AxiosError && error.response)
+            toast.error(error.response.data.message);
+        });
     } else {
       toast.error('이메일 형식이어야 합니다.');
     }
