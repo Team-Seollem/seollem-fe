@@ -44,26 +44,19 @@ export class AuthService {
   };
 
   getEmailAuthCode = async (email: string) => {
-    const response = await this.httpClient.post<string, EmailAuthCodeParams>(
-      'email/join',
-      {
-        joinAuthCodeEmail: email,
-      }
-    );
-    return response.status === 201
-      ? '입력하신 이메일로 인증번호가 발송되었습니다.'
-      : '';
+    await this.httpClient.post<string, EmailAuthCodeParams>('email/join', {
+      joinAuthCodeEmail: email,
+    });
+    return '입력하신 이메일로 인증번호가 발송되었습니다.';
   };
 
   getTempPassword = async (email: string) => {
-    const response = await this.httpClient.post<string, TempPasswordParams>(
+    await this.httpClient.post<string, TempPasswordParams>(
       'email/password-change',
       {
         tempPasswordEmail: email,
       }
     );
-    return response.status === 201
-      ? '입력하신 이메일로 임시 비밀번호가 발송되었습니다.'
-      : '';
+    return '입력하신 이메일로 임시 비밀번호가 발송되었습니다.';
   };
 }
