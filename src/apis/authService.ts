@@ -57,7 +57,7 @@ export class AuthService {
 
   getTempPassword = async (email: string) => {
     const response = await this.httpClient.post<string, TempPasswordParams>(
-      'email/join',
+      'email/password-change',
       {
         tempPasswordEmail: email,
       }
