@@ -49,6 +49,7 @@ const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
   width: 22rem;
   min-height: 100px;
   padding: 1.25rem;
