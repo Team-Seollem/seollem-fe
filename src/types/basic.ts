@@ -31,11 +31,12 @@ export interface UserInfo {
 export type Profile = Pick<UserInfo, 'email' | 'name'>;
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
 export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
+export type SearchPwInput = Pick<UserInfo, 'email'>;
 
 export type RecommendSort = 'best-seller' | 'item-new-special';
 
 export interface SignInputProps {
-  label: SignInputLabel;
+  label?: SignInputLabel;
   register: UseFormRegister<UserInfo>;
   errors: Partial<FieldErrorsImpl<UserInfo>>;
   id: Path<UserInfo>;

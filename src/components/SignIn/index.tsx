@@ -9,11 +9,14 @@ import { authService } from '@apis';
 import { EMAIL_REGEX, PAGE_URL, PASSWORD_REGEX } from '@constants';
 import { Button, SignContainer, SignInput } from '@components/common';
 import { loginState } from '@state/atom';
+import SearchPassword from './SearchPassword';
 
 function SignIn(): JSX.Element {
   const navigate = useNavigate();
+
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
   const { mutate } = useMutation(authService.signIn);
+
   const onSubmit: SubmitHandler<SignInInput> = (userInfoData) => {
     mutate(userInfoData, {
       onSuccess(data) {
@@ -58,6 +61,7 @@ function SignIn(): JSX.Element {
       <Button styleType="solidPositive" size="large">
         로그인하기
       </Button>
+      <SearchPassword />
       <SLink to={PAGE_URL.SIGN_UP}>아직 회원이 아니신가요?</SLink>
     </SignContainer>
   );
@@ -66,7 +70,7 @@ function SignIn(): JSX.Element {
 export default SignIn;
 
 const SLink = styled(Link)`
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   text-decoration: none;
   color: ${(props) => props.theme.color.gray01};
 
