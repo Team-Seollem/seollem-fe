@@ -33,7 +33,12 @@ function SearchPassword() {
     <>
       <SSearchPw onClick={toggle}>비밀번호 찾기</SSearchPw>
       <Modal isOpen={isOpen} closeModal={toggle}>
-        <Sform onSubmit={handleSubmit(onSubmit)}>
+        <Sform
+          onSubmit={(e) => {
+            e.stopPropagation();
+            handleSubmit(onSubmit)(e);
+          }}
+        >
           <div>이메일 주소를 입력해주세요</div>
           <SignInput
             id="email"
