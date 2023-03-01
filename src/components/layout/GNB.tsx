@@ -55,7 +55,7 @@ const NavButton = styled(NavLink)`
   flex-direction: column;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  color: ${({ theme }) => theme.color.gray01};
+  color: ${({ theme }) => theme.color.gray02};
   font-family: 'Pretendard';
   font-weight: 800;
   padding: 0.4rem 0.6rem;
@@ -67,6 +67,6 @@ const NavButton = styled(NavLink)`
     margin-bottom: 0.3rem;
   }
   &.active {
-    background-color: ${({ theme }) => theme.color.gray04};
+    color: ${({ theme }) => theme.color.gray01};
   }
 `;
