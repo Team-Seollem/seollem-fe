@@ -7,7 +7,7 @@ import { Button, SignContainer, SignInput } from '@components/common';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '@constants';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
-import { AxiosError } from 'axios';
+import styled from 'styled-components';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -34,16 +34,17 @@ function SignUp() {
   const password = useRef('');
   password.current = watch('password');
 
-  const emailHandleClick = async () => {
+  const emailAuthCodeMutation = useMutation({
+    mutationFn: (email: string) => authService.getEmailAuthCode(email),
+    onSuccess(data) {
+      toast.success(data);
+    },
+  });
+
+  const emailHandleClick = () => {
     const value = getValues('email');
     if (EMAIL_REGEX.test(value)) {
-      authService
-        .getEmailAuthCode(value)
-        .then((res) => toast.success(res))
-        .catch((error: unknown) => {
-          if (error instanceof AxiosError && error.response)
-            toast.error(error.response.data.message);
-        });
+      emailAuthCodeMutation.mutate(value);
     } else {
       toast.error('이메일 형식이어야 합니다.');
     }
@@ -73,14 +74,16 @@ function SignUp() {
         errMessage="이메일 형식이어야 합니다."
         required
       />
-      <Button
+      <SButton
         onClick={emailHandleClick}
         styleType="neutral"
         size="small"
         type="button"
+        disabled={emailAuthCodeMutation.isLoading}
+        isLoading={emailAuthCodeMutation.isLoading}
       >
         이메일 인증 번호 요청
-      </Button>
+      </SButton>
       <SignInput
         id="authenticationCode"
         label="이메일 인증 번호"
@@ -122,3 +125,7 @@ function SignUp() {
 }
 
 export default SignUp;
+
+const SButton = styled(Button)`
+  width: 10rem;
+`;
