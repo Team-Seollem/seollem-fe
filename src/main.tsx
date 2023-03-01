@@ -8,6 +8,7 @@ import {
   Landing,
   SignInPage,
   SignUpPage,
+  Library,
 } from '@pages';
 import RecommendedBooksPage from '@pages/RecommendedBooksPage';
 import { PrivateRoute, PublicRoute } from '@routes';
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
             path: PAGE_URL.RECOMMENDEDBOOKS,
             element: <RecommendedBooksPage />,
           },
-          { path: PAGE_URL.LIBRARY, element: <div>library</div> },
+          { path: PAGE_URL.LIBRARY, element: <Library /> },
         ],
       },
     ],
