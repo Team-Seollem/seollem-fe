@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { ReactComponent as LoadingSVG } from '@assets/loading.svg';
 
 type ButtonStyleType =
   | 'ghost'
@@ -14,6 +15,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   styleType: ButtonStyleType;
   size: 'small' | 'medium' | 'large';
   className?: string;
+  isLoading?: boolean;
 }
 
 export default function Button({
@@ -24,6 +26,7 @@ export default function Button({
   children,
   className,
   type,
+  isLoading = false,
 }: Props) {
   return (
     <SButton
@@ -33,8 +36,9 @@ export default function Button({
       size={size}
       className={className}
       type={type}
+      isLoading={isLoading}
     >
-      {children}
+      {isLoading ? <LoadingSVG /> : children}
     </SButton>
   );
 }
