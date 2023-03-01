@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 function SearchPassword() {
   const { isOpen, toggle } = useModal();
-  const { mutate } = useMutation(authService.getTempPassword);
+  const { mutate, isLoading } = useMutation(authService.getTempPassword);
   const onSubmit: SubmitHandler<Pick<UserInfo, 'email'>> = async (emailObj) => {
     const { email } = emailObj;
     mutate(email, {
@@ -50,9 +50,14 @@ function SearchPassword() {
             errors={errors}
             required
           />
-          <Button styleType="neutral" size="small">
+          <SButton
+            styleType="neutral"
+            size="small"
+            isLoading={isLoading}
+            disabled={isLoading}
+          >
             임시 비밀번호 요청
-          </Button>
+          </SButton>
         </Sform>
       </Modal>
     </>
@@ -78,4 +83,8 @@ const Sform = styled.form`
   justify-content: space-around;
   align-items: center;
   gap: 1rem;
+`;
+
+const SButton = styled(Button)`
+  width: 10rem;
 `;
