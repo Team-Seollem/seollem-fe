@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import type { UserInfo, SignInInput } from '@projects/types/basic';
@@ -14,7 +14,7 @@ import SearchPassword from './SearchPassword';
 function SignIn(): JSX.Element {
   const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
+  const setIsLoggedIn = useSetRecoilState(loginState);
   const { mutate } = useMutation(authService.signIn);
 
   const onSubmit: SubmitHandler<SignInInput> = (userInfoData) => {
