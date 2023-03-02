@@ -4,6 +4,7 @@ import { HttpClientAuthImpl } from './httpClientAuth';
 import { AuthService } from './authService';
 import { ExternalServiceImpl } from './externalService';
 import { ProfileServiceImpl } from './profileService';
+import { BookServiceImpl } from './bookService';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
@@ -17,3 +18,4 @@ export const profileService = new ProfileServiceImpl(
   httpClientAuth,
   tokenRepository
 );
+export const bookService = new BookServiceImpl(httpClientAuth);
