@@ -1,3 +1,13 @@
+import { PageTitle } from '@components/common';
+import BookSlider from '@components/Library/BookSlider';
+
 export default function Library() {
-  return <div>library page </div>;
+  return (
+    <>
+      <PageTitle title="나만의 서재" />
+      <BookSlider bookStatus="ING" />
+      <BookSlider bookStatus="YET" />
+      <BookSlider bookStatus="DONE" />
+    </>
+  );
 }
