@@ -22,7 +22,7 @@ function SignIn(): JSX.Element {
       onSuccess(data) {
         if (data) {
           setIsLoggedIn(true);
-          navigate('/book/search');
+          navigate(PAGE_URL.LIBRARY);
         }
       },
     });
