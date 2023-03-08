@@ -6,3 +6,4 @@ export { default as BookCoverItem } from './BookCoverItem';
 export { default as BookInfoItem } from './BookInfoItem';
 export { default as Boxcontainer } from './BoxContainer';
 export { default as BookDetailInfoItem } from './BookDetailInfoItem';
+export { default as BookAddButton } from './BookAddButton';
