@@ -1,10 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { BookCoverItem, BookInfoItem, Boxcontainer } from '@components/common';
 import { RecommendedBooksQuery } from '@hooks/query';
-import { SearchBookInfo } from '@projects/types/basic';
-import { useNavigate } from 'react-router-dom';
+import type { RecommendSort, SearchBookInfo } from '@projects/types/basic';
 
 type Props = {
-  sort: string;
+  sort: RecommendSort;
 };
 
 function RecommendedResult({ sort }: Props) {
