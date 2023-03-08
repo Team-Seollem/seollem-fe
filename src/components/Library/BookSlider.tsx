@@ -1,12 +1,12 @@
-import { BookCoverItem } from '@components/common';
-import styled from 'styled-components';
-import type { BookStatus } from '@projects/types/library';
 import { useNavigate } from 'react-router-dom';
-import { PAGE_URL } from '@constants';
-import { bookStatus } from 'constants/library';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useBookSlider } from './hook/useBookSlider';
+import styled from 'styled-components';
 import 'swiper/css';
+import { BookCoverItem } from '@components/common';
+import type { BookStatus } from '@projects/types/library';
+import { PAGE_URL } from '@constants';
+import { BOOKSTATUS } from 'constants/library';
+import { useBookSlider } from './hook/useBookSlider';
 
 type Props = {
   bookStatus: BookStatus;
@@ -20,13 +20,12 @@ export default function BookSlider({ bookStatus: status }: Props) {
 
   return (
     <>
-      <Title>{bookStatus[status]}</Title>
+      <Title>{BOOKSTATUS[status]}</Title>
       <Container>
         <Swiper
           spaceBetween={5}
           slidesPerView={4}
           onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {data?.pages.map((page) =>
             page.item.map((book) => (

@@ -1,11 +1,11 @@
-import { bookStatus } from 'constants/library';
+import { BOOKSTATUS } from 'constants/library';
 
 type PageableApiResponse<T> = {
   item: T[];
   pageInfo: PageInfo;
 };
 
-export type BookStatus = keyof typeof bookStatus;
+export type BookStatus = keyof typeof BOOKSTATUS;
 
 export type BasicBook = {
   bookId: number;
