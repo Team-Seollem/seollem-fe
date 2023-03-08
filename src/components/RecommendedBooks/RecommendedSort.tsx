@@ -1,8 +1,9 @@
 import { RECOMMENDED_SORT } from '@constants';
+import { RecommendSort } from '@projects/types/basic';
 import styled from 'styled-components';
 
 type Props = {
-  onChangeList: (value: string) => void;
+  onChangeList: (value: RecommendSort) => void;
 };
 
 function RecommendedSort({ onChangeList }: Props) {

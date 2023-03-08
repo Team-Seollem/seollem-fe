@@ -3,12 +3,13 @@ import {
   RecommendedResult,
   RecommendedSort,
 } from '@components/RecommendedBooks';
+import { RecommendSort } from '@projects/types/basic';
 import { useState } from 'react';
 
 function RecommendedBooksPage() {
-  const [sort, setSort] = useState('best-seller');
+  const [sort, setSort] = useState<RecommendSort>('best-seller');
 
-  const onChangeList = (value: string) => {
+  const onChangeList = (value: RecommendSort) => {
     setSort(value);
   };
 

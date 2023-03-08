@@ -9,4 +9,4 @@ export const RECOMMENDED_SORT = [
     name: '주목할만한 신간 리스트',
     value: 'item-new-special',
   },
-];
+] as const;
