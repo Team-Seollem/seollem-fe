@@ -1,4 +1,4 @@
-export const bookStatus = {
+export const BOOKSTATUS = {
   YET: '읽고 싶은 책',
   ING: '읽고 있는 책',
   DONE: '다 읽은 책',
