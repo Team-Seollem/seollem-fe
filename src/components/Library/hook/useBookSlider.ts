@@ -8,7 +8,7 @@ type UseBookSliderProps = {
 };
 
 export const useBookSlider = ({ bookStatus }: UseBookSliderProps) => {
-  return useInfiniteQuery(
+  const { data, isLoading } = useInfiniteQuery(
     CACHE_KEYS.library(bookStatus),
     ({ pageParam = 1 }) => bookService.getLibrary(pageParam, bookStatus),
 
@@ -21,4 +21,5 @@ export const useBookSlider = ({ bookStatus }: UseBookSliderProps) => {
       },
     }
   );
+  return { data, isLoading };
 };

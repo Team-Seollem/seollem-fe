@@ -9,6 +9,7 @@ import {
   SignInPage,
   SignUpPage,
   Library,
+  LibraryBook,
 } from '@pages';
 import RecommendedBooksPage from '@pages/RecommendedBooksPage';
 import { PrivateRoute, PublicRoute } from '@routes';
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
             element: <RecommendedBooksPage />,
           },
           { path: PAGE_URL.LIBRARY, element: <Library /> },
+          { path: PAGE_URL.LIBRARYBOOK, element: <LibraryBook /> },
         ],
       },
     ],
