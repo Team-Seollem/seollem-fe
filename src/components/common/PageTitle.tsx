@@ -39,7 +39,7 @@ const LeftIcon = styled(BiLeftArrowAlt)`
 `;
 
 const Title = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 900;
 `;
 

@@ -11,11 +11,7 @@ export default function BookCoverItem({
   onClick,
   width = '5.3rem',
 }: Props) {
-  return (
-    <Wrapper>
-      <Img src={src} alt="book_cover" onClick={onClick} width={width} />
-    </Wrapper>
-  );
+  return <Img src={src} alt="book_cover" onClick={onClick} width={width} />;
 }
 const ACTIVE = css`
   cursor: pointer;
@@ -24,12 +20,6 @@ const ACTIVE = css`
     transform: scale(1.02);
   }
 `;
-
-const Wrapper = styled.div`
-  display: inline-block;
-  padding: 0.3rem;
-`;
-
 const Img = styled.img<Props>`
   border-radius: 0.3rem;
   box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
