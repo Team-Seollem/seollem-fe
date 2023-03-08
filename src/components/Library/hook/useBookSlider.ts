@@ -3,12 +3,12 @@ import type { BookStatus } from '@projects/types/library';
 import { bookService } from '@apis/index';
 import { CACHE_KEYS } from 'constants/cacheKey';
 
-type UseBookSliderProps = {
+type Props = {
   bookStatus: BookStatus;
 };
 
-export const useBookSlider = ({ bookStatus }: UseBookSliderProps) => {
-  const { data, isLoading } = useInfiniteQuery(
+export const useBookSlider = ({ bookStatus }: Props) => {
+  const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
     CACHE_KEYS.library(bookStatus),
     ({ pageParam = 1 }) => bookService.getLibrary(pageParam, bookStatus),
 
@@ -19,7 +19,8 @@ export const useBookSlider = ({ bookStatus }: UseBookSliderProps) => {
 
         return nextPage <= pageInfo.totalPages ? nextPage : undefined;
       },
+      staleTime: 1000 * 60 * 5,
     }
   );
-  return { data, isLoading };
+  return { data, isLoading, hasNextPage, fetchNextPage };
 };

@@ -6,6 +6,8 @@ import { BookCoverItem } from '@components/common';
 import type { BookStatus } from '@projects/types/library';
 import { PAGE_URL } from '@constants';
 import { BOOKSTATUS } from 'constants/library';
+import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { useEffect } from 'react';
 import { useBookSlider } from './hook/useBookSlider';
 
 type Props = {
@@ -13,8 +15,18 @@ type Props = {
 };
 
 export default function BookSlider({ bookStatus: status }: Props) {
-  const { data, isLoading } = useBookSlider({ bookStatus: status });
   const navigate = useNavigate();
+
+  const { data, isLoading, hasNextPage, fetchNextPage } = useBookSlider({
+    bookStatus: status,
+  });
+
+  const { ref, isIntersect } = useIntersectionObserver({ threshold: 1.0 });
+  useEffect(() => {
+    if (isIntersect && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [isIntersect, hasNextPage, fetchNextPage]);
 
   if (isLoading) return <p>isLoading..</p>;
 
@@ -22,11 +34,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
     <>
       <Title>{BOOKSTATUS[status]}</Title>
       <Container>
-        <Swiper
-          spaceBetween={5}
-          slidesPerView={4}
-          onSlideChange={() => console.log('slide change')}
-        >
+        <Swiper spaceBetween={5} slidesPerView={4}>
           {data?.pages.map((page) =>
             page.item.map((book) => (
               <SwiperSlide key={book.bookId}>
@@ -37,6 +45,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
               </SwiperSlide>
             ))
           )}
+          {hasNextPage && <div ref={ref} />}
         </Swiper>
         <BookShelf />
       </Container>
