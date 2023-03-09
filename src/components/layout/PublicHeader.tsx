@@ -1,5 +1,5 @@
 import { PAGE_URL } from '@constants';
-import * as S from './Header';
+import * as S from './styles';
 import Logo from './Logo';
 
 export default function PublicHeader() {

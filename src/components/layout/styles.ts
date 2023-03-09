@@ -34,3 +34,10 @@ export const MenuLink = styled(Link)`
 export const HeaderButton = styled(Button)`
   margin: 0 0.4rem;
 `;
+
+export const Main = styled.main`
+  margin: 0.9rem 0.75rem 1.25rem 0.75rem;
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+`;
