@@ -1,4 +1,3 @@
-import { Layout } from '@components/layout';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -8,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { GlobalStyle, theme } from '@styles';
 import { queryErrorHandler } from 'utils/queryErrorHandler';
+import { RouterProvider } from 'react-router-dom';
+import Router from 'Router';
 
 const defaultQueryClientOptions = {
   queries: {
@@ -27,7 +28,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <RecoilRoot>
           <GlobalStyle />
-          <Layout />
+          <RouterProvider router={Router} />
         </RecoilRoot>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
