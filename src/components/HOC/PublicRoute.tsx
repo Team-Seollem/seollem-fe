@@ -1,13 +1,22 @@
-import { tokenRepository } from '@apis/index';
-import { isValidToken } from '@utils';
 import { Outlet, Navigate } from 'react-router-dom';
 
-import { PAGE_URL } from '../../constants/path';
+import useLoginState from '@hooks/useLoginState';
+import { PAGE_URL } from '@constants';
+import { PublicHeader } from '@components/layout';
+import * as S from '@components/layout/styles';
 
 function PublicRoute() {
-  const token = tokenRepository.getToken();
+  const { isLoggedIn } = useLoginState();
 
-  if (isValidToken(token)) return <Navigate to={PAGE_URL.LIBRARY} />;
-  return <Outlet />;
+  if (isLoggedIn) return <Navigate to={PAGE_URL.LIBRARY} />;
+
+  return (
+    <>
+      <PublicHeader />
+      <S.Main>
+        <Outlet />
+      </S.Main>
+    </>
+  );
 }
 export default PublicRoute;

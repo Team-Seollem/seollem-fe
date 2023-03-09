@@ -6,7 +6,7 @@ import { IoNotifications, IoPerson, IoLogOutOutline } from 'react-icons/io5';
 import { PAGE_URL } from '@constants';
 import { authService } from '@apis';
 import { loginState } from '@state/atom';
-import * as S from './Header';
+import * as S from './styles';
 import Logo from './Logo';
 
 export default function PrivateHeader() {

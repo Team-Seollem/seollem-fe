@@ -1,14 +1,22 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
+import useLoginState from '@hooks/useLoginState';
 import { PAGE_URL } from '@constants';
-import { tokenRepository } from '@apis/index';
-import { isValidToken } from '@utils';
+import { PrivateHeader, GNB } from '@components/layout';
+import * as S from '@components/layout/styles';
 
 function PrivateRoute() {
-  const token = tokenRepository.getToken();
+  const { isLoggedIn } = useLoginState();
+  if (!isLoggedIn) return <Navigate to={PAGE_URL.SIGN_IN} />;
 
-  if (!isValidToken(token)) return <Navigate to={PAGE_URL.SIGN_IN} />;
-
-  return <Outlet />;
+  return (
+    <>
+      <PrivateHeader />
+      <S.Main>
+        <Outlet />
+      </S.Main>
+      <GNB />
+    </>
+  );
 }
 export default PrivateRoute;
