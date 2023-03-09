@@ -7,12 +7,11 @@ import { isValidToken } from '@utils';
 
 const useLoginState = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
+  const token = tokenRepository.getToken();
 
   useEffect(() => {
-    const token = tokenRepository.getToken();
     setIsLoggedIn(isValidToken(token));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token, setIsLoggedIn]);
 
   return { isLoggedIn };
 };
