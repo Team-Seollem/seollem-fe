@@ -7,7 +7,7 @@ type JwtPayload = {
   email: string;
 };
 
-export const isValidToken = (token: string | null) => {
+export const isValidToken = (token: string) => {
   if (token) {
     const { exp: expireTime } = jwtDecode<JwtPayload>(token);
     const currentTime = Math.floor(Date.now() / 1000);
