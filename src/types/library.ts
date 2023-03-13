@@ -20,6 +20,7 @@ export type LibraryBook = BasicBook & {
   star: number;
   currentPage: number;
   itemPage: number;
+  memoCount: number;
 };
 
 type PageInfo = {
@@ -40,7 +41,7 @@ type MemoBook = {
 
 export type MemoBooksResponse = PageableApiResponse<MemoBook>;
 
-type MemoBookDetail = {
+export type MemoBookDetail = {
   memoId: number;
   memoType: MemoType;
   memoContent: string;
@@ -64,11 +65,9 @@ type Memo = {
 };
 
 export type DetailBook = LibraryBook & {
-  createdAt: string;
   readStartDate: string | null;
   readEndDate: string | null;
-  memoList: Memo[];
-  memoCount: number;
+  memoList: MemoBookDetail[];
 };
 
 export type RegisterBook = {
