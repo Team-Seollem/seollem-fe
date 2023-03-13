@@ -67,7 +67,7 @@ type Memo = {
 export type DetailBook = LibraryBook & {
   readStartDate: string | null;
   readEndDate: string | null;
-  memoList: MemoBookDetail[];
+  memosList: MemoBookDetail[];
 };
 
 export type RegisterBook = {
