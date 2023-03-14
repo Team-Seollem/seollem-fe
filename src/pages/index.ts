@@ -7,3 +7,4 @@ export { default as Landing } from './Landing';
 export { default as Library } from './Library';
 export { default as LibraryBook } from './LibraryBook';
 export { default as RecommendedBooksPage } from './RecommendedBooksPage';
+export { default as MemoForm } from './MemoForm';

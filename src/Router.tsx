@@ -9,6 +9,7 @@ import {
   Library,
   LibraryBook,
   RecommendedBooksPage,
+  MemoForm,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import { PAGE_URL } from './constants';
@@ -35,6 +36,8 @@ const Router = createBrowserRouter([
       },
       { path: PAGE_URL.LIBRARY, element: <Library /> },
       { path: PAGE_URL.LIBRARYBOOK, element: <LibraryBook /> },
+      { path: PAGE_URL.MEMO_FORM, element: <MemoForm /> },
+      { path: PAGE_URL.EDIT_MEMO, element: <MemoForm /> },
     ],
   },
 ]);

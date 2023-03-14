@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { TbPlus } from 'react-icons/tb';
 import { useBookDetail } from './hook/useBookDetail';
@@ -7,7 +7,17 @@ import MemoItem from './MemoItem';
 
 export default function MemoList() {
   const { bookId } = useParams();
+  const navigate = useNavigate();
+
   const { memosList } = useBookDetail({ bookId: Number(bookId) });
+
+  const handleAddMemo = () => {
+    navigate(`/book/library/${Number(bookId)}/memo`);
+  };
+
+  const handleEditMemo = (memoId: number) => {
+    navigate(`/book/library/${Number(bookId)}/memo/${memoId}`);
+  };
 
   return (
     <Section>
@@ -17,14 +27,23 @@ export default function MemoList() {
         ) : (
           <Title>📝 첫번째 메모 남기기</Title>
         )}
-        <Button styleType="solidPositive" size="small">
+        <Button
+          styleType="solidPositive"
+          size="small"
+          type="button"
+          onClick={handleAddMemo}
+        >
           <Svg />
           메모 추가
         </Button>
       </BoxTitle>
       <List>
         {memosList.map((memo) => (
-          <MemoItem key={memo.memoId} memo={memo} />
+          <MemoItem
+            key={memo.memoId}
+            memo={memo}
+            handleEditMemo={handleEditMemo}
+          />
         ))}
       </List>
     </Section>
