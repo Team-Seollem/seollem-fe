@@ -10,7 +10,7 @@ import {
   LibraryBook,
   RecommendedBooksPage,
 } from '@pages';
-import { PrivateRoute, PublicRoute } from '@components/HOC';
+import { PrivateRoute, PublicRoute } from '@components/layout';
 import { PAGE_URL } from './constants';
 
 const Router = createBrowserRouter([
