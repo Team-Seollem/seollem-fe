@@ -41,11 +41,14 @@ type MemoBook = {
 
 export type MemoBooksResponse = PageableApiResponse<MemoBook>;
 
-export type MemoBookDetail = {
+export type MemoBasic = {
   memoId: number;
   memoType: MemoType;
   memoContent: string;
   memoBookPage: number;
+};
+
+export type MemoBookDetail = MemoBasic & {
   memoAuthority: MemoAuthority;
   memoLikesCount: number;
   createdAt: string;
@@ -57,12 +60,10 @@ export type MemoBookDetailResponse = PageableApiResponse<MemoBookDetail>;
 type MemoAuthority = 'PUBLIC' | 'PRIVATE';
 export type MemoType = typeof MEMO_TYPES[keyof typeof MEMO_TYPES]['typeValue'];
 
-type Memo = {
-  memoId: number;
-  memoType: MemoType;
-  memoContent: string;
-  memoBookPage: number;
-};
+export type MemoRequest = Pick<
+  MemoBookDetail,
+  'memoType' | 'memoBookPage' | 'memoContent' | 'memoAuthority'
+>;
 
 export type DetailBook = LibraryBook & {
   readStartDate: string | null;
