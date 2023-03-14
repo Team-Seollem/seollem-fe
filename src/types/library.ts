@@ -1,4 +1,4 @@
-import { BOOKSTATUS } from 'constants/library';
+import { BOOKSTATUS, MEMO_TYPES } from '@constants';
 
 type PageableApiResponse<T> = {
   item: T[];
@@ -55,7 +55,7 @@ export type MemoBookDetail = {
 export type MemoBookDetailResponse = PageableApiResponse<MemoBookDetail>;
 
 type MemoAuthority = 'PUBLIC' | 'PRIVATE';
-export type MemoType = 'BOOK_CONTENT' | 'SUMMARY' | 'THOUGHT' | 'QUESTION';
+export type MemoType = typeof MEMO_TYPES[keyof typeof MEMO_TYPES]['typeValue'];
 
 type Memo = {
   memoId: number;
