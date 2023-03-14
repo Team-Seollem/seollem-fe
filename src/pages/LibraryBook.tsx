@@ -1,7 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { PageTitle } from '@components/common';
+import MemoList from '@components/LibraryBook/MemoList';
 
 export default function LibraryBook() {
-  const { bookId } = useParams();
-
-  return <div>{bookId}</div>;
+  return (
+    <>
+      <PageTitle title="책 상세 페이지" />
+      <MemoList />
+    </>
+  );
 }
