@@ -62,12 +62,11 @@ const Title = styled.h1`
 
 const Container = styled.div`
   width: 100%;
-
+  z-index: 0;
   margin-bottom: 1rem;
   align-items: baseline;
   .swiper-wrapper {
     align-items: baseline;
-    z-index: 0;
     padding-left: 2rem;
     padding-right: 2rem;
   }
