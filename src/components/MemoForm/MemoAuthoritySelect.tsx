@@ -28,7 +28,8 @@ export default function MemoAuthoritySelect({ authority, onChange }: Props) {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
@@ -45,7 +46,6 @@ const Slider = styled.span`
   display: inline-block;
   width: 3rem;
   height: 1.5rem;
-  margin-left: 0.5rem;
   border-radius: 1.5rem;
   background-color: ${({ theme }) => theme.color.gray02};
   position: relative;
