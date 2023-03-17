@@ -57,7 +57,7 @@ export type MemoBookDetail = MemoBasic & {
 
 export type MemoBookDetailResponse = PageableApiResponse<MemoBookDetail>;
 
-type MemoAuthority = 'PUBLIC' | 'PRIVATE';
+export type MemoAuthority = 'PUBLIC' | 'PRIVATE';
 export type MemoType = typeof MEMO_TYPES[keyof typeof MEMO_TYPES]['typeValue'];
 export type MemoText = typeof MEMO_TYPES[keyof typeof MEMO_TYPES]['typeText'];
 
