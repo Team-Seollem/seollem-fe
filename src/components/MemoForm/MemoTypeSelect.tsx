@@ -14,6 +14,7 @@ export default function MemoTypeSelect({ type, onChange }: Props) {
       <Wrapper id="memo-type">
         {memoTypeList.map((item) => (
           <Chip
+            type="button"
             key={item.typeText}
             value={item.typeValue}
             isActive={item.typeValue === type}
