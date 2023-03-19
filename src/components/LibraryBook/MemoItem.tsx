@@ -8,15 +8,25 @@ import { Button } from '@components/common';
 type Props = {
   memo: MemoBookDetail;
   handleEditMemo: (memoId: number) => void;
+  handleDeleteMemo: (memoId: number) => void;
 };
 
-export default function MemoItem({ memo, handleEditMemo }: Props) {
+export default function MemoItem({
+  memo,
+  handleEditMemo,
+  handleDeleteMemo,
+}: Props) {
   return (
     <Wrapper onClick={() => handleEditMemo(memo.memoId)}>
       <InfoContainer>
         <PageInfo>{`p. ${memo.memoBookPage}`}</PageInfo>
         <Button styleType="ghost" size="small">
-          <Svg />
+          <Svg
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDeleteMemo(memo.memoId);
+            }}
+          />
         </Button>
       </InfoContainer>
       <InfoContainer>
