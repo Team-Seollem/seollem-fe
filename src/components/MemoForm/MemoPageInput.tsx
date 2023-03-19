@@ -7,7 +7,7 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
 export default function MemoPageInput({ page, onChange }: Props) {
   return (
     <SLabel>
-      읽고 있는 페이지
+      페이지
       <SInput
         type="number"
         value={page.toString()}

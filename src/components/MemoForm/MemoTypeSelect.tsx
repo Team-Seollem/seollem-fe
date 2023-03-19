@@ -37,6 +37,7 @@ const Wrapper = styled.div`
 
 const Label = styled.label`
   width: 100%;
+  display: inline-block;
   margin-bottom: 0.5rem;
   color: ${({ theme }) => theme.color.black};
   font-size: ${({ theme }) => theme.fontSize.base};
