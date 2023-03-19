@@ -51,10 +51,9 @@ function SearchPassword() {
             required
           />
           <SButton
-            styleType="neutral"
+            styleType={!isLoading ? 'neutral' : 'outlineDisabled'}
             size="small"
             isLoading={isLoading}
-            disabled={isLoading}
           >
             임시 비밀번호 요청
           </SButton>

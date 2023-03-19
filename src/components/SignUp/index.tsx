@@ -76,10 +76,11 @@ function SignUp() {
       />
       <SButton
         onClick={emailHandleClick}
-        styleType="neutral"
+        styleType={
+          !emailAuthCodeMutation.isLoading ? 'neutral' : 'outlineDisabled'
+        }
         size="small"
         type="button"
-        disabled={emailAuthCodeMutation.isLoading}
         isLoading={emailAuthCodeMutation.isLoading}
       >
         이메일 인증 번호 요청

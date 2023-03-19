@@ -19,7 +19,6 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export default function Button({
-  disabled,
   onClick,
   styleType,
   size,
@@ -30,7 +29,9 @@ export default function Button({
 }: Props) {
   return (
     <SButton
-      disabled={disabled}
+      disabled={
+        styleType === 'outlineDisabled' || styleType === 'solidDisabled'
+      }
       onClick={onClick}
       styleType={styleType}
       size={size}
