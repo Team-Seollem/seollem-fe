@@ -6,7 +6,7 @@ import type { MemoRequest } from '@projects/types/library';
 export default function useCreateMemo() {
   const queryClient = useQueryClient();
 
-  const { mutate: createMemoMutation } = useMutation(
+  const { mutate } = useMutation(
     async (variables: { bookId: number; memoData: MemoRequest }) => {
       const { bookId, memoData } = variables;
       const data = await memoService.createMemo(bookId, memoData);
@@ -20,5 +20,5 @@ export default function useCreateMemo() {
     }
   );
 
-  return createMemoMutation;
+  return mutate;
 }
