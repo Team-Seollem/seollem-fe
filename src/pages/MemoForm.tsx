@@ -7,10 +7,16 @@ import MemoPageInput from '@components/MemoForm/MemoPageInput';
 import styled from 'styled-components';
 import MemoContentEditor from '@components/MemoForm/MemoContentEditor';
 import Button from '@components/common/Button';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useCreateMemo } from '../components/MemoForm/hook/useCreateMemo';
 
 export default function MemoForm() {
+  const { bookId } = useParams();
+  const createMemoMutation = useCreateMemo();
+  const navigate = useNavigate();
+
   const [memoAuthority, setMemoAuthority] = useState<MemoAuthority>('PRIVATE');
-  const [memoPage, setMemoPage] = useState<number>(0);
+  const [memoBookPage, setMemoBookPage] = useState<number>(0);
   const [memoType, setMemoType] = useState<MemoType>('BOOK_CONTENT');
   const [memoContent, setMemoContent] = useState('');
   const handleAuthorityChange = (newAuthority: MemoAuthority) => {
@@ -18,19 +24,30 @@ export default function MemoForm() {
   };
   const handlePageChanage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(0, Math.min(400, Number(e.target.value)));
-    setMemoPage(value);
+    setMemoBookPage(value);
   };
   const handleTypeChange = (newType: MemoType) => {
     setMemoType(newType);
   };
+
   const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({
-      memoAuthority,
-      memoPage,
-      memoType,
-      memoContent,
+    if (!memoContent) {
+      return;
+    }
+    if (!bookId) {
+      return;
+    }
+    createMemoMutation({
+      bookId: Number(bookId),
+      memoData: {
+        memoAuthority,
+        memoBookPage,
+        memoType,
+        memoContent,
+      },
     });
+    navigate(`/book/library/${bookId}`);
   };
 
   return (
@@ -42,7 +59,7 @@ export default function MemoForm() {
             authority={memoAuthority}
             onChange={handleAuthorityChange}
           />
-          <MemoPageInput page={memoPage} onChange={handlePageChanage} />
+          <MemoPageInput page={memoBookPage} onChange={handlePageChanage} />
           <MemoTypeSelect type={memoType} onChange={handleTypeChange} />
           <MemoContentEditor content={memoContent} onChange={setMemoContent} />
           <SButton
