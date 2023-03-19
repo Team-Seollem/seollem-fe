@@ -9,18 +9,21 @@ type Props = {
 
 export default function MemoTypeSelect({ type, onChange }: Props) {
   return (
-    <Wrapper>
-      {memoTypeList.map((item) => (
-        <Chip
-          key={item.typeText}
-          value={item.typeValue}
-          isActive={item.typeValue === type}
-          onClick={() => onChange(item.typeValue)}
-        >
-          {item.typeText}
-        </Chip>
-      ))}
-    </Wrapper>
+    <>
+      <Label htmlFor="memo-type">메모타입</Label>
+      <Wrapper id="memo-type">
+        {memoTypeList.map((item) => (
+          <Chip
+            key={item.typeText}
+            value={item.typeValue}
+            isActive={item.typeValue === type}
+            onClick={() => onChange(item.typeValue)}
+          >
+            {item.typeText}
+          </Chip>
+        ))}
+      </Wrapper>
+    </>
   );
 }
 const Wrapper = styled.div`
@@ -30,6 +33,14 @@ const Wrapper = styled.div`
   margin-bottom: 1rem;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.base};
+`;
+
+const Label = styled.label`
+  width: 100%;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.color.black};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: bold;
 `;
 
 const Chip = styled.button<{ isActive: boolean }>`
