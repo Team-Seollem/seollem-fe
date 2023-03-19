@@ -4,12 +4,14 @@ import { TbPlus } from 'react-icons/tb';
 import { useBookDetail } from './hook/useBookDetail';
 import Button from '../common/Button';
 import MemoItem from './MemoItem';
+import useDeleteMemo from './hook/useDeleteMemo';
 
 export default function MemoList() {
   const { bookId } = useParams();
   const navigate = useNavigate();
 
   const { memosList } = useBookDetail({ bookId: Number(bookId) });
+  const deleteMemo = useDeleteMemo();
 
   const handleAddMemo = () => {
     navigate(`/book/library/${bookId}/memo`);
@@ -17,6 +19,11 @@ export default function MemoList() {
 
   const handleEditMemo = (memoId: number) => {
     navigate(`/book/library/${bookId}/memo/${memoId}`);
+  };
+
+  const handleDeleteMemo = (memoId: number) => {
+    if (!bookId) return;
+    deleteMemo({ bookId: Number(bookId), memoId });
   };
 
   return (
@@ -43,6 +50,7 @@ export default function MemoList() {
             key={memo.memoId}
             memo={memo}
             handleEditMemo={handleEditMemo}
+            handleDeleteMemo={handleDeleteMemo}
           />
         ))}
       </List>
