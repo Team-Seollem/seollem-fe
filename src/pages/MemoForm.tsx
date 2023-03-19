@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import type { MemoAuthority, MemoType } from '@projects/types/library';
 import { Boxcontainer, PageTitle, Button } from '@components/common';
@@ -14,7 +14,6 @@ import {
 export default function MemoForm() {
   const { bookId } = useParams();
   const createMemoMutation = useCreateMemo();
-  const navigate = useNavigate();
 
   const [memoAuthority, setMemoAuthority] = useState<MemoAuthority>('PRIVATE');
   const [memoBookPage, setMemoBookPage] = useState<number>(0);
@@ -46,7 +45,6 @@ export default function MemoForm() {
         memoContent,
       },
     });
-    navigate(`/book/library/${bookId}`);
   };
 
   return (
