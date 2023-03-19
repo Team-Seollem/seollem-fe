@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { Boxcontainer, PageTitle } from '@components/common';
-import type { MemoAuthority, MemoType } from '@projects/types/library';
-import MemoTypeSelect from '@components/MemoForm/MemoTypeSelect';
-import MemoAuthoritySelect from '@components/MemoForm/MemoAuthoritySelect';
-import MemoPageInput from '@components/MemoForm/MemoPageInput';
-import styled from 'styled-components';
-import MemoContentEditor from '@components/MemoForm/MemoContentEditor';
-import Button from '@components/common/Button';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useCreateMemo } from '../components/MemoForm/hook/useCreateMemo';
+import styled from 'styled-components';
+import type { MemoAuthority, MemoType } from '@projects/types/library';
+import { Boxcontainer, PageTitle, Button } from '@components/common';
+import {
+  MemoTypeSelect,
+  MemoAuthoritySelect,
+  MemoPageInput,
+  MemoContentEditor,
+  useCreateMemo,
+} from '@components/MemoForm';
 
 export default function MemoForm() {
   const { bookId } = useParams();
@@ -32,12 +33,10 @@ export default function MemoForm() {
 
   const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!memoContent) {
+    if (!memoContent || !bookId) {
       return;
     }
-    if (!bookId) {
-      return;
-    }
+
     createMemoMutation({
       bookId: Number(bookId),
       memoData: {
