@@ -12,11 +12,11 @@ export default function MemoList() {
   const { memosList } = useBookDetail({ bookId: Number(bookId) });
 
   const handleAddMemo = () => {
-    navigate(`/book/library/${Number(bookId)}/memo`);
+    navigate(`/book/library/${bookId}/memo`);
   };
 
   const handleEditMemo = (memoId: number) => {
-    navigate(`/book/library/${Number(bookId)}/memo/${memoId}`);
+    navigate(`/book/library/${bookId}/memo/${memoId}`);
   };
 
   return (
