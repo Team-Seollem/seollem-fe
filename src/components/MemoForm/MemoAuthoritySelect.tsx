@@ -17,6 +17,7 @@ export default function MemoAuthoritySelect({ authority, onChange }: Props) {
   return (
     <Wrapper>
       <Label>
+        메모 공개
         <Input type="checkbox" checked={isChecked} onChange={handleChange} />
         <Slider />
       </Label>
@@ -35,7 +36,9 @@ const Wrapper = styled.div`
 const Label = styled.label`
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
+  color: ${({ theme }) => theme.color.black};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: bold;
 `;
 
 const Input = styled.input`
@@ -43,6 +46,8 @@ const Input = styled.input`
 `;
 
 const Slider = styled.span`
+  cursor: pointer;
+  margin-left: 1rem;
   display: inline-block;
   width: 3rem;
   height: 1.5rem;
