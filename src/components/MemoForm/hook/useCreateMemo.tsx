@@ -3,7 +3,7 @@ import { CACHE_KEYS } from '@constants';
 import { memoService } from '@apis/index';
 import type { MemoRequest } from '@projects/types/library';
 
-export function useCreateMemo() {
+export default function useCreateMemo() {
   const queryClient = useQueryClient();
 
   const { mutate: createMemoMutation } = useMutation(
