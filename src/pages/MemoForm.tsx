@@ -52,7 +52,7 @@ export default function MemoForm() {
 
   return (
     <>
-      <PageTitle title="메모 등록 페이지" />
+      <PageTitle title="메모 등록 페이지" path={`/book/library/${bookId}`} />
       <Boxcontainer>
         <SForm onSubmit={handleSumbit}>
           <MemoAuthoritySelect
