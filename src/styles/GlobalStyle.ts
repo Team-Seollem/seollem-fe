@@ -41,6 +41,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     padding-bottom: 0px;
     min-height: 100vh;
+    min-width: 375px;
     overflow: scroll;
     background-color: ${({ theme }) => theme.color.white};
   }
