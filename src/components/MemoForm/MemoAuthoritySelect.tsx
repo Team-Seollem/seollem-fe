@@ -21,7 +21,7 @@ export default function MemoAuthoritySelect({ authority, onChange }: Props) {
         <Input type="checkbox" checked={isChecked} onChange={handleChange} />
         <Slider />
       </Label>
-      <Text>{isChecked ? '비공개' : '공개'}</Text>
+      <Text>{authority === 'PRIVATE' ? '비공개' : '공개'}</Text>
     </Wrapper>
   );
 }
