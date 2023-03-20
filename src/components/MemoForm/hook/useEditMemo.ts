@@ -10,9 +10,13 @@ export default function useEditMemo() {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
-    async (variables: { bookId: number; memoData: MemoRequest }) => {
-      const { bookId, memoData } = variables;
-      const data = await memoService.editMemo(bookId, memoData);
+    async (variables: {
+      bookId: number;
+      memoId: number;
+      memoData: MemoRequest;
+    }) => {
+      const { memoId, memoData } = variables;
+      const data = await memoService.editMemo(memoId, memoData);
       return data;
     },
     {
