@@ -1,6 +1,9 @@
+/* eslint-disable react/no-danger */
 import styled from 'styled-components';
-import type { MemoBookDetail } from '@projects/types/library';
+import DOMPurify from 'dompurify';
+
 import { BsTrashFill } from 'react-icons/bs';
+import type { MemoBookDetail } from '@projects/types/library';
 import { MEMO_TYPES } from '@constants';
 import { getLatestUpdateDate } from '@utils';
 import { Button } from '@components/common';
@@ -34,7 +37,11 @@ export default function MemoItem({
         <Type>{MEMO_TYPES[memo.memoType].typeText}</Type>
       </InfoContainer>
 
-      <div>{memo.memoContent}</div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(memo.memoContent),
+        }}
+      />
     </Wrapper>
   );
 }
