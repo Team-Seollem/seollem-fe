@@ -43,4 +43,12 @@ export class MemoServiceImpl implements MemoService {
     const { data } = await this.httpClient.get<MemoBasic[]>('/memos/random');
     return data[0];
   };
+
+  imageUpload = async (formData: FormData) => {
+    const { data } = await this.httpClient.post<string, FormData>(
+      '/memos/image-memo',
+      formData
+    );
+    return data;
+  };
 }
