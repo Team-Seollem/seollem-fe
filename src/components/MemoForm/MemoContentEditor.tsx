@@ -22,7 +22,7 @@ const formats = [
 
 type Props = {
   content: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (content: string) => void;
 };
 
 export default function MemoContentEditor({ content, onChange }: Props) {
