@@ -1,24 +1,8 @@
+import { useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
-
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    ['image'],
-  ],
-};
-
-const formats = [
-  'header',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'image',
-];
+import { memoService } from '@apis/index';
 
 type Props = {
   content: string;
@@ -26,6 +10,66 @@ type Props = {
 };
 
 export default function MemoContentEditor({ content, onChange }: Props) {
+  const quillRef = useRef<ReactQuill>(null);
+
+  const handleImageUpload = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) {
+        return;
+      }
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const imageUrl = await memoService.imageUpload(formData);
+        const quill = quillRef.current?.getEditor();
+        if (!quill) {
+          return;
+        }
+        const range = quill.getSelection()?.index;
+        if (range === undefined) {
+          return;
+        }
+
+        quill.setSelection(range, 1);
+        quill.clipboard.dangerouslyPasteHTML(
+          range,
+          `<img src=${imageUrl} alt="image" />`
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  };
+
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: [1, 2, false] }],
+          ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+          ['image'],
+        ],
+        handlers: { image: handleImageUpload },
+      },
+    }),
+    []
+  );
+
+  const formats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'image',
+  ];
+
   return (
     <>
       <Label htmlFor="memo-content">메모 내용</Label>
@@ -35,6 +79,7 @@ export default function MemoContentEditor({ content, onChange }: Props) {
         onChange={onChange}
         modules={modules}
         formats={formats}
+        ref={quillRef}
       />
     </>
   );
