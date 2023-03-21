@@ -20,7 +20,7 @@ export default function GNB() {
         <RiMedalLine />
         추천책
       </NavButton>
-      <NavButton to={PAGE_URL.MEMO_BOOK}>
+      <NavButton to={PAGE_URL.MEMO_BOOKS}>
         <HiOutlineBookOpen />
         작은 책
       </NavButton>
