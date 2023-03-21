@@ -6,9 +6,6 @@ import type {
   BasicBook,
   EditBook,
   EditResponse,
-  MemoBooksResponse,
-  MemoBookDetailResponse,
-  MemoType,
 } from '@projects/types/library';
 import type { HttpClientAuthImpl } from './httpClientAuth';
 
@@ -21,13 +18,6 @@ interface BookService {
   registerBook: (bookData: RegisterBook) => Promise<BasicBook>;
   editBookDetail: (bookData: EditBook) => Promise<EditResponse>;
   removeBook: (bookId: number) => Promise<string>;
-  getMemoBooks: (page: number) => Promise<MemoBooksResponse>;
-  getMemoBooksByBookId: (
-    bookId: number,
-    page: number,
-    size: number,
-    memoType: MemoType
-  ) => Promise<MemoBookDetailResponse>;
 }
 
 export class BookServiceImpl implements BookService {
@@ -71,37 +61,5 @@ export class BookServiceImpl implements BookService {
   removeBook = async (bookId: number) => {
     await this.httpClient.delete<number>(`/books/${bookId}`);
     return '등록하신 책이 삭제되었습니다';
-  };
-
-  getMemoBooks = async (page: number) => {
-    const { data } = await this.httpClient.get<MemoBooksResponse>(
-      '/books/memo-books',
-      {
-        params: {
-          page,
-          size: 20,
-        },
-      }
-    );
-    return data;
-  };
-
-  getMemoBooksByBookId = async (
-    bookId: number,
-    page: number,
-    size: number,
-    memoType: MemoType
-  ) => {
-    const { data } = await this.httpClient.get<MemoBookDetailResponse>(
-      `/books/${bookId}/memos`,
-      {
-        params: {
-          page,
-          size,
-          memoType,
-        },
-      }
-    );
-    return data;
   };
 }
