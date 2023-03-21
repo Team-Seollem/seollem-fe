@@ -13,6 +13,7 @@ export const PAGE_URL = {
   LIBRARYBOOK: '/book/library/:bookId',
   MEMO_FORM: '/book/library/:bookId/memo',
   EDIT_MEMO: '/book/library/:bookId/memo/:memoId',
-  MEMO_BOOK: '/memobook',
+  MEMO_BOOKS: '/memobook',
+  MEMO_BOOK: '/memobook/:bookId',
   COMMUNITY: '/community',
 } as const;
