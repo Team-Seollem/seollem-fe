@@ -1,3 +1,4 @@
+import { BookServiceImpl } from './bookService';
 import { TokenRepositoryImpl } from './tokenRepository';
 import { HttpClientImpl } from './httpClient';
 import { HttpClientAuthImpl } from './httpClientAuth';
@@ -17,3 +18,5 @@ export const profileService = new ProfileServiceImpl(
   httpClientAuth,
   tokenRepository
 );
+
+export const bookService = new BookServiceImpl(httpClientAuth);
