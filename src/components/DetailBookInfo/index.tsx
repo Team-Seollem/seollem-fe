@@ -7,27 +7,32 @@ import {
   Button,
   PageTitle,
 } from '@components/common';
+import React from 'react';
 
-type BookInfoProps = {
+type Props = {
   bookInfoData: SearchBookInfo;
 };
 
-function DetailBookInfo({ bookInfoData }: BookInfoProps) {
+function DetailBookInfo({ bookInfoData }: Props) {
   const navigate = useNavigate();
   const { cover, title, author, publisher, itemPage } = bookInfoData;
-  const onHandleClick = () =>
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     navigate(`/book/register/${title}`, {
       state: {
         bookInfoData,
       },
     });
+    e.preventDefault();
+  };
+
   return (
     <>
       <PageTitle title="책 정보 상세" />
       <Boxcontainer title={title}>
         <BookCoverItem src={cover} />
         <BookDetailInfoItem>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="author">저자</label>
             <input id="author" type="text" value={author} readOnly />
             <label htmlFor="publisher">출판사</label>
@@ -39,11 +44,7 @@ function DetailBookInfo({ bookInfoData }: BookInfoProps) {
               value={itemPage || ''}
               readOnly
             />
-            <Button
-              onClick={onHandleClick}
-              size="small"
-              styleType="solidPositive"
-            >
+            <Button size="small" styleType="solidPositive" type="submit">
               등록하러가기
             </Button>
           </form>
