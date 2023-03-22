@@ -1,3 +1,4 @@
+import { bookService } from '@apis';
 import {
   BookCoverItem,
   BookDetailInfoItem,
@@ -5,7 +6,9 @@ import {
   Button,
   PageTitle,
 } from '@components/common';
+import { useMutation } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { SearchBookInfo } from '../../types/basic';
 
 type Props = {
@@ -13,26 +16,16 @@ type Props = {
 };
 
 function PostBook({ bookInfoData }: Props) {
-  const { cover, title, author, publisher, itemPage } = bookInfoData;
-  const [postBookInfoData, setPostBookInfoData] = useState({
-    cover,
-    title,
-    author,
-    publisher,
-    itemPage,
+  const { itemPage } = bookInfoData;
+  const [basicBookInfoData, setBasicBookInfoData] = useState({
+    ...bookInfoData,
+    itemPage: Number(itemPage),
   });
-  const handleChangePostBookInfoData = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { value, name } = e.target;
-    setPostBookInfoData({ ...postBookInfoData, [name]: value });
-  };
 
-  const [bookStatus, setBookStatus] =
-    useState<string>('📖 읽기 상태를 선택해주세요');
-
-  const [readStartDate, setReadStartDate] = useState<string>('');
-  const [readEndDate, setReadEndDate] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [bookStatus, setBookStatus] = useState<string>('YET');
+  const [readStartDate, setReadStartDate] = useState<string | null>(null);
+  const [readEndDate, setReadEndDate] = useState<string | null>(null);
 
   const selectList = [
     { typeValue: 'YET', typeText: '읽고 싶은 책' },
@@ -40,40 +33,84 @@ function PostBook({ bookInfoData }: Props) {
     { typeValue: 'DONE', typeText: '다 읽은 책' },
   ];
 
+  const handleChangeBasicBookInfoData = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    if (name === 'itemPage') {
+      setBasicBookInfoData({ ...basicBookInfoData, [name]: Number(value) });
+    } else {
+      setBasicBookInfoData({ ...basicBookInfoData, [name]: value });
+    }
+  };
+
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setBookStatus(e.target.value);
+    setReadStartDate(null);
+    setReadEndDate(null);
+  };
+
+  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setCurrentPage(value);
+  };
+
+  const postBookInfoData = {
+    ...basicBookInfoData,
+    currentPage,
+    bookStatus,
+    readStartDate,
+    readEndDate,
+  };
+
+  const { mutate } = useMutation(bookService.registerBook);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(postBookInfoData, {
+      onSuccess() {
+        toast.success('회원 가입에 성공했습니다.');
+      },
+    });
   };
 
   return (
     <>
       <PageTitle title="등록" />
-      <Boxcontainer title={postBookInfoData.title}>
-        <BookCoverItem src={postBookInfoData.cover} />
+      <Boxcontainer title={basicBookInfoData.title}>
+        <BookCoverItem src={basicBookInfoData.cover} />
         <BookDetailInfoItem>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="author">저자</label>
             <input
               id="author"
               name="author"
               type="text"
-              value={postBookInfoData.author}
-              onChange={handleChangePostBookInfoData}
+              value={basicBookInfoData.author}
+              onChange={handleChangeBasicBookInfoData}
             />
             <label htmlFor="publisher">출판사</label>
             <input
               id="publisher"
               name="publisher"
               type="text"
-              value={postBookInfoData.publisher}
-              onChange={handleChangePostBookInfoData}
+              value={basicBookInfoData.publisher}
+              onChange={handleChangeBasicBookInfoData}
             />
             <label htmlFor="itemPage">전체 페이지</label>
             <input
               id="itemPage"
               name="itemPage"
               type="number"
-              value={postBookInfoData.itemPage || ''}
-              onChange={handleChangePostBookInfoData}
+              value={basicBookInfoData.itemPage || 0}
+              onChange={handleChangeBasicBookInfoData}
+            />
+            <label htmlFor="currentPage">현재 페이지</label>
+            <input
+              id="currentPage"
+              type="number"
+              value={currentPage}
+              onChange={handleChangeNumber}
             />
             <label htmlFor="bookStatus">읽기 상태</label>
             <select
@@ -93,7 +130,6 @@ function PostBook({ bookInfoData }: Props) {
                 <input
                   id="readStartDate"
                   type="datetime-local"
-                  value={readStartDate}
                   onChange={(e) => setReadStartDate(`${e.target.value}:00`)}
                 />
               </>
@@ -114,7 +150,7 @@ function PostBook({ bookInfoData }: Props) {
                 />
               </>
             )}
-            <Button size="small" styleType="solidPositive">
+            <Button size="small" styleType="solidPositive" type="submit">
               등록하기
             </Button>
           </form>
