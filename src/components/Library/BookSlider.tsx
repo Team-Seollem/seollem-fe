@@ -8,7 +8,7 @@ import { PAGE_URL } from '@constants';
 import { BOOKSTATUS } from 'constants/library';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { useEffect } from 'react';
-import { useBookSlider } from './hook/useBookSlider';
+import { useBookSlider } from './hooks/useBookSlider';
 
 type Props = {
   bookStatus: BookStatus;
