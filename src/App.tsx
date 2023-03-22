@@ -1,5 +1,10 @@
 import { ThemeProvider } from 'styled-components';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  MutationCache,
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RecoilRoot } from 'recoil';
 import { ToastContainer } from 'react-toastify';
@@ -10,16 +15,13 @@ import { queryErrorHandler } from 'utils/queryErrorHandler';
 import { RouterProvider } from 'react-router-dom';
 import Router from 'Router';
 
-const defaultQueryClientOptions = {
-  queries: {
-    onError: queryErrorHandler,
-  },
-  mutations: {
-    onError: queryErrorHandler,
-  },
-};
 const queryClient = new QueryClient({
-  defaultOptions: defaultQueryClientOptions,
+  queryCache: new QueryCache({
+    onError: queryErrorHandler,
+  }),
+  mutationCache: new MutationCache({
+    onError: queryErrorHandler,
+  }),
 });
 
 function App() {
