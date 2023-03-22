@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { TbPlus } from 'react-icons/tb';
-import { useBookDetail } from './hook/useBookDetail';
+import { useBookDetail } from './hooks/useBookDetail';
 import Button from '../common/Button';
 import MemoItem from './MemoItem';
-import useDeleteMemo from './hook/useDeleteMemo';
+import useDeleteMemo from './hooks/useDeleteMemo';
 
 export default function MemoList() {
   const { bookId } = useParams();

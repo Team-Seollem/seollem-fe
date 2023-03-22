@@ -7,7 +7,7 @@ import {
   useMemoState,
   useEditMemo,
 } from '@components/MemoForm';
-import { useBookDetail } from '@components/LibraryBook/hook/useBookDetail';
+import { useBookDetail } from '@components/LibraryBook/hooks/useBookDetail';
 import * as S from './styles';
 
 export default function MemoEditForm() {
