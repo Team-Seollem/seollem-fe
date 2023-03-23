@@ -9,6 +9,7 @@ import { BOOKSTATUS } from 'constants/library';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import { useEffect } from 'react';
 import { useBookSlider } from './hooks/useBookSlider';
+import SkeletonLibraryBooks from './SkeletonLibraryBooks';
 
 type Props = {
   bookStatus: BookStatus;
@@ -28,7 +29,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
     }
   }, [isIntersect, hasNextPage, fetchNextPage]);
 
-  if (isLoading) return <p>isLoading..</p>;
+  if (isLoading) return <SkeletonLibraryBooks />;
 
   return (
     <>
@@ -54,7 +55,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
 }
 
 const Title = styled.h1`
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.gray01};
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: bold;
   margin-bottom: 0.3rem;
@@ -64,11 +65,9 @@ const Container = styled.div`
   width: 100%;
   z-index: 0;
   margin-bottom: 1rem;
-  align-items: baseline;
   .swiper-wrapper {
     align-items: baseline;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 0 1rem;
   }
 `;
 
