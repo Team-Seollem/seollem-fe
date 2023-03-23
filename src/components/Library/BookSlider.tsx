@@ -1,15 +1,16 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import 'swiper/css';
-import { BookCoverItem } from '@components/common';
+
 import type { BookStatus } from '@projects/types/library';
+import { BookCoverItem } from '@components/common';
 import { PAGE_URL } from '@constants';
 import { BOOKSTATUS } from 'constants/library';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import { useEffect } from 'react';
-import { useBookSlider } from './hooks/useBookSlider';
 import SkeletonLibraryBooks from './SkeletonLibraryBooks';
+import useBookSlider from './hooks/useBookSlider';
 
 type Props = {
   bookStatus: BookStatus;
@@ -18,7 +19,7 @@ type Props = {
 export default function BookSlider({ bookStatus: status }: Props) {
   const navigate = useNavigate();
 
-  const { data, isLoading, hasNextPage, fetchNextPage } = useBookSlider({
+  const { books, isLoading, hasNextPage, fetchNextPage } = useBookSlider({
     bookStatus: status,
   });
 
@@ -36,16 +37,14 @@ export default function BookSlider({ bookStatus: status }: Props) {
       <Title>{BOOKSTATUS[status]}</Title>
       <Container>
         <Swiper spaceBetween={5} slidesPerView={4}>
-          {data?.pages.map((page) =>
-            page.item.map((book) => (
-              <SwiperSlide key={book.bookId}>
-                <BookCoverItem
-                  src={book.cover}
-                  onClick={() => navigate(`${PAGE_URL.LIBRARY}/${book.bookId}`)}
-                />
-              </SwiperSlide>
-            ))
-          )}
+          {books.map((book) => (
+            <SwiperSlide key={book.bookId}>
+              <BookCoverItem
+                src={book.cover}
+                onClick={() => navigate(`${PAGE_URL.LIBRARY}/${book.bookId}`)}
+              />
+            </SwiperSlide>
+          ))}
           {hasNextPage && <div ref={ref} />}
         </Swiper>
         <BookShelf />
