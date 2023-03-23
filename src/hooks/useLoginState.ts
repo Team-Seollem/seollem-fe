@@ -5,7 +5,7 @@ import { tokenRepository } from '@apis';
 import { loginState } from 'state/atom';
 import { isValidToken } from '@utils';
 
-const useLoginState = () => {
+export default function useLoginState() {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
   const token = tokenRepository.getToken();
 
@@ -14,5 +14,4 @@ const useLoginState = () => {
   }, [token, setIsLoggedIn]);
 
   return { isLoggedIn };
-};
-export default useLoginState;
+}
