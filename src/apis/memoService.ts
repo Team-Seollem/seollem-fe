@@ -3,8 +3,8 @@ import type {
   MemoBookDetail,
   MemoBookDetailResponse,
   MemoBooksResponse,
+  MemoBookType,
   MemoRequest,
-  MemoType,
 } from '@projects/types/library';
 import type { HttpClientAuthImpl } from './httpClientAuth';
 
@@ -20,7 +20,7 @@ interface MemoService {
     bookId: number,
     page: number,
     size: number,
-    memoType: MemoType
+    memoType: MemoBookType
   ) => Promise<MemoBookDetailResponse>;
   getRandomMemo: () => Promise<MemoBasic>;
   imageUpload: (formData: FormData) => Promise<string>;
@@ -67,7 +67,7 @@ export class MemoServiceImpl implements MemoService {
     bookId: number,
     page: number,
     size: number,
-    memoType: MemoType
+    memoType: MemoBookType
   ) => {
     const { data } = await this.httpClient.get<MemoBookDetailResponse>(
       `/books/${bookId}/memos`,
