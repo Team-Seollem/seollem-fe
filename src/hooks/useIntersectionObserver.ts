@@ -1,7 +1,9 @@
 /* eslint-disable consistent-return */
 import { useEffect, useRef, useState } from 'react';
 
-const useIntersectionObserver = (option: IntersectionObserverInit) => {
+export default function useIntersectionObserver(
+  option: IntersectionObserverInit
+) {
   const ref = useRef<HTMLDivElement>(null);
   const [isIntersect, setIsIntersect] = useState(false);
 
@@ -23,6 +25,4 @@ const useIntersectionObserver = (option: IntersectionObserverInit) => {
   }, [ref, option]);
 
   return { ref, isIntersect };
-};
-
-export default useIntersectionObserver;
+}

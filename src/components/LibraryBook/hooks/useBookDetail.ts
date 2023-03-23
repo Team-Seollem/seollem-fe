@@ -23,11 +23,11 @@ const fallback: DetailBook = {
   memosList: [],
 };
 
-export const useBookDetail = ({ bookId }: Props) => {
+export default function useBookDetail({ bookId }: Props) {
   const { data = fallback } = useQuery({
     queryKey: CACHE_KEYS.bookDetail(bookId),
     queryFn: () => bookService.getBookDetail(bookId),
     staleTime: 1000 * 60 * 5,
   });
   return data;
-};
+}
