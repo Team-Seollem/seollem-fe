@@ -8,6 +8,7 @@ import {
   useEditMemo,
 } from '@components/MemoForm';
 import { useBookDetail } from '@components/LibraryBook/hooks/useBookDetail';
+import { memoTypeList } from '@constants';
 import * as S from './styles';
 
 export default function MemoEditForm() {
@@ -54,7 +55,11 @@ export default function MemoEditForm() {
         onChange={handleAuthorityChange}
       /> */}
       <MemoPageInput page={memo.memoBookPage} onChange={handlePageChange} />
-      <MemoTypeSelect type={memo.memoType} onChange={handleTypeChange} />
+      <MemoTypeSelect
+        typeList={memoTypeList}
+        type={memo.memoType}
+        onChange={handleTypeChange}
+      />
       <MemoContentEditor
         content={memo.memoContent}
         onChange={handleContentChange}
