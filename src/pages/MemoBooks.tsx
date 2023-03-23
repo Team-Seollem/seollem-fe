@@ -1,17 +1,11 @@
-import Pagination from '@components/common/Pagination';
-import { useState } from 'react';
+import { PageTitle } from '@components/common';
+import MemoBookList from '@components/MemoBooks/MemoBookList';
 
 export default function MemoBooks() {
-  const [currentPage, setCurrentPage] = useState<number>(1);
   return (
-    <div>
-      <Pagination
-        page={currentPage}
-        totalPages={10}
-        onChange={(page) => {
-          setCurrentPage(page);
-        }}
-      />
-    </div>
+    <>
+      <PageTitle title="나만의 작은 책" />
+      <MemoBookList />
+    </>
   );
 }
