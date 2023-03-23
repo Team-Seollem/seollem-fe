@@ -1,18 +1,24 @@
 import styled from 'styled-components';
-import { memoTypeList } from '@constants';
-import type { MemoType } from '@projects/types/library';
+import { memoTypeList, memoBookTypeList } from '@constants';
 
-type Props = {
-  type: MemoType;
-  onChange: (newType: MemoType) => void;
+type MemoListType = typeof memoTypeList | typeof memoBookTypeList;
+
+type Props<T extends MemoListType> = {
+  type: T[number]['typeValue'];
+  onChange: (newType: T[number]['typeValue']) => void;
+  typeList: T;
 };
 
-export default function MemoTypeSelect({ type, onChange }: Props) {
+export default function MemoTypeSelect<T extends MemoListType>({
+  type,
+  onChange,
+  typeList,
+}: Props<T>) {
   return (
     <>
       <Label htmlFor="memo-type">메모타입</Label>
       <Wrapper id="memo-type">
-        {memoTypeList.map((item) => (
+        {typeList.map((item) => (
           <Chip
             type="button"
             key={item.typeText}

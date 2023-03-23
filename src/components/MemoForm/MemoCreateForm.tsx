@@ -7,6 +7,7 @@ import {
   useCreateMemo,
   useMemoState,
 } from '@components/MemoForm';
+import { memoTypeList } from '@constants';
 import * as S from './styles';
 
 export default function MemoCreateForm() {
@@ -45,7 +46,11 @@ export default function MemoCreateForm() {
         onChange={handleAuthorityChange}
       />
       <MemoPageInput page={memo.memoBookPage} onChange={handlePageChange} />
-      <MemoTypeSelect type={memo.memoType} onChange={handleTypeChange} />
+      <MemoTypeSelect
+        typeList={memoTypeList}
+        type={memo.memoType}
+        onChange={handleTypeChange}
+      />
       <MemoContentEditor
         content={memo.memoContent}
         onChange={handleContentChange}
