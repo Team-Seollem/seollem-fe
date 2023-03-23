@@ -24,7 +24,7 @@ export default function Pagination({ page, totalPages, onChange }: Props) {
         }}
         disabled={page === 1}
       >
-        prev
+        {'<'}
       </PageButton>
       {pageNumberArray.map((el) => (
         <PageButton
@@ -41,7 +41,7 @@ export default function Pagination({ page, totalPages, onChange }: Props) {
         }}
         disabled={page === totalPages}
       >
-        next
+        {'>'}
       </PageButton>
     </PageContainer>
   );
@@ -50,14 +50,18 @@ export default function Pagination({ page, totalPages, onChange }: Props) {
 const PageContainer = styled.ul`
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
 `;
 
 const PageButton = styled.button<{ isActive?: boolean }>`
   cursor: pointer;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-family: 'Pretendard';
   margin: 0 0.5rem;
-  padding: 0.2rem;
-  width: 2.5rem;
-  border: 1px solid black;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 0.3rem;
+  outline: none;
   background-color: ${({ isActive, theme }) =>
-    isActive ? theme.color.primary : theme.color.white};
+    isActive ? theme.color.gray03 : theme.color.white};
 `;

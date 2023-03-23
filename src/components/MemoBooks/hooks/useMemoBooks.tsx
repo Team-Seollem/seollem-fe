@@ -27,7 +27,7 @@ const fallback: MemoBooksResponse = {
 export default function useMemoBooks({ page }: Props) {
   const { data = fallback } = useQuery({
     queryKey: CACHE_KEYS.memoBooks(page),
-    queryFn: () => memoService.getMemoBooks(page, 10),
+    queryFn: () => memoService.getMemoBooks(page, 12),
     staleTime: 1000 * 60 * 5,
   });
   return data;
