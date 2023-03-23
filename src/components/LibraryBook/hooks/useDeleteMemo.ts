@@ -15,6 +15,7 @@ export default function useDeleteMemo() {
       onSuccess: (data, variables) => {
         const { bookId } = variables;
         queryClient.invalidateQueries(CACHE_KEYS.bookDetail(bookId));
+        queryClient.invalidateQueries(CACHE_KEYS.memoBooks);
       },
     }
   );
