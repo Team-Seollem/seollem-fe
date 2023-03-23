@@ -1,31 +1,33 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import Pagination from '@components/common/Pagination';
-import { BookCoverItem } from '@components/common';
+import { BookCoverItem, Pagination } from '@components/common';
 import useMemoBooks from './hooks/useMemoBooks';
+import * as S from './styles';
+import SkeletonBookList from './SkeletonBookList';
 
 export default function MemoBookList() {
   const [page, setPage] = useState<number>(1);
   const navigate = useNavigate();
-  const { item: memoBooks, pageInfo } = useMemoBooks({ page });
+  const { memoBooks, pageInfo, isLoading } = useMemoBooks({ page });
 
   const handleClickMemoBookCover = (bookId: number) => {
     navigate(`/memobook/${bookId}`);
   };
-
   return (
     <>
-      <Wrapper>
-        {memoBooks.map((item) => (
-          <BookCoverItem
-            key={item.bookId}
-            src={item.cover}
-            onClick={() => handleClickMemoBookCover(item.bookId)}
-          />
-        ))}
-      </Wrapper>
-
+      {isLoading ? (
+        <SkeletonBookList />
+      ) : (
+        <S.Wrapper>
+          {memoBooks.map((item) => (
+            <BookCoverItem
+              key={item.bookId}
+              src={item.cover}
+              onClick={() => handleClickMemoBookCover(item.bookId)}
+            />
+          ))}
+        </S.Wrapper>
+      )}
       <Pagination
         page={page}
         totalPages={pageInfo.totalPages}
@@ -36,12 +38,3 @@ export default function MemoBookList() {
     </>
   );
 }
-
-const Wrapper = styled.ul`
-  width: 100%;
-  margin-bottom: 2rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: baseline center;
-  row-gap: 1rem;
-`;
