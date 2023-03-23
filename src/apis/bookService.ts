@@ -12,6 +12,7 @@ import type { HttpClientAuthImpl } from './httpClientAuth';
 interface BookService {
   getLibrary: (
     page: number,
+    size: number,
     bookStatus: BookStatus
   ) => Promise<LibraryResponse>;
   getBookDetail: (bookId: number) => Promise<DetailBook>;
@@ -23,13 +24,13 @@ interface BookService {
 export class BookServiceImpl implements BookService {
   constructor(private httpClient: HttpClientAuthImpl) {}
 
-  getLibrary = async (page: number, bookStatus: BookStatus) => {
+  getLibrary = async (page: number, size: number, bookStatus: BookStatus) => {
     const { data } = await this.httpClient.get<LibraryResponse>(
       '/books/library',
       {
         params: {
           page,
-          size: 10,
+          size,
           bookStatus,
         },
       }
