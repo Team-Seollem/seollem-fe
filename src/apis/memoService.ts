@@ -15,7 +15,7 @@ interface MemoService {
   ) => Promise<MemoBookDetail>;
   editMemo: (memoId: number, memoData: MemoRequest) => Promise<MemoBookDetail>;
   removeMemo: (memoId: number) => Promise<string>;
-  getMemoBooks: (page: number) => Promise<MemoBooksResponse>;
+  getMemoBooks: (page: number, size: number) => Promise<MemoBooksResponse>;
   getMemoBooksByBookId: (
     bookId: number,
     page: number,
@@ -50,13 +50,13 @@ export class MemoServiceImpl implements MemoService {
     return '등록한 메모가 삭제되었습니다.';
   };
 
-  getMemoBooks = async (page: number) => {
+  getMemoBooks = async (page: number, size: number) => {
     const { data } = await this.httpClient.get<MemoBooksResponse>(
       '/books/memo-books',
       {
         params: {
           page,
-          size: 20,
+          size,
         },
       }
     );
