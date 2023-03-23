@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import Pagination from '@components/common/Pagination';
 import { BookCoverItem } from '@components/common';
 import useMemoBooks from './hooks/useMemoBooks';
@@ -15,7 +16,7 @@ export default function MemoBookList() {
 
   return (
     <>
-      <ul>
+      <Wrapper>
         {memoBooks.map((item) => (
           <BookCoverItem
             key={item.bookId}
@@ -23,7 +24,8 @@ export default function MemoBookList() {
             onClick={() => handleClickMemoBookCover(item.bookId)}
           />
         ))}
-      </ul>
+      </Wrapper>
+
       <Pagination
         page={page}
         totalPages={pageInfo.totalPages}
@@ -35,9 +37,11 @@ export default function MemoBookList() {
   );
 }
 
-/**
- * memobooks 페이지 기본 기능
- * 페이지 네이션 - page에대한 정보를 공유해야 함 - useMemoBooks에서 처리
- * 메모가 담긴 책들을 보여준다
- * ui 수정 필요할까? 디 에디트
- */
+const Wrapper = styled.ul`
+  width: 100%;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: baseline center;
+  row-gap: 1rem;
+`;
