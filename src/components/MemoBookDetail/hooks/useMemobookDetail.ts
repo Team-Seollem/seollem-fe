@@ -5,8 +5,6 @@ import type { MemoBookDetail, MemoBookType } from '@projects/types/library';
 
 type Props = {
   bookId: number;
-  page: number;
-  size: number;
   memoType: MemoBookType;
 };
 
