@@ -36,7 +36,9 @@ export default function MemoTypeSelect<T extends MemoListType>({
 const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  /* flex-wrap: wrap; */
   width: 100%;
+  max-width: 375px;
   margin-bottom: 1rem;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.base};
@@ -54,12 +56,19 @@ const Label = styled.label`
 const Chip = styled.button<{ isActive: boolean }>`
   border: none;
   cursor: pointer;
-  padding: 0.6rem;
+  padding: 0.3rem;
   border-radius: 3rem;
-  margin-right: 0.6rem;
+  margin-right: 0.2rem;
   color: white;
   white-space: nowrap;
   transition: 0.5s;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  width: 100%;
   background-color: ${({ isActive, theme }) =>
     isActive ? theme.color.primary : theme.color.gray02};
+  @media (min-width: 376px) {
+    max-width: 150px;
+    margin-right: 0.6rem;
+    padding: 0.6rem;
+  }
 `;
