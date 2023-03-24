@@ -66,7 +66,7 @@ const Button = styled.button<{
   filter: ${({ isActive }) => (isActive ? 'blur(0)' : 'blur(0.8px)')};
   transform: ${({ isActive }) => (isActive ? 'scale(1.05)' : 'scale(1)')};
   transition: transform 0.2s;
-  @media (min-width: 376px) {
+  @media (min-width: 450px) {
     width: 4rem;
     height: 4rem;
     font-size: ${({ theme }) => theme.fontSize.sm};
