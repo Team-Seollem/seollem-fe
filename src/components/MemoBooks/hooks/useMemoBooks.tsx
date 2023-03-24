@@ -8,14 +8,7 @@ type Props = {
 };
 
 const fallback: MemoBooksResponse = {
-  item: [
-    {
-      bookId: 0,
-      title: '',
-      cover: '',
-      memoCount: 0,
-    },
-  ],
+  item: [],
   pageInfo: {
     page: 1,
     size: 10,
@@ -29,6 +22,7 @@ export default function useMemoBooks({ page }: Props) {
     queryKey: CACHE_KEYS.memoBooksPage(page),
     queryFn: () => memoService.getMemoBooks(page, 12),
     staleTime: 1000 * 60 * 5,
+    keepPreviousData: true,
   });
   return { memoBooks: data.item, pageInfo: data.pageInfo, isLoading };
 }
