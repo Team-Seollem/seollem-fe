@@ -14,6 +14,6 @@ export const PAGE_URL = {
   MEMO_FORM: '/book/library/:bookId/memo',
   EDIT_MEMO: '/book/library/:bookId/memo/:memoId',
   MEMO_BOOKS: '/memobook',
-  MEMO_BOOK: '/memobook/:bookId',
+  MEMO_BOOK_DETAIL: '/memobook/:bookId',
   COMMUNITY: '/community',
 } as const;

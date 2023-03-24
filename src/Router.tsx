@@ -13,7 +13,7 @@ import {
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import MemoBooks from '@pages/MemoBooks';
-import MemoBook from '@pages/MemoBook';
+import MemoBookDetail from '@pages/MemoBookDetail';
 import { PAGE_URL } from './constants';
 
 const Router = createBrowserRouter([
@@ -41,7 +41,7 @@ const Router = createBrowserRouter([
       { path: PAGE_URL.MEMO_FORM, element: <MemoForm /> },
       { path: PAGE_URL.EDIT_MEMO, element: <MemoForm /> },
       { path: PAGE_URL.MEMO_BOOKS, element: <MemoBooks /> },
-      { path: PAGE_URL.MEMO_BOOK, element: <MemoBook /> },
+      { path: PAGE_URL.MEMO_BOOK_DETAIL, element: <MemoBookDetail /> },
     ],
   },
 ]);
