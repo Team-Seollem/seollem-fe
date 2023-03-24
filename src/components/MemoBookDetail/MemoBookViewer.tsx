@@ -16,14 +16,16 @@ import MemoBookPage from './MemoBookPage';
 
 export default function MemoBookViewer() {
   const { bookId } = useParams();
+
   const { memoBookType, handleTypeChange, memoBookBg, handleValueChange } =
     useMemoBookViewer();
+
   const { memoBooks, hasNextPage, fetchNextPage } = useMemobookDetail({
     bookId: Number(bookId),
     memoType: memoBookType,
   });
-  const { ref, isIntersect } = useIntersectionObserver({ threshold: 1.0 });
 
+  const { ref, isIntersect } = useIntersectionObserver({ threshold: 1.0 });
   useEffect(() => {
     if (isIntersect && hasNextPage) {
       fetchNextPage();
@@ -56,4 +58,8 @@ const Container = styled.div`
   width: 100%;
   z-index: 0;
   margin-bottom: 2rem;
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: white;
+  }
 `;
