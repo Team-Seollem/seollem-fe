@@ -44,4 +44,5 @@ const SubTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.color.gray01};
   margin-top: 0.5rem;
+  line-height: 1.5rem;
 `;

@@ -66,7 +66,7 @@ const Chip = styled.button<{ isActive: boolean }>`
   width: 100%;
   background-color: ${({ isActive, theme }) =>
     isActive ? theme.color.primary : theme.color.gray02};
-  @media (min-width: 376px) {
+  @media (min-width: 410px) {
     max-width: 150px;
     margin-right: 0.6rem;
     padding: 0.6rem;
