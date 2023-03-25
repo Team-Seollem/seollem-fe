@@ -40,16 +40,20 @@ export default function MemoBookViewer() {
         onChange={handleTypeChange}
       />
       <MemoBgSelect value={memoBookBg} onChange={handleValueChange} />
-      <Container>
-        <Swiper modules={[Navigation]} slidesPerView={1} navigation>
-          {memoBooks.map((memo) => (
-            <SwiperSlide key={memo.memoId}>
-              <MemoBookPage memo={memo} memoBookBg={memoBookBg} />
-            </SwiperSlide>
-          ))}
-          {hasNextPage && <div ref={ref} />}
-        </Swiper>
-      </Container>
+      {memoBooks.length === 0 ? (
+        <Text>해당 타입의 메모가 없습니다. 전체 타입으로 조회해 보세요.</Text>
+      ) : (
+        <Container>
+          <Swiper modules={[Navigation]} slidesPerView={1} navigation>
+            {memoBooks.map((memo) => (
+              <SwiperSlide key={memo.memoId}>
+                <MemoBookPage memo={memo} memoBookBg={memoBookBg} />
+              </SwiperSlide>
+            ))}
+            {hasNextPage && <div ref={ref} />}
+          </Swiper>
+        </Container>
+      )}
     </>
   );
 }
@@ -62,4 +66,9 @@ const Container = styled.div`
   .swiper-button-next {
     color: white;
   }
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.color.gray01};
+  text-align: center;
 `;
