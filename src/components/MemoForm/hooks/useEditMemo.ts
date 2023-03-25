@@ -23,6 +23,7 @@ export default function useEditMemo() {
       onSuccess: (data, variables) => {
         const { bookId } = variables;
         queryClient.invalidateQueries(CACHE_KEYS.bookDetail(bookId));
+        queryClient.invalidateQueries(CACHE_KEYS.memoBooks);
         navigate(`/book/library/${bookId}`);
       },
     }
