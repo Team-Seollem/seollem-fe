@@ -8,7 +8,7 @@ export const MEMO_TYPES = {
 export const memoTypeList = Object.values(MEMO_TYPES);
 
 export const MEMO_BOOK_TYPES = {
-  ALL: { typeValue: 'ALL', typeText: '전체 보기' },
+  ALL: { typeValue: 'ALL', typeText: '전체 타입' },
   ...MEMO_TYPES,
 } as const;
 

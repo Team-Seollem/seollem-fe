@@ -16,7 +16,7 @@ export default function MemoTypeSelect<T extends MemoListType>({
 }: Props<T>) {
   return (
     <>
-      <Label htmlFor="memo-type">메모타입</Label>
+      <Label htmlFor="memo-type">메모 타입 선택</Label>
       <Wrapper id="memo-type">
         {typeList.map((item) => (
           <Chip
