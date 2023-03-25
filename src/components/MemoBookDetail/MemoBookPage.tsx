@@ -74,16 +74,10 @@ const MemoInfo = styled.div`
   justify-content: space-between;
   margin-bottom: 2rem;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  @media (min-width: 450px) {
-    font-size: ${({ theme }) => theme.fontSize.base};
-  }
 `;
 
 const MemoContent = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
-  @media (min-width: 450px) {
-    font-size: ${({ theme }) => theme.fontSize.md};
-  }
 `;
 
 const DownloadIcon = styled(FiDownload)`
