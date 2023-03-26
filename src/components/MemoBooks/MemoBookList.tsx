@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookCoverItem, Pagination } from '@components/common';
+import Tooltip from '@components/common/Tooltip';
 import useMemoBooks from './hooks/useMemoBooks';
 import * as S from './styles';
 import SkeletonBookList from './SkeletonBookList';
@@ -20,11 +21,12 @@ export default function MemoBookList() {
       ) : (
         <S.Wrapper>
           {memoBooks.map((item) => (
-            <BookCoverItem
-              key={item.bookId}
-              src={item.cover}
-              onClick={() => handleClickMemoBookCover(item.bookId)}
-            />
+            <Tooltip key={item.bookId} content={`${item.memoCount}개의 메모`}>
+              <BookCoverItem
+                src={item.cover}
+                onClick={() => handleClickMemoBookCover(item.bookId)}
+              />
+            </Tooltip>
           ))}
         </S.Wrapper>
       )}
