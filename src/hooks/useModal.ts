@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 export default function useModal() {
-  const [isOpen, setIsShowing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
-    setIsShowing(!isOpen);
+    setIsOpen(!isOpen);
   };
 
   return { isOpen, toggle };
