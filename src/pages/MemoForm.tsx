@@ -8,7 +8,10 @@ export default function MemoForm() {
 
   return (
     <>
-      <PageTitle title="메모 등록 페이지" path={`/book/library/${bookId}`} />
+      <PageTitle
+        title={!memoId ? '메모 등록 페이지' : '메모 수정 페이지'}
+        path={`/book/library/${bookId}`}
+      />
       <Boxcontainer>
         {!memoId && <MemoCreateForm />}
         {memoId && <MemoEditForm />}
