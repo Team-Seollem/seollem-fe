@@ -6,7 +6,7 @@ export const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 1;
-  padding: 0 1rem 0 0.6rem;
+  padding: 0 1rem;
   height: 3.75rem;
   display: flex;
   justify-content: space-between;
@@ -23,7 +23,7 @@ export const Menu = styled.div`
     margin: 0 0.4rem;
     padding: 0.6rem auto;
     font-size: 1.8rem;
-    color: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.gray02};
   }
 `;
 
@@ -33,6 +33,21 @@ export const MenuLink = styled(Link)`
 
 export const HeaderButton = styled(Button)`
   margin: 0 0.4rem;
+`;
+
+export const DropdownMenuWrapper = styled.ul`
+  background-color: white;
+  width: 7rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  cursor: pointer;
+`;
+
+export const DropdownMenuItem = styled.div`
+  padding: 0.5rem 1rem;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.gray04};
+  }
 `;
 
 export const Main = styled.main`
