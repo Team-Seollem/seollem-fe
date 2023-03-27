@@ -47,12 +47,16 @@ export default function MemoItem({
 }
 
 const Wrapper = styled.li`
-  border: 1px solid black;
+  box-shadow: 0 0 0.25rem 0 rgba(0 0 0 / 20%);
   border-radius: 0.3rem;
+  background-color: ${({ theme }) => theme.color.white};
   padding: 1rem;
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.fontSize.base};
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.gray04};
+  }
 `;
 const InfoContainer = styled.div`
   display: flex;
