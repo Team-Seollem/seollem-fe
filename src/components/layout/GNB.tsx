@@ -40,10 +40,9 @@ const SNav = styled.nav`
   bottom: 0;
   z-index: 1;
   background-color: ${({ theme }) => theme.color.white};
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 2rem;
   width: 100%;
   max-width: 40rem;
-  min-width: 375px;
   box-shadow: 0px -2px 5px -1px rgb(32 33 36 / 10%);
   display: flex;
   align-items: row;
@@ -59,7 +58,8 @@ const NavButton = styled(NavLink)`
   font-family: 'Pretendard';
   font-weight: 800;
   padding: 0.4rem 0.6rem;
-  width: 4.3rem;
+  width: 4.5rem;
+  white-space: nowrap;
   text-decoration: none;
   border-radius: 1rem;
   > svg {

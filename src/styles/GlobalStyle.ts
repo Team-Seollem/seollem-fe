@@ -37,12 +37,15 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Pretendard-Regular';
+    overflow: scroll;
+    background-color: ${({ theme }) => theme.color.white};
+  }
+
+  #root {
     max-width: 40rem;
     margin: 0 auto;
     padding-bottom: 0px;
     min-height: 100vh;
     min-width: 375px;
-    overflow: scroll;
-    background-color: ${({ theme }) => theme.color.white};
   }
 `;
