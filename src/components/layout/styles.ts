@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '@components/common';
 
 export const Header = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1;
+  width: 100%;
   padding: 0 1rem;
   height: 3.75rem;
   display: flex;
@@ -14,6 +15,7 @@ export const Header = styled.header`
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 6px rgb(32 33 36 / 10%);
   min-width: 375px;
+  max-width: 40rem;
 `;
 
 export const Menu = styled.div`
@@ -51,7 +53,8 @@ export const DropdownMenuItem = styled.div`
 `;
 
 export const Main = styled.main`
-  margin: 0.9rem 0.75rem 1.25rem 0.75rem;
+  margin: 0 0.75rem 1.25rem 0.75rem;
+  padding-top: 4.5rem;
   padding-bottom: 4rem;
   display: flex;
   flex-direction: column;
