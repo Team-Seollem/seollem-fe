@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookCoverItem, Pagination } from '@components/common';
-import Tooltip from '@components/common/Tooltip';
+import { BookCoverItem, Pagination, Tooltip } from '@components/common';
 import useMemoBooks from './hooks/useMemoBooks';
 import * as S from './styles';
 import SkeletonBookList from './SkeletonBookList';
