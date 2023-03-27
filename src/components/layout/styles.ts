@@ -7,6 +7,7 @@ export const Header = styled.header`
   top: 0;
   z-index: 1;
   width: 100%;
+  max-width: 40rem;
   padding: 0 1rem;
   height: 3.75rem;
   display: flex;
@@ -14,8 +15,6 @@ export const Header = styled.header`
   align-items: center;
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 4px 6px rgb(32 33 36 / 10%);
-  min-width: 375px;
-  max-width: 40rem;
 `;
 
 export const Menu = styled.div`
