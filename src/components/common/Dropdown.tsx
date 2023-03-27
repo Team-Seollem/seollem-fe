@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import ReactPortal from './ReactPortal';
 
@@ -20,7 +20,7 @@ export default function Dropdown({
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const getCoordinates = () => {
+  const getCoordinates = useCallback(() => {
     const element = targetRef.current;
     if (!element) {
       return { left: 0, top: 0 };
@@ -30,7 +30,7 @@ export default function Dropdown({
     const left = targetRect.left + offsetX;
     const top = targetRect.bottom + offsetY;
     return { left, top };
-  };
+  }, [offsetX, offsetY]);
 
   const position = getCoordinates();
   return (
