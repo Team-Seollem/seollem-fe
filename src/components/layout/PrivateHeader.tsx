@@ -5,7 +5,7 @@ import { IoMenu } from 'react-icons/io5';
 import { PAGE_URL } from '@constants';
 import { authService } from '@apis';
 import { loginState } from '@state/atom';
-import Dropdown from '@components/common/DropDown';
+import { Dropdown } from '@components/common';
 import * as S from './styles';
 import Logo from './Logo';
 

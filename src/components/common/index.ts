@@ -9,3 +9,5 @@ export { default as BookDetailInfoItem } from './BookDetailInfoItem';
 export { default as BookAddButton } from './BookAddButton';
 export { default as Pagination } from './Pagination';
 export { default as SkeletonBookCoverItem } from './SkeletonBookCoverItem';
+export { default as Dropdown } from './Dropdown';
+export { default as Tooltip } from './Tooltip';
