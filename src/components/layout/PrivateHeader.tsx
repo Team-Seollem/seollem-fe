@@ -1,13 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-
-import { IoNotifications, IoMenu } from 'react-icons/io5';
+import { IoMenu } from 'react-icons/io5';
 
 import { PAGE_URL } from '@constants';
 import { authService } from '@apis';
 import { loginState } from '@state/atom';
 import Dropdown from '@components/common/DropDown';
-import styled from 'styled-components';
 import * as S from './styles';
 import Logo from './Logo';
 
@@ -30,6 +28,7 @@ export default function PrivateHeader() {
       <Logo to={PAGE_URL.LIBRARY} />
 
       <S.Menu>
+        {/* <IoNotifications /> */}
         <Dropdown target={<IoMenu />}>
           <S.DropdownMenuWrapper>
             <S.DropdownMenuItem onClick={handleMyPage}>
