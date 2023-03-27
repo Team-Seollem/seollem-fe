@@ -2,11 +2,12 @@
 import styled from 'styled-components';
 import DOMPurify from 'dompurify';
 
-import { BsTrashFill } from 'react-icons/bs';
-import type { MemoBookDetail } from '@projects/types/library';
+import { FaPen } from 'react-icons/fa';
 import { MEMO_TYPES } from '@constants';
 import { getLatestUpdateDate } from '@utils';
+import type { MemoBookDetail } from '@projects/types/library';
 import { Button } from '@components/common';
+import DeleteConfirmButton from './DeleteConfirmButton';
 
 type Props = {
   memo: MemoBookDetail;
@@ -20,17 +21,21 @@ export default function MemoItem({
   handleDeleteMemo,
 }: Props) {
   return (
-    <Wrapper onClick={() => handleEditMemo(memo.memoId)}>
+    <Wrapper>
       <InfoContainer>
         <PageInfo>{`p. ${memo.memoBookPage}`}</PageInfo>
-        <Button styleType="ghost" size="small">
-          <Svg
-            onClick={(e) => {
-              e.stopPropagation();
-              handleDeleteMemo(memo.memoId);
-            }}
+        <div>
+          <Button
+            styleType="ghost"
+            size="small"
+            onClick={() => handleEditMemo(memo.memoId)}
+          >
+            <EditIcon />
+          </Button>
+          <DeleteConfirmButton
+            onConfirm={() => handleDeleteMemo(memo.memoId)}
           />
-        </Button>
+        </div>
       </InfoContainer>
       <InfoContainer>
         <p>{getLatestUpdateDate(memo.createdAt, memo.updatedAt)}</p>
@@ -53,10 +58,6 @@ const Wrapper = styled.li`
   padding: 1rem;
   margin-bottom: 1rem;
   font-size: ${({ theme }) => theme.fontSize.base};
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.color.gray04};
-  }
 `;
 const InfoContainer = styled.div`
   display: flex;
@@ -65,9 +66,10 @@ const InfoContainer = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const Svg = styled(BsTrashFill)`
+const EditIcon = styled(FaPen)`
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.color.gray01};
+  cursor: pointer;
 `;
 
 const PageInfo = styled.div`
