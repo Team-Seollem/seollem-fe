@@ -47,6 +47,7 @@ export default function Tooltip({ children, content }: Props) {
 
 const Wrapper = styled.div`
   position: relative;
+  display: inline-block;
 `;
 
 const Text = styled.p<{ top: number; left: number }>`
@@ -56,7 +57,6 @@ const Text = styled.p<{ top: number; left: number }>`
   left: ${({ left }) => `${left}px`};
   padding: 0.3rem;
   border-radius: 0.3rem;
-  width: 4rem;
   font-size: ${({ theme }) => theme.fontSize.sm};
   background-color: ${({ theme }) => theme.color.gray01};
   color: ${({ theme }) => theme.color.white};
