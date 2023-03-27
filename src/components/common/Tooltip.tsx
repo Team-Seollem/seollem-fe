@@ -17,13 +17,13 @@ export default function Tooltip({ children, content }: Props) {
   const getCoordinates = useCallback(() => {
     const element = targetRef.current;
     if (!element) {
-      return { x: 0, y: 0 };
+      return { left: 0, top: 0 };
     }
     const targetRect = element.getBoundingClientRect();
 
-    const x = targetRect.left + targetRect.width / 2;
-    const y = targetRect.top + targetRect.height / 2;
-    return { x, y };
+    const left = targetRect.left + targetRect.width / 2;
+    const top = targetRect.top + targetRect.height / 2;
+    return { left, top };
   }, [targetRef]);
 
   const position = getCoordinates();
@@ -36,7 +36,7 @@ export default function Tooltip({ children, content }: Props) {
       {children}
       <ReactPortal wrapperId="tooltip-root">
         {isVisible && (
-          <Text left={position.x} top={position.y}>
+          <Text left={position.left} top={position.top}>
             {content}
           </Text>
         )}
