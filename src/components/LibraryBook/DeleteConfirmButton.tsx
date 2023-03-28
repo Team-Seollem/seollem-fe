@@ -12,14 +12,7 @@ export default function DeleteConfirmButton({ onConfirm }: Props) {
   const { isOpen, toggle } = useModal();
   return (
     <>
-      <OpenConfirmModalButton
-        styleType="ghost"
-        size="small"
-        onClick={(e) => {
-          e.stopPropagation();
-          toggle();
-        }}
-      >
+      <OpenConfirmModalButton styleType="ghost" size="small" onClick={toggle}>
         <BsTrashFill />
       </OpenConfirmModalButton>
       <Modal isOpen={isOpen} closeModal={toggle}>
