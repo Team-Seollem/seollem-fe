@@ -16,10 +16,11 @@ const handleUnauthorizedError = (
   error: AxiosError,
   tokenRepository: TokenRepositoryImpl
 ) => {
-  if (error.response?.status === 403) {
+  if (error.response?.status === 401) {
+    window.location.href = '/auth/signin';
     tokenRepository.removeToken();
   }
-  throw error;
+  return Promise.reject(error);
 };
 
 export class HttpClientAuthImpl extends HttpClientImpl implements HttpClient {
