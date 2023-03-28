@@ -18,32 +18,116 @@ import { PAGE_URL } from './constants';
 
 const Router = createBrowserRouter([
   {
-    element: <PublicRoute />,
-    children: [
-      { path: PAGE_URL.ROOT, element: <Landing /> },
-      { path: PAGE_URL.NOT_FOUND, element: <div>not found</div> },
-      { path: PAGE_URL.SIGN_IN, element: <SignInPage /> },
-      { path: PAGE_URL.SIGN_UP, element: <SignUpPage /> },
-    ],
+    path: PAGE_URL.ROOT,
+    element: (
+      <PublicRoute>
+        <Landing />
+      </PublicRoute>
+    ),
   },
   {
-    element: <PrivateRoute />,
-    children: [
-      { path: PAGE_URL.SEARCHBOOK, element: <SearchBookPage /> },
-      { path: PAGE_URL.POSTBOOK, element: <PostBookPage /> },
-      { path: PAGE_URL.DETAILBOOKINFO, element: <DetailBookInfoPage /> },
-      {
-        path: PAGE_URL.RECOMMENDEDBOOKS,
-        element: <RecommendedBooksPage />,
-      },
-      { path: PAGE_URL.LIBRARY, element: <Library /> },
-      { path: PAGE_URL.LIBRARYBOOK, element: <LibraryBook /> },
-      { path: PAGE_URL.MEMO_FORM, element: <MemoForm /> },
-      { path: PAGE_URL.EDIT_MEMO, element: <MemoForm /> },
-      { path: PAGE_URL.MEMO_BOOKS, element: <MemoBooks /> },
-      { path: PAGE_URL.MEMO_BOOK_DETAIL, element: <MemoBookDetail /> },
-    ],
+    path: PAGE_URL.NOT_FOUND,
+    element: (
+      <PublicRoute>
+        <div>Page Not Found</div>
+      </PublicRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.SIGN_IN,
+    element: (
+      <PublicRoute>
+        <SignInPage />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.SIGN_UP,
+    element: (
+      <PublicRoute>
+        <SignUpPage />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.SEARCHBOOK,
+    element: (
+      <PrivateRoute>
+        <SearchBookPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.POSTBOOK,
+    element: (
+      <PrivateRoute>
+        <PostBookPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.DETAILBOOKINFO,
+    element: (
+      <PrivateRoute>
+        <DetailBookInfoPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.RECOMMENDEDBOOKS,
+    element: (
+      <PrivateRoute>
+        <RecommendedBooksPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.LIBRARY,
+    element: (
+      <PrivateRoute>
+        <Library />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.LIBRARYBOOK,
+    element: (
+      <PrivateRoute>
+        <LibraryBook />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.MEMO_FORM,
+    element: (
+      <PrivateRoute>
+        <MemoForm />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.EDIT_MEMO,
+    element: (
+      <PrivateRoute>
+        <MemoForm />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.MEMO_BOOKS,
+    element: (
+      <PrivateRoute>
+        <MemoBooks />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.MEMO_BOOK_DETAIL,
+    element: (
+      <PrivateRoute>
+        <MemoBookDetail />
+      </PrivateRoute>
+    ),
   },
 ]);
-
 export default Router;
