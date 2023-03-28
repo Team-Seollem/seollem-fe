@@ -25,12 +25,12 @@ export default function DeleteConfirmButton({ onConfirm }: Props) {
       <Modal isOpen={isOpen} closeModal={toggle}>
         정말 메모를 삭제하시겠습니까?
         <ButtonGroup>
-          <Button styleType="neutral" size="small" onClick={toggle}>
+          <SButton styleType="neutral" size="small" onClick={toggle}>
             취소
-          </Button>
-          <Button styleType="solidNegative" size="small" onClick={onConfirm}>
+          </SButton>
+          <SButton styleType="solidNegative" size="small" onClick={onConfirm}>
             메모 삭제
-          </Button>
+          </SButton>
         </ButtonGroup>
       </Modal>
     </>
@@ -47,5 +47,9 @@ const ButtonGroup = styled.div`
   margin: 1rem auto;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
+`;
+
+const SButton = styled(Button)`
+  width: 4rem;
 `;
