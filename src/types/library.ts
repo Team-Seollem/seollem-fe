@@ -46,13 +46,13 @@ export type MemoBasic = {
   memoType: MemoType;
   memoContent: string;
   memoBookPage: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type MemoBookDetail = MemoBasic & {
   memoAuthority: MemoAuthority;
   memoLikesCount: number;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type MemoBookDetailResponse = PageableApiResponse<MemoBookDetail>;
