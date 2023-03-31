@@ -11,4 +11,5 @@ export const CACHE_KEYS = {
     bookId,
     memoType,
   ],
+  randomMemo: ['randomMemo'],
 };
