@@ -10,6 +10,7 @@ import {
   LibraryBook,
   RecommendedBooksPage,
   MemoForm,
+  Stats,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import MemoBooks from '@pages/MemoBooks';
@@ -126,6 +127,14 @@ const Router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <MemoBookDetail />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.MYSTAT,
+    element: (
+      <PrivateRoute>
+        <Stats />
       </PrivateRoute>
     ),
   },
