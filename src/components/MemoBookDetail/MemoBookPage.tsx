@@ -5,12 +5,14 @@ import { toPng } from 'html-to-image';
 import styled from 'styled-components';
 import { FiDownload } from 'react-icons/fi';
 
-import type { MemoBookDetail } from '@projects/types/library';
+import type { MemoBasic, MemoBookDetail } from '@projects/types/library';
 import { getLatestUpdateDate } from '@utils';
 import { BgType, MEMO_BACKGROUND } from 'constants/memoBackground';
 
+type MemoBookType = MemoBasic | MemoBookDetail;
+
 type Props = {
-  memo: MemoBookDetail;
+  memo: MemoBookType;
   memoBookBg: BgType;
 };
 
