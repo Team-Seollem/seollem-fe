@@ -39,7 +39,7 @@ export default function MemoBookPage({ memo, memoBookBg }: Props) {
         ref={imgRef}
       >
         <MemoInfo>
-          <p>{memo.memoBookPage}</p>
+          <p>{`p. ${memo.memoBookPage}`}</p>
           <p>{date}</p>
         </MemoInfo>
         <MemoContent>
@@ -63,7 +63,8 @@ const Wrapper = styled.div<{ fontColor: string; imageUrl: string }>`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  height: 30rem;
+  width: 100%;
+  min-height: 25rem;
   z-index: 0;
   background-image: url(${({ imageUrl }) => imageUrl});
   background-size: cover;
@@ -80,6 +81,7 @@ const MemoInfo = styled.div`
 
 const MemoContent = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
+  line-height: 150%;
 `;
 
 const DownloadIcon = styled(FiDownload)`
