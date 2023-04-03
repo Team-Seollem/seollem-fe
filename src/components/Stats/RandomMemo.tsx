@@ -1,5 +1,5 @@
 import MemoBookPage from '@components/MemoBookDetail/MemoBookPage';
-import styled from 'styled-components';
+import Title from '@components/common/Title';
 import useRandomMemo from './hooks/useRandomMemo';
 
 export default function RandomMemo() {
@@ -11,8 +11,3 @@ export default function RandomMemo() {
     </>
   );
 }
-
-const Title = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize.md};
-  margin-bottom: 1rem;
-`;

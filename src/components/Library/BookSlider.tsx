@@ -9,6 +9,7 @@ import { BookCoverItem } from '@components/common';
 import { PAGE_URL } from '@constants';
 import { BOOKSTATUS } from 'constants/library';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import Title from '@components/common/Title';
 import SkeletonLibraryBooks from './SkeletonLibraryBooks';
 import useBookSlider from './hooks/useBookSlider';
 
@@ -52,14 +53,6 @@ export default function BookSlider({ bookStatus: status }: Props) {
     </>
   );
 }
-
-const Title = styled.h1`
-  color: ${({ theme }) => theme.color.gray01};
-  font-size: ${({ theme }) => theme.fontSize.base};
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-`;
-
 const Container = styled.div`
   width: 100%;
   z-index: 0;
