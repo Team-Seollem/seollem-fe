@@ -6,9 +6,13 @@ import {
   Button,
   PageTitle,
 } from '@components/common';
-import { useMutation } from '@tanstack/react-query';
+import { CACHE_KEYS, PAGE_URL } from '@constants';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { BookStatus } from '../../types/library';
 import { SearchBookInfo } from '../../types/basic';
 
 type Props = {
@@ -23,7 +27,7 @@ function PostBook({ bookInfoData }: Props) {
   });
 
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [bookStatus, setBookStatus] = useState<string>('YET');
+  const [bookStatus, setBookStatus] = useState<BookStatus>('YET');
   const [readStartDate, setReadStartDate] = useState<string | null>(null);
   const [readEndDate, setReadEndDate] = useState<string | null>(null);
 
@@ -45,7 +49,8 @@ function PostBook({ bookInfoData }: Props) {
   };
 
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setBookStatus(e.target.value);
+    const { value } = e.target;
+    setBookStatus(value);
     setReadStartDate(null);
     setReadEndDate(null);
   };
@@ -64,12 +69,15 @@ function PostBook({ bookInfoData }: Props) {
   };
 
   const { mutate } = useMutation(bookService.registerBook);
-
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate(postBookInfoData, {
       onSuccess() {
-        toast.success('회원 가입에 성공했습니다.');
+        queryClient.invalidateQueries(CACHE_KEYS.library(bookStatus));
+        toast.success('책 등록에 성공했어요.');
+        navigate(PAGE_URL.LIBRARY);
       },
     });
   };
