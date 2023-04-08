@@ -10,6 +10,7 @@ const color = {
   pink01: '#FFBFC5',
   pink02: '#FEE5E0',
   primary: '#90DED8',
+  primary_light: '#ccf0ed',
   negative: '#EA5966',
 } as const;
 

@@ -9,6 +9,7 @@ import type { MemoBookDetail } from '@projects/types/library';
 import { Button } from '@components/common';
 import MemoAuthorityType from '@components/LibraryBook/MemoAuthorityType';
 import DeleteConfirmButton from './DeleteConfirmButton';
+import MemoLikes from './MemoLikes';
 
 type Props = {
   memo: MemoBookDetail;
@@ -39,7 +40,7 @@ export default function MemoItem({
         </div>
       </InfoContainer>
       <InfoContainer>
-        <p>{getLatestUpdateDate(memo.createdAt, memo.updatedAt)}</p>
+        <Date>{getLatestUpdateDate(memo.createdAt, memo.updatedAt)}</Date>
         <Type>{MEMO_TYPES[memo.memoType].typeText}</Type>
       </InfoContainer>
       <MemoContent>
@@ -49,8 +50,11 @@ export default function MemoItem({
           }}
         />
       </MemoContent>
-      {/* FIX: memoAuthoryty가 null일때 처리를 위해서 기본값을 임의로 private로 지정함 */}
-      <MemoAuthorityType authority={memo.memoAuthority ?? 'PRIVATE'} />
+      <BadgeContainer>
+        {/* FIX: memoAuthoryty가 null일때 처리를 위해서 기본값을 임의로 private로 지정함 */}
+        <MemoAuthorityType authority={memo.memoAuthority ?? 'PRIVATE'} />
+        <MemoLikes likesCount={memo.memoLikesCount} />
+      </BadgeContainer>
     </Wrapper>
   );
 }
@@ -80,21 +84,36 @@ const EditIcon = styled(FaPen)`
 
 const PageInfo = styled.div`
   border-radius: 1rem;
-  background-color: ${({ theme }) => theme.color.skyblue01};
+  font-size: ${({ theme }) => theme.fontSize.sm};
   padding: 0.5rem 1rem;
-  text-align: center;
-  color: white;
+
+  color: ${({ theme }) => theme.color.gray01};
+  background-color: ${({ theme }) => theme.color.primary_light};
+  font-weight: bold;
 `;
+
+const Date = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => theme.color.gray01};
+`;
+
 const Type = styled.div`
   padding: 0.5rem 1rem;
-  text-align: center;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  background-color: ${({ theme }) => theme.color.skyblue01};
-  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.primary_light};
+  color: ${({ theme }) => theme.color.gray01};
+  font-weight: bold;
 `;
 
 const MemoContent = styled.div`
   padding: 1rem 0;
   width: 100%;
   line-height: 150%;
+  font-size: ${({ theme }) => theme.fontSize.base};
+`;
+
+const BadgeContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
 `;
