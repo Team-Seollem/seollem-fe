@@ -7,7 +7,7 @@ import { MEMO_TYPES } from '@constants';
 import { getLatestUpdateDate } from '@utils';
 import type { MemoBookDetail } from '@projects/types/library';
 import { Button } from '@components/common';
-import MemoAuthorityType from '@components/common/MemoAuthorityType';
+import MemoAuthorityType from '@components/LibraryBook/MemoAuthorityType';
 import DeleteConfirmButton from './DeleteConfirmButton';
 
 type Props = {
