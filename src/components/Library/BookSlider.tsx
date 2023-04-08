@@ -35,7 +35,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
 
   return (
     <>
-      <Title>{BOOKSTATUS[status]}</Title>
+      <Title>{BOOKSTATUS[status].typeText}</Title>
       <Container>
         <Swiper spaceBetween={5} slidesPerView={4}>
           {books.map((book) => (
