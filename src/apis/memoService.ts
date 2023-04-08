@@ -83,8 +83,8 @@ export class MemoServiceImpl implements MemoService {
   };
 
   getRandomMemo = async () => {
-    const { data } = await this.httpClient.get<MemoBasic[]>('/memos/random');
-    return data[0];
+    const { data } = await this.httpClient.get<MemoBasic>('/memos/random');
+    return data;
   };
 
   imageUpload = async (formData: FormData) => {
