@@ -5,7 +5,8 @@ type PageableApiResponse<T> = {
   pageInfo: PageInfo;
 };
 
-export type BookStatus = keyof typeof BOOKSTATUS;
+export type BookStatus =
+  typeof BOOKSTATUS[keyof typeof BOOKSTATUS]['typeValue'];
 
 export type BasicBook = {
   bookId: number;
@@ -58,6 +59,7 @@ export type MemoBookDetail = MemoBasic & {
 export type MemoBookDetailResponse = PageableApiResponse<MemoBookDetail>;
 
 export type MemoAuthority = 'PUBLIC' | 'PRIVATE';
+
 export type MemoType = typeof MEMO_TYPES[keyof typeof MEMO_TYPES]['typeValue'];
 export type MemoText = typeof MEMO_TYPES[keyof typeof MEMO_TYPES]['typeText'];
 export type MemoBookType =
