@@ -4,3 +4,4 @@ export * from './recommend';
 export * from './cacheKey';
 export * from './library';
 export * from './memoTypes';
+export * from './memoAuthority';
