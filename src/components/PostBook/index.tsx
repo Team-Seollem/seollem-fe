@@ -6,7 +6,7 @@ import {
   Button,
   PageTitle,
 } from '@components/common';
-import { CACHE_KEYS, PAGE_URL } from '@constants';
+import { CACHE_KEYS, PAGE_URL, bookStatusList } from '@constants';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -31,12 +31,6 @@ function PostBook({ bookInfoData }: Props) {
   const [readStartDate, setReadStartDate] = useState<string | null>(null);
   const [readEndDate, setReadEndDate] = useState<string | null>(null);
 
-  const selectList = [
-    { typeValue: 'YET', typeText: '읽고 싶은 책' },
-    { typeValue: 'ING', typeText: '읽고 있는 책' },
-    { typeValue: 'DONE', typeText: '다 읽은 책' },
-  ];
-
   const handleChangeBasicBookInfoData = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -50,9 +44,14 @@ function PostBook({ bookInfoData }: Props) {
 
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    setBookStatus(value);
-    setReadStartDate(null);
-    setReadEndDate(null);
+    const bookStatusOption = bookStatusList.find(
+      (option) => option.typeValue === value
+    );
+    if (bookStatusOption) {
+      setBookStatus(bookStatusOption.typeValue);
+      setReadStartDate(null);
+      setReadEndDate(null);
+    }
   };
 
   const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,7 +125,7 @@ function PostBook({ bookInfoData }: Props) {
               onChange={handleChangeSelect}
               value={bookStatus}
             >
-              {selectList.map((item, idx) => (
+              {bookStatusList.map((item, idx) => (
                 <option value={item.typeValue} key={idx}>
                   {item.typeText}
                 </option>
