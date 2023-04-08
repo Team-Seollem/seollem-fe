@@ -12,16 +12,16 @@ export class ExternalServiceImpl implements ExternalService {
   }
 
   searchBooks = async (keyword: string) => {
-    const { data } = await this.httpClient.get<SearchBookInfo[]>(
+    const { data } = await this.httpClient.get<{ response: string }>(
       `/ext-lib/${keyword}`
     );
-    return data;
+    return JSON.parse(data.response) as SearchBookInfo[];
   };
 
   getRecommendedBooksList = async (sort: RecommendSort) => {
-    const { data } = await this.httpClient.get<SearchBookInfo[]>(
+    const { data } = await this.httpClient.get<{ response: string }>(
       `/ext-lib/${sort}`
     );
-    return data;
+    return JSON.parse(data.response) as SearchBookInfo[];
   };
 }
