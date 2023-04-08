@@ -90,7 +90,12 @@ export class MemoServiceImpl implements MemoService {
   imageUpload = async (formData: FormData) => {
     const { data } = await this.httpClient.post<string, FormData>(
       '/memos/image-memo',
-      formData
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
     return data;
   };
