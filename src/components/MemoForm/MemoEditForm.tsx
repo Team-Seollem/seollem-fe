@@ -50,10 +50,10 @@ export default function MemoEditForm() {
 
   return (
     <S.Form onSubmit={handleSumbit}>
-      {/* <MemoAuthoritySelect
+      <MemoAuthoritySelect
         authority={memo.memoAuthority}
         onChange={handleAuthorityChange}
-      /> */}
+      />
       <MemoPageInput page={memo.memoBookPage} onChange={handlePageChange} />
       <MemoTypeSelect
         typeList={memoTypeList}
