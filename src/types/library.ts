@@ -5,8 +5,7 @@ type PageableApiResponse<T> = {
   pageInfo: PageInfo;
 };
 
-// export type BookStatus = keyof typeof BOOKSTATUS
-export type BookStatus = string;
+export type BookStatus = keyof typeof BOOKSTATUS;
 
 export type BasicBook = {
   bookId: number;
