@@ -15,13 +15,15 @@ export class ExternalServiceImpl implements ExternalService {
     const { data } = await this.httpClient.get<{ response: string }>(
       `/ext-lib/${keyword}`
     );
-    return JSON.parse(data.response) as SearchBookInfo[];
+    const bookList: SearchBookInfo[] = JSON.parse(data.response);
+    return bookList;
   };
 
   getRecommendedBooksList = async (sort: RecommendSort) => {
     const { data } = await this.httpClient.get<{ response: string }>(
       `/ext-lib/${sort}`
     );
-    return JSON.parse(data.response) as SearchBookInfo[];
+    const bookList: SearchBookInfo[] = JSON.parse(data.response);
+    return bookList;
   };
 }
