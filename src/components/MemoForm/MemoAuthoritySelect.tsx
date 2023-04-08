@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import type { MemoAuthority } from '@projects/types/library';
+import { MEMO_AUTHORITY } from '@constants';
 
 type Props = {
   authority: MemoAuthority;
@@ -21,7 +22,7 @@ export default function MemoAuthoritySelect({ authority, onChange }: Props) {
         <Input type="checkbox" checked={isChecked} onChange={handleChange} />
         <Slider />
       </Label>
-      <Text>{authority === 'PRIVATE' ? '비공개' : '공개'}</Text>
+      <Text>{MEMO_AUTHORITY[authority].typeText}</Text>
     </Wrapper>
   );
 }

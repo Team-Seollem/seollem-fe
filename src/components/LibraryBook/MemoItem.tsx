@@ -7,6 +7,7 @@ import { MEMO_TYPES } from '@constants';
 import { getLatestUpdateDate } from '@utils';
 import type { MemoBookDetail } from '@projects/types/library';
 import { Button } from '@components/common';
+import MemoAuthorityType from '@components/common/MemoAuthorityType';
 import DeleteConfirmButton from './DeleteConfirmButton';
 
 type Props = {
@@ -41,12 +42,15 @@ export default function MemoItem({
         <p>{getLatestUpdateDate(memo.createdAt, memo.updatedAt)}</p>
         <Type>{MEMO_TYPES[memo.memoType].typeText}</Type>
       </InfoContainer>
-
-      <div
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(memo.memoContent),
-        }}
-      />
+      <MemoContent>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(memo.memoContent),
+          }}
+        />
+      </MemoContent>
+      {/* FIX: memoAuthoryty가 null일때 처리를 위해서 기본값을 임의로 private로 지정함 */}
+      <MemoAuthorityType authority={memo.memoAuthority ?? 'PRIVATE'} />
     </Wrapper>
   );
 }
@@ -58,6 +62,8 @@ const Wrapper = styled.li`
   padding: 1rem;
   margin-bottom: 1rem;
   font-size: ${({ theme }) => theme.fontSize.base};
+  display: flex;
+  flex-direction: column;
 `;
 const InfoContainer = styled.div`
   display: flex;
@@ -79,11 +85,16 @@ const PageInfo = styled.div`
   text-align: center;
   color: white;
 `;
-
 const Type = styled.div`
   padding: 0.5rem 1rem;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSize.sm};
   background-color: ${({ theme }) => theme.color.skyblue01};
   color: ${({ theme }) => theme.color.white};
+`;
+
+const MemoContent = styled.div`
+  padding: 1rem 0;
+  width: 100%;
+  line-height: 150%;
 `;
