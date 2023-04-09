@@ -88,7 +88,7 @@ export class MemoServiceImpl implements MemoService {
   };
 
   imageUpload = async (formData: FormData) => {
-    const { data } = await this.httpClient.post<string, FormData>(
+    const { data } = await this.httpClient.post<{ url: string }, FormData>(
       '/memos/image-memo',
       formData,
       {
@@ -97,6 +97,6 @@ export class MemoServiceImpl implements MemoService {
         },
       }
     );
-    return data;
+    return data.url;
   };
 }
