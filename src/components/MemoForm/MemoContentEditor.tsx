@@ -98,6 +98,8 @@ const Editor = styled(ReactQuill)`
   width: 100%;
   height: 15rem;
   display: inline-block;
+  margin-bottom: 5rem;
+
   .ql-container {
     font-size: ${({ theme }) => theme.fontSize.base};
     font-weight: 200;
