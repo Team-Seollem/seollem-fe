@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -20,17 +19,15 @@ export default function MemoBookViewer() {
   const { memoBookType, handleTypeChange, memoBookBg, handleValueChange } =
     useMemoBookViewer();
 
-  const { memoBooks, hasNextPage, fetchNextPage } = useMemobookDetail({
-    bookId: Number(bookId),
-    memoType: memoBookType,
-  });
+  const { memoBooks, isLoading, hasNextPage, fetchNextPage } =
+    useMemobookDetail({
+      bookId: Number(bookId),
+      memoType: memoBookType,
+    });
 
-  const { ref, isIntersect } = useIntersectionObserver({ threshold: 1.0 });
-  useEffect(() => {
-    if (isIntersect && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [isIntersect, hasNextPage, fetchNextPage]);
+  const { ref, isIntersect } = useIntersectionObserver({
+    threshold: 0.8,
+  });
 
   return (
     <>
@@ -44,13 +41,22 @@ export default function MemoBookViewer() {
         <Text>해당 타입의 메모가 없습니다. 전체 타입으로 조회해 보세요.</Text>
       ) : (
         <Container>
-          <Swiper modules={[Navigation]} slidesPerView={1} navigation>
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={1}
+            navigation
+            onReachEnd={() => {
+              if (isIntersect) {
+                fetchNextPage();
+              }
+            }}
+          >
             {memoBooks.map((memo) => (
               <SwiperSlide key={memo.memoId}>
                 <MemoBookPage memo={memo} memoBookBg={memoBookBg} />
+                {hasNextPage && !isLoading && <div ref={ref} />}
               </SwiperSlide>
             ))}
-            {hasNextPage && <div ref={ref} />}
           </Swiper>
         </Container>
       )}
