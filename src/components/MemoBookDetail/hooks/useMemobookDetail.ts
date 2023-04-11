@@ -20,7 +20,7 @@ export default function useMemobookDetail({ bookId, memoType }: Props) {
         const { pageInfo } = lastpage;
         const { totalPages, page: currentPage } = pageInfo;
 
-        return currentPage >= totalPages ? undefined : currentPage + 1;
+        return currentPage < totalPages ? currentPage + 1 : undefined;
       },
       staleTime: 1000 * 60 * 5,
     }
