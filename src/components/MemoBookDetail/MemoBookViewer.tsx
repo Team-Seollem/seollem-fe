@@ -7,7 +7,6 @@ import 'swiper/css/navigation';
 
 import { MemoTypeSelect } from '@components/MemoForm';
 import { memoBookTypeList } from '@constants';
-import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import useMemobookDetail from './hooks/useMemobookDetail';
 import useMemoBookViewer from './hooks/useMemoBookViewer';
 import MemoBgSelect from './MemoBgSelect';
@@ -24,10 +23,6 @@ export default function MemoBookViewer() {
       bookId: Number(bookId),
       memoType: memoBookType,
     });
-
-  const { ref, isIntersect } = useIntersectionObserver({
-    threshold: 0.8,
-  });
 
   return (
     <>
@@ -46,7 +41,7 @@ export default function MemoBookViewer() {
             slidesPerView={1}
             navigation
             onReachEnd={() => {
-              if (isIntersect) {
+              if (hasNextPage && !isLoading) {
                 fetchNextPage();
               }
             }}
@@ -54,7 +49,6 @@ export default function MemoBookViewer() {
             {memoBooks.map((memo) => (
               <SwiperSlide key={memo.memoId}>
                 <MemoBookPage memo={memo} memoBookBg={memoBookBg} />
-                {hasNextPage && !isLoading && <div ref={ref} />}
               </SwiperSlide>
             ))}
           </Swiper>

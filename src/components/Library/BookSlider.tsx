@@ -7,7 +7,6 @@ import type { BookStatus } from '@projects/types/library';
 import { BookCoverItem } from '@components/common';
 import { PAGE_URL } from '@constants';
 import { BOOKSTATUS } from 'constants/library';
-import useIntersectionObserver from '@hooks/useIntersectionObserver';
 import Title from '@components/common/Title';
 import SkeletonLibraryBooks from './SkeletonLibraryBooks';
 import useBookSlider from './hooks/useBookSlider';
@@ -23,8 +22,6 @@ export default function BookSlider({ bookStatus: status }: Props) {
     bookStatus: status,
   });
 
-  const { ref, isIntersect } = useIntersectionObserver({ threshold: 0.5 });
-
   if (isLoading) return <SkeletonLibraryBooks />;
 
   return (
@@ -35,7 +32,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
           spaceBetween={5}
           slidesPerView={4}
           onReachEnd={() => {
-            if (isIntersect) {
+            if (hasNextPage) {
               fetchNextPage();
             }
           }}
@@ -46,7 +43,6 @@ export default function BookSlider({ bookStatus: status }: Props) {
                 src={book.cover}
                 onClick={() => navigate(`${PAGE_URL.LIBRARY}/${book.bookId}`)}
               />
-              {hasNextPage && !isLoading && <div ref={ref} />}
             </SwiperSlide>
           ))}
         </Swiper>
@@ -55,6 +51,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
     </>
   );
 }
+
 const Container = styled.div`
   width: 100%;
   z-index: 0;
