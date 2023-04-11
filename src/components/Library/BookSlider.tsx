@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
@@ -24,12 +23,7 @@ export default function BookSlider({ bookStatus: status }: Props) {
     bookStatus: status,
   });
 
-  const { ref, isIntersect } = useIntersectionObserver({ threshold: 1.0 });
-  useEffect(() => {
-    if (isIntersect && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [isIntersect, hasNextPage, fetchNextPage]);
+  const { ref, isIntersect } = useIntersectionObserver({ threshold: 0.5 });
 
   if (isLoading) return <SkeletonLibraryBooks />;
 
@@ -37,16 +31,24 @@ export default function BookSlider({ bookStatus: status }: Props) {
     <>
       <Title>{BOOKSTATUS[status].typeText}</Title>
       <Container>
-        <Swiper spaceBetween={5} slidesPerView={4}>
+        <Swiper
+          spaceBetween={5}
+          slidesPerView={4}
+          onReachEnd={() => {
+            if (isIntersect) {
+              fetchNextPage();
+            }
+          }}
+        >
           {books.map((book) => (
             <SwiperSlide key={book.bookId}>
               <BookCoverItem
                 src={book.cover}
                 onClick={() => navigate(`${PAGE_URL.LIBRARY}/${book.bookId}`)}
               />
+              {hasNextPage && !isLoading && <div ref={ref} />}
             </SwiperSlide>
           ))}
-          {hasNextPage && <div ref={ref} />}
         </Swiper>
         <BookShelf />
       </Container>
