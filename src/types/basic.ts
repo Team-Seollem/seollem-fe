@@ -1,3 +1,4 @@
+import { BookStatus } from '@projects/types/library';
 import { FieldErrorsImpl, Path, UseFormRegister } from 'react-hook-form';
 
 export interface Book {
@@ -13,6 +14,17 @@ export interface SearchBookInfo {
   author: string;
   cover: string;
   publisher: string;
+}
+
+export interface PostBookInfo {
+  title: string;
+  author: string;
+  cover: string;
+  itemPage: number;
+  publisher: string;
+  bookStatus: BookStatus;
+  readStartDate: string | null;
+  readEndDate: string | null;
 }
 
 type SignInputLabel =
