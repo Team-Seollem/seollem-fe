@@ -15,6 +15,7 @@ import {
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import MemoBooks from '@pages/MemoBooks';
 import MemoBookDetail from '@pages/MemoBookDetail';
+import DirectPostBookPage from '@pages/DirectPostBookPage';
 import { PAGE_URL } from './constants';
 
 const Router = createBrowserRouter([
@@ -55,6 +56,14 @@ const Router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <SearchBookPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.DIRECTPOSTBOOK,
+    element: (
+      <PrivateRoute>
+        <DirectPostBookPage />
       </PrivateRoute>
     ),
   },

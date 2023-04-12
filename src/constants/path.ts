@@ -6,6 +6,7 @@ export const PAGE_URL = {
   MYSTAT: '/mystat',
   MYPAGE: '/mypage',
   SEARCHBOOK: '/book/search',
+  DIRECTPOSTBOOK: '/book/register/direct',
   POSTBOOK: '/book/register/:id',
   DETAILBOOKINFO: '/book/detail/:id',
   RECOMMENDEDBOOKS: '/book/recommended',

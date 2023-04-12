@@ -18,7 +18,9 @@ function SearchResult({ searchQuery }: Props) {
   const navigate = useNavigate();
   return (
     <>
-      <BookAddButton>찾으시는 책이 없다면 직접 등록해보세요</BookAddButton>
+      <BookAddButton onClick={() => navigate('/book/register/direct')}>
+        찾으시는 책이 없다면 직접 등록해보세요
+      </BookAddButton>
 
       {isSuccess &&
         data.map((bookInfoData: SearchBookInfo, idx: number) => {
