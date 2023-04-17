@@ -32,6 +32,7 @@ export default function RandomMemo() {
 const Wrapper = styled.div`
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 1rem;
   padding: 2rem;
   border-radius: 0.3rem;
   background-color: ${({ theme }) => theme.color.skyblue01};
