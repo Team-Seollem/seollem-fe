@@ -108,3 +108,12 @@ export type EditBook = {
 };
 
 export type EditResponse = Omit<EditBook, 'bookId'>;
+
+type AbandonBook = {
+  bookId: number;
+  createdAt: string;
+  title: string;
+  cover: string;
+};
+
+export type AbandonBookResponse = PageableApiResponse<AbandonBook>;
