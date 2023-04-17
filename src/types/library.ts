@@ -109,7 +109,7 @@ export type EditBook = {
 
 export type EditResponse = Omit<EditBook, 'bookId'>;
 
-type AbandonBook = {
+export type AbandonBook = {
   bookId: number;
   createdAt: string;
   title: string;
