@@ -62,7 +62,7 @@ const Wrapper = styled.div<{ fontColor: string; imageUrl: string }>`
   flex-direction: column;
   padding: 2rem;
   width: 100%;
-  min-height: 25rem;
+  height: 25rem;
   z-index: 0;
   background-image: url(${({ imageUrl }) => imageUrl});
   background-size: cover;
@@ -80,6 +80,11 @@ const MemoInfo = styled.div`
 const MemoContent = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
   line-height: 150%;
+  overflow: hidden;
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
 `;
 
 const DownloadIcon = styled(FiDownload)`
