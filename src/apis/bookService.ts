@@ -7,6 +7,7 @@ import type {
   EditBook,
   EditResponse,
   AbandonBookResponse,
+  CalendarResponse,
 } from '@projects/types/library';
 import type { HttpClientAuthImpl } from './httpClientAuth';
 
@@ -21,6 +22,12 @@ interface BookService {
   editBookDetail: (bookData: EditBook) => Promise<EditResponse>;
   removeBook: (bookId: number) => Promise<string>;
   getAbandonBooks: (page: number, size: number) => Promise<AbandonBookResponse>;
+  getCalendar: (
+    page: number,
+    size: number,
+    year: number,
+    month: number
+  ) => Promise<CalendarResponse>;
 }
 
 export class BookServiceImpl implements BookService {
@@ -76,6 +83,26 @@ export class BookServiceImpl implements BookService {
       '/books/abandon',
       {
         params: { page, size },
+      }
+    );
+    return data;
+  };
+
+  getCalendar = async (
+    page: number,
+    size: number,
+    year: number,
+    month: number
+  ) => {
+    const { data } = await this.httpClient.get<CalendarResponse>(
+      '/books/calendar',
+      {
+        params: {
+          page,
+          size,
+          year,
+          month,
+        },
       }
     );
     return data;
