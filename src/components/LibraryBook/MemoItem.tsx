@@ -51,8 +51,7 @@ export default function MemoItem({
         />
       </MemoContent>
       <BadgeContainer>
-        {/* FIX: memoAuthoryty가 null일때 처리를 위해서 기본값을 임의로 private로 지정함 */}
-        <MemoAuthorityType authority={memo.memoAuthority ?? 'PRIVATE'} />
+        <MemoAuthorityType authority={memo.memoAuthority} />
         <MemoLikes likesCount={memo.memoLikesCount} />
       </BadgeContainer>
     </Wrapper>

@@ -51,8 +51,7 @@ export default function MemoEditForm() {
   return (
     <S.Form onSubmit={handleSumbit}>
       <MemoAuthoritySelect
-        // FIX: memoAuthoryty가 null일때 처리를 위해서 기본값을 임의로 private로 지정함
-        authority={memo.memoAuthority ?? 'PRIVATE'}
+        authority={memo.memoAuthority}
         onChange={handleAuthorityChange}
       />
       <MemoPageInput page={memo.memoBookPage} onChange={handlePageChange} />
