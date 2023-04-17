@@ -19,27 +19,20 @@ export default function MemoContentEditor({ content, onChange }: Props) {
     input.click();
     input.onchange = async () => {
       const file = input.files?.[0];
-      if (!file) {
+      if (!file || !/^image\//.test(file.type)) {
         return;
       }
       const formData = new FormData();
       formData.append('file', file);
       try {
         const imageUrl = await memoService.imageUpload(formData);
-        const quill = quillRef.current?.getEditor();
-        if (!quill) {
-          return;
+        const quillEditor = quillRef.current?.getEditor();
+        if (quillEditor) {
+          const range = quillEditor.getSelection();
+          if (range) {
+            quillEditor.insertEmbed(range.index, 'image', imageUrl);
+          }
         }
-        const range = quill.getSelection()?.index;
-        if (range === undefined) {
-          return;
-        }
-
-        quill.setSelection(range, 1);
-        quill.clipboard.dangerouslyPasteHTML(
-          range,
-          `<img src=${imageUrl} alt="image" />`
-        );
       } catch (error) {
         console.error(error);
       }

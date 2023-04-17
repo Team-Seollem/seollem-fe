@@ -109,6 +109,11 @@ const MemoContent = styled.div`
   width: 100%;
   line-height: 150%;
   font-size: ${({ theme }) => theme.fontSize.base};
+  overflow: hidden;
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
 `;
 
 const BadgeContainer = styled.div`

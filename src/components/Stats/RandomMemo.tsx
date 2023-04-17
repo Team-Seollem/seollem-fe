@@ -44,6 +44,11 @@ const Content = styled.div`
   margin-bottom: 1rem;
   min-height: 5rem;
   font-family: 'RIDIBatang';
+  overflow: hidden;
+  & img {
+    max-width: 100%;
+    height: auto;
+  }
 `;
 
 const Info = styled.div`
