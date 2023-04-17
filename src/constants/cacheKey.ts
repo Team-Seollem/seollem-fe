@@ -12,4 +12,5 @@ export const CACHE_KEYS = {
     memoType,
   ],
   randomMemo: ['randomMemo'],
+  abandonBooks: ['abandonBooks'],
 };
