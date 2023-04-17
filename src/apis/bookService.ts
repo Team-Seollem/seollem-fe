@@ -6,6 +6,7 @@ import type {
   BasicBook,
   EditBook,
   EditResponse,
+  AbandonBookResponse,
 } from '@projects/types/library';
 import type { HttpClientAuthImpl } from './httpClientAuth';
 
@@ -19,6 +20,7 @@ interface BookService {
   registerBook: (bookData: RegisterBook) => Promise<BasicBook>;
   editBookDetail: (bookData: EditBook) => Promise<EditResponse>;
   removeBook: (bookId: number) => Promise<string>;
+  getAbandonBooks: (page: number, size: number) => Promise<AbandonBookResponse>;
 }
 
 export class BookServiceImpl implements BookService {
@@ -64,5 +66,15 @@ export class BookServiceImpl implements BookService {
   removeBook = async (bookId: number) => {
     await this.httpClient.delete<number>(`/books/${bookId}`);
     return '등록하신 책이 삭제되었습니다';
+  };
+
+  getAbandonBooks = async (page: number, size: number) => {
+    const { data } = await this.httpClient.get<AbandonBookResponse>(
+      '/books/abandon',
+      {
+        params: { page, size },
+      }
+    );
+    return data;
   };
 }
