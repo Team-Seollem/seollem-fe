@@ -116,3 +116,11 @@ export type AbandonBook = {
 };
 
 export type AbandonBookResponse = PageableApiResponse<AbandonBook>;
+
+export type CalendarBook = {
+  bookId: number;
+  readEndDate: string;
+  cover: string;
+};
+
+export type CalendarResponse = PageableApiResponse<CalendarBook>;
