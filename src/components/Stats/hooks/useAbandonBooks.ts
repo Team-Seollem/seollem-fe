@@ -4,7 +4,7 @@ import { CACHE_KEYS } from '@constants';
 import { AbandonBook } from '@projects/types/library';
 
 const fallback: AbandonBook[] = [];
-export default function useAbandonBookss() {
+export default function useAbandonBooks() {
   const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
     CACHE_KEYS.abandonBooks,
     ({ pageParam = 1 }) => bookService.getAbandonBooks(pageParam, 10),
