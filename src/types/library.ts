@@ -126,4 +126,4 @@ export type ReadEndBook = {
 
 export type ReadEndBookResponse = PageableApiResponse<ReadEndBook>;
 
-export type ReadEndBookDateMap = Record<string, ReadEndBook[]>;
+export type ReadEndBookDateMap = Record<number, ReadEndBook[]>;
