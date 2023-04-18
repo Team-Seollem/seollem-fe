@@ -7,9 +7,9 @@ export default function Stats() {
   return (
     <>
       <PageTitle title="나의 독서 통계 보기" />
+      <Calandar />
       <RandomMemo />
       <AbandonBooks />
-      <Calandar />
     </>
   );
 }
