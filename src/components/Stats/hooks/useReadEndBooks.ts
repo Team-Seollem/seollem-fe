@@ -1,23 +1,30 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 
 import { bookService } from '@apis/index';
 import { CACHE_KEYS } from '@constants';
 import { ReadEndBook, ReadEndBookDateMap } from '@projects/types/library';
+import { getMonthYearDetails, getNewMonthYear } from 'utils/monthYear';
 
-type Props = {
-  year: number;
-  month: number;
-};
+dayjs.locale('ko');
 
 const fallback: ReadEndBookDateMap = {};
 
-export default function useReadEndBooks({ year, month }: Props) {
+export default function useReadEndBooks() {
+  const currentMonthYear = getMonthYearDetails(dayjs());
+
+  const [monthYear, setMonthYear] = useState(currentMonthYear);
+
+  const updateMonthYear = (monthIncrement: number) => {
+    setMonthYear((prevData) => getNewMonthYear(prevData, monthIncrement));
+  };
+
   const readEndDateObj = useCallback(
     (data: ReadEndBook[]): ReadEndBookDateMap => {
       return data.reduce((acc, book) => {
-        const date = dayjs(book.readEndDate).format('YYYY-MM-DD');
+        const date = Number(dayjs(book.readEndDate).format('D'));
         if (!acc[date]) {
           acc[date] = [];
         }
@@ -28,11 +35,12 @@ export default function useReadEndBooks({ year, month }: Props) {
     []
   );
 
-  const { data = fallback } = useQuery({
-    queryKey: CACHE_KEYS.readEndBooks(year, month),
-    queryFn: () => bookService.getReadEndBooks(1, 30, year, month),
+  const { data: readEndbooks = fallback } = useQuery({
+    queryKey: CACHE_KEYS.readEndBooks(monthYear.year, monthYear.month),
+    queryFn: () =>
+      bookService.getReadEndBooks(1, 30, monthYear.year, monthYear.month),
     staleTime: 1000 * 60 * 5,
     select: readEndDateObj,
   });
-  return { data };
+  return { readEndbooks, monthYear, updateMonthYear };
 }
