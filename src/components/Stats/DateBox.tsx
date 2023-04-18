@@ -1,4 +1,3 @@
-import { BookCoverItem } from '@components/common';
 import { ReadEndBook } from '@projects/types/library';
 import styled from 'styled-components';
 
@@ -10,21 +9,22 @@ type Props = {
 
 export default function DateBox({ date, gridColumn, readEndBooks }: Props) {
   return (
-    <Wrapper gridCloumn={gridColumn ?? null}>
+    <Wrapper gridCloumnStart={gridColumn ?? null}>
       <Stack>
         <Date>{date}</Date>
         {readEndBooks?.map((book) => (
-          <BookCoverItem key={book.bookId} width="100%" src={book.cover} />
+          <BookCover key={book.bookId} src={book.cover} alt="book-cover-img" />
         ))}
       </Stack>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div<{ gridCloumn: number | null }>`
+const Wrapper = styled.div<{ gridCloumnStart: number | null }>`
   width: 100%;
-  height: 5rem;
-  grid-column-start: ${({ gridCloumn }) => gridCloumn};
+  height: 100%;
+  min-height: 5rem;
+  grid-column-start: ${({ gridCloumnStart }) => gridCloumnStart};
 `;
 
 const Stack = styled.div`
@@ -36,4 +36,13 @@ const Date = styled.p`
   font-size: ${({ theme }) => theme.fontSize.sm};
   margin-top: 0.5rem;
   margin-left: 0.5rem;
+`;
+
+const BookCover = styled.img`
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+
+  overflow: hidden;
 `;

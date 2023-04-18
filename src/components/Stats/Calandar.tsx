@@ -40,9 +40,19 @@ export default function Calandar() {
           ))}
         </WeekDays>
         <DateGrid>
-          <DateBox date={1} gridColumn={monthYear.firstDayOfWeek + 1} />
+          <DateBox
+            date={1}
+            gridColumn={monthYear.firstDayOfWeek + 1}
+            readEndBooks={readEndbooks[1]}
+          />
           {[...Array(monthYear.lastDate)].map((_, i) =>
-            i > 0 ? <DateBox key={i} date={i + 1} /> : null
+            i > 0 ? (
+              <DateBox
+                key={i}
+                date={i + 1}
+                readEndBooks={readEndbooks[i + 1]}
+              />
+            ) : null
           )}
         </DateGrid>
       </Wrapper>
