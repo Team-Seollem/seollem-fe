@@ -7,9 +7,10 @@ import type {
   EditBook,
   EditResponse,
   AbandonBookResponse,
-  CalendarResponse,
+  ReadEndBookResponse,
 } from '@projects/types/library';
 import type { HttpClientAuthImpl } from './httpClientAuth';
+import { ReadEndBook } from '../types/library';
 
 interface BookService {
   getLibrary: (
@@ -22,12 +23,12 @@ interface BookService {
   editBookDetail: (bookData: EditBook) => Promise<EditResponse>;
   removeBook: (bookId: number) => Promise<string>;
   getAbandonBooks: (page: number, size: number) => Promise<AbandonBookResponse>;
-  getCalendar: (
+  getReadEndBooks: (
     page: number,
     size: number,
     year: number,
     month: number
-  ) => Promise<CalendarResponse>;
+  ) => Promise<ReadEndBook[]>;
 }
 
 export class BookServiceImpl implements BookService {
@@ -85,14 +86,14 @@ export class BookServiceImpl implements BookService {
     return data;
   };
 
-  getCalendar = async (
+  getReadEndBooks = async (
     page: number,
     size: number,
     year: number,
     month: number
   ) => {
-    const { data } = await this.httpClient.get<CalendarResponse>(
-      '/books/calendar',
+    const { data } = await this.httpClient.get<ReadEndBookResponse>(
+      '/books/calender',
       {
         params: {
           page,
@@ -102,6 +103,6 @@ export class BookServiceImpl implements BookService {
         },
       }
     );
-    return data;
+    return data.item;
   };
 }
