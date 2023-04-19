@@ -12,6 +12,7 @@ export const PAGE_URL = {
   RECOMMENDEDBOOKS: '/book/recommended',
   LIBRARY: '/book/library',
   LIBRARYBOOK: '/book/library/:bookId',
+  UPDATEPOSTBOOK: '/book/library/:bookId/update',
   MEMO_FORM: '/book/library/:bookId/memo',
   EDIT_MEMO: '/book/library/:bookId/memo/:memoId',
   MEMO_BOOKS: '/memobook',
