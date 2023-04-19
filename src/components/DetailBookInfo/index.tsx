@@ -28,7 +28,7 @@ function DetailBookInfo({ bookInfoData }: Props) {
 
   return (
     <>
-      <PageTitle title="책 정보 상세" />
+      <PageTitle title="책 정보 페이지" />
       <Boxcontainer title={title}>
         <BookCoverItem src={cover} />
         <BookDetailInfoItem>
@@ -45,7 +45,7 @@ function DetailBookInfo({ bookInfoData }: Props) {
               readOnly
             />
             <Button size="small" styleType="solidPositive" type="submit">
-              등록하러가기
+              등록하기
             </Button>
           </form>
         </BookDetailInfoItem>
