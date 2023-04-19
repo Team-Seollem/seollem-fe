@@ -6,12 +6,14 @@ import { PAGE_URL } from '@constants';
 import { authService } from '@apis';
 import { loginState } from '@state/atom';
 import { Dropdown } from '@components/common';
+import { useQueryClient } from '@tanstack/react-query';
 import * as S from './styles';
 import Logo from './Logo';
 
 export default function PrivateHeader() {
   const setIsLoggedIn = useSetRecoilState(loginState);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleMyPage = () => {
     navigate(PAGE_URL.MYPAGE);
@@ -19,6 +21,7 @@ export default function PrivateHeader() {
 
   const handleLogout = () => {
     authService.signOut();
+    queryClient.clear();
     setIsLoggedIn(false);
     navigate(PAGE_URL.ROOT);
   };
