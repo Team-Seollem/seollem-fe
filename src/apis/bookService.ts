@@ -54,9 +54,12 @@ export class BookServiceImpl implements BookService {
   };
 
   editBookDetail = async (bookData: EditBook) => {
+    const { bookId } = bookData;
+    const updateBookInfoData = Object.assign(bookData);
+    delete updateBookInfoData.bookId;
     const { data } = await this.httpClient.patch<EditResponse, EditBook>(
-      `/book/${bookData.bookId}`,
-      bookData
+      `/books/${bookId}`,
+      updateBookInfoData
     );
     return data;
   };
