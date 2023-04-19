@@ -1,5 +1,6 @@
 import { ReadEndBook } from '@projects/types/library';
 import styled from 'styled-components';
+import CalendarModal from './CalendarModal';
 
 type Props = {
   date: number;
@@ -12,9 +13,7 @@ export default function DateBox({ date, gridColumn, readEndBooks }: Props) {
     <Wrapper gridCloumnStart={gridColumn ?? null}>
       <Stack>
         <Date>{date}</Date>
-        {readEndBooks?.map((book) => (
-          <BookCover key={book.bookId} src={book.cover} alt="book-cover-img" />
-        ))}
+        {readEndBooks && <CalendarModal readEndBooks={readEndBooks} />}
       </Stack>
     </Wrapper>
   );
@@ -22,27 +21,22 @@ export default function DateBox({ date, gridColumn, readEndBooks }: Props) {
 
 const Wrapper = styled.div<{ gridCloumnStart: number | null }>`
   width: 100%;
-  height: 100%;
-  min-height: 5rem;
+  height: auto;
+  min-height: 7rem;
+  @media (max-width: 450px) {
+    min-height: 4.8rem;
+  }
   grid-column-start: ${({ gridCloumnStart }) => gridCloumnStart};
 `;
 
 const Stack = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.2rem;
 `;
 
 const Date = styled.p`
   font-size: ${({ theme }) => theme.fontSize.sm};
   margin-top: 0.5rem;
-  margin-left: 0.5rem;
-`;
-
-const BookCover = styled.img`
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  object-fit: cover;
-
-  overflow: hidden;
+  /* margin-left: 0.5rem; */
 `;
