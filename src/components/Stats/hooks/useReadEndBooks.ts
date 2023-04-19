@@ -39,7 +39,7 @@ export default function useReadEndBooks() {
     queryKey: CACHE_KEYS.readEndBooks(monthYear.year, monthYear.month),
     queryFn: () =>
       bookService.getReadEndBooks(1, 30, monthYear.year, monthYear.month),
-    staleTime: 1000 * 60 * 5,
+    // staleTime: 1000 * 60 * 5,
     select: readEndDateObj,
   });
   return { readEndbooks, monthYear, updateMonthYear };
