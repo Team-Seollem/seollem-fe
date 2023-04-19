@@ -83,7 +83,7 @@ function PostBook({ bookInfoData }: Props) {
 
   return (
     <>
-      <PageTitle title="등록" />
+      <PageTitle title="책 등록 페이지" />
       <Boxcontainer title={basicBookInfoData.title}>
         <BookCoverItem src={basicBookInfoData.cover} />
         <BookDetailInfoItem>

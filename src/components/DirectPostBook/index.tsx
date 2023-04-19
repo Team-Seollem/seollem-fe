@@ -84,7 +84,7 @@ export default function DirectPostBook({
   };
   return (
     <>
-      <PageTitle title="직접 등록" />
+      <PageTitle title="책 등록 페이지" />
       <Boxcontainer>
         <BookCoverItem src={cover} />
         <BookDetailInfoItem>
