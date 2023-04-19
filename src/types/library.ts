@@ -18,6 +18,7 @@ export type BasicBook = {
   title: string;
   cover: string;
   author: string;
+  publisher: string;
   bookStatus: BookStatus;
 };
 
@@ -103,7 +104,7 @@ export type EditBook = {
   readStartDate: string | null;
   readEndDate: string | null;
   star: number;
-  bookId: string;
+  bookId?: string;
 };
 
 export type EditResponse = Omit<EditBook, 'bookId'>;

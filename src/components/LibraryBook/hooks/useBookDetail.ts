@@ -12,6 +12,7 @@ const fallback: DetailBook = {
   title: '',
   cover: '',
   author: '',
+  publisher: '',
   bookStatus: 'YET',
   createdAt: '',
   star: 0,
