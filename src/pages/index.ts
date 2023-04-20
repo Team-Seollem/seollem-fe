@@ -9,3 +9,4 @@ export { default as LibraryBook } from './LibraryBook';
 export { default as RecommendedBooksPage } from './RecommendedBooksPage';
 export { default as MemoForm } from './MemoForm';
 export { default as Stats } from './Stats';
+export { default as Profile } from './Profile';
