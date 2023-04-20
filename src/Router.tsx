@@ -10,14 +10,14 @@ import {
   LibraryBook,
   RecommendedBooksPage,
   MemoForm,
+  MemoBooks,
+  MemoBookDetail,
+  DirectPostBookPage,
+  UpdatePostBookPage,
   Stats,
   Profile,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
-import MemoBooks from '@pages/MemoBooks';
-import MemoBookDetail from '@pages/MemoBookDetail';
-import DirectPostBookPage from '@pages/DirectPostBookPage';
-import UpdatePostBookPage from '@pages/UpdatePostBookPage';
 import { PAGE_URL } from './constants';
 
 const Router = createBrowserRouter([
