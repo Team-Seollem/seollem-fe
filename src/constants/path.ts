@@ -4,7 +4,7 @@ export const PAGE_URL = {
   SIGN_IN: '/auth/signin',
   SIGN_UP: '/auth/signup',
   MYSTAT: '/mystat',
-  MYPAGE: '/mypage',
+  MYPAGE: '/profile',
   SEARCHBOOK: '/book/search',
   DIRECTPOSTBOOK: '/book/register/direct',
   POSTBOOK: '/book/register/:id',
