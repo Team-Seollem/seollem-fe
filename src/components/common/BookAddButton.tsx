@@ -24,7 +24,7 @@ const SButton = styled.button`
   text-decoration: none;
   background-color: transparent;
   box-shadow: 0 0 0.25rem 0 rgba(0 0 0 / 20%);
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.color.gray01};
 
   &:hover {
