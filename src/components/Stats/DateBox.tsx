@@ -38,5 +38,5 @@ const Stack = styled.div`
 const Date = styled.p`
   font-size: ${({ theme }) => theme.fontSize.sm};
   margin-top: 0.5rem;
-  /* margin-left: 0.5rem; */
+  margin-left: 0.5rem;
 `;
