@@ -55,10 +55,12 @@ export default function BookSlider({ bookStatus: status }: Props) {
 const Container = styled.div`
   width: 100%;
   z-index: 0;
+
   margin-bottom: 1rem;
   .swiper-wrapper {
     align-items: baseline;
     padding: 0 1rem;
+    min-height: 8rem;
   }
 `;
 
