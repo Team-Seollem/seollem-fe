@@ -10,6 +10,8 @@ export default function RandomMemo() {
   const randomMemo = useRandomMemo();
   const date = getLatestUpdateDate(randomMemo.createdAt, randomMemo.updatedAt);
 
+  if (!randomMemo) return null;
+
   return (
     <>
       <Title>랜덤 메모</Title>

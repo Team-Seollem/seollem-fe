@@ -6,12 +6,24 @@ type Props = {
   width?: string;
 };
 
+const defaultBookCoverUrl = new URL(
+  '../../assets/default/bookCoverDefault.png',
+  import.meta.url
+).href;
+
 export default function BookCoverItem({
   src,
   onClick,
   width = '5.3rem',
 }: Props) {
-  return <Img src={src} alt="book_cover" onClick={onClick} width={width} />;
+  return (
+    <Img
+      src={src || defaultBookCoverUrl}
+      alt="book_cover"
+      onClick={onClick}
+      width={width}
+    />
+  );
 }
 const ACTIVE = css`
   cursor: pointer;

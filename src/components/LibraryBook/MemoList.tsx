@@ -59,12 +59,14 @@ export default function MemoList() {
 }
 
 const Section = styled.div`
+  margin-top: 1rem;
   margin-bottom: 3rem;
 `;
 
 const BoxTitle = styled.div`
   width: 100%;
   margin-top: 0.6rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,7 +74,6 @@ const BoxTitle = styled.div`
 
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.md};
-  margin-left: 1rem;
   white-space: nowrap;
 `;
 
