@@ -37,8 +37,7 @@ export default function useReadEndBooks() {
 
   const { data: readEndbooks = fallback } = useQuery({
     queryKey: CACHE_KEYS.readEndBooks(monthYear.year, monthYear.month),
-    queryFn: () =>
-      bookService.getReadEndBooks(1, 30, monthYear.year, monthYear.month),
+    queryFn: () => bookService.getReadEndBooks(monthYear.year, monthYear.month),
     // staleTime: 1000 * 60 * 5,
     select: readEndDateObj,
   });
