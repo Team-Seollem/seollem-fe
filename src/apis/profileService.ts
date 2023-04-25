@@ -19,8 +19,7 @@ type EditUserResponse = {
 
 interface ProfileService {
   getProfile: () => Promise<Profile>;
-  editProfileName: (name: string) => Promise<EditUserResponse>;
-  editProfilePassword: (password: string) => Promise<EditUserResponse>;
+  editProfile: (params: EditUserParams) => Promise<EditUserResponse>;
   deleteProfile: () => Promise<string>;
   imageUpload: (formData: FormData) => Promise<string>;
 }
@@ -38,20 +37,11 @@ export class ProfileServiceImpl implements ProfileService {
     return data;
   };
 
-  editProfileName = async (name: string) => {
+  editProfile = async (params: EditUserParams) => {
     const { data } = await this.httpClient.patch<
       EditUserResponse,
       EditUserParams
-    >(this.endPoint, { name });
-
-    return data;
-  };
-
-  editProfilePassword = async (password: string) => {
-    const { data } = await this.httpClient.patch<
-      EditUserResponse,
-      EditUserParams
-    >(this.endPoint, { password });
+    >(this.endPoint, params);
 
     return data;
   };
