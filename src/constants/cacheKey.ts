@@ -14,4 +14,5 @@ export const CACHE_KEYS = {
   randomMemo: ['randomMemo'],
   abandonBooks: ['abandonBooks'],
   readEndBooks: (year: number, month: number) => ['readEndBooks', year, month],
+  myProfile: ['myProfile'],
 };
