@@ -18,4 +18,5 @@ export const PAGE_URL = {
   MEMO_BOOKS: '/memobook',
   MEMO_BOOK_DETAIL: '/memobook/:bookId',
   COMMUNITY: '/community',
+  MEMBER_PROFILE: '/community/member/:memberId',
 } as const;

@@ -15,7 +15,7 @@ import {
   DirectPostBookPage,
   UpdatePostBookPage,
   Stats,
-  Profile,
+  MyPage,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import { PAGE_URL } from './constants';
@@ -161,7 +161,7 @@ const Router = createBrowserRouter([
     path: PAGE_URL.MYPAGE,
     element: (
       <PrivateRoute>
-        <Profile />
+        <MyPage />
       </PrivateRoute>
     ),
   },
