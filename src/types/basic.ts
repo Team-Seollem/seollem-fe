@@ -40,7 +40,10 @@ export interface UserInfo {
   password: string;
   password_confirm: string;
 }
-export type Profile = Pick<UserInfo, 'email' | 'name'>;
+export type Profile = Pick<UserInfo, 'email' | 'name'> & {
+  content: string;
+  url: string;
+};
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
 export type SignUpInput = Omit<UserInfo, 'password_confirm'>;
 export type SearchPwInput = Pick<UserInfo, 'email'>;

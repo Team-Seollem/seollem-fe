@@ -5,12 +5,16 @@ import type { TokenRepositoryImpl } from './tokenRepository';
 type EditUserParams = {
   name?: string;
   password?: string;
+  content?: string;
+  url?: string;
 };
 
 type EditUserResponse = {
   email: string;
   name: string;
-  updatedAt: Date;
+  updatedAt: string;
+  content: string;
+  url: string;
 };
 
 interface ProfileService {
@@ -18,6 +22,7 @@ interface ProfileService {
   editProfileName: (name: string) => Promise<EditUserResponse>;
   editProfilePassword: (password: string) => Promise<EditUserResponse>;
   deleteProfile: () => Promise<string>;
+  imageUpload: (formData: FormData) => Promise<string>;
 }
 
 export class ProfileServiceImpl implements ProfileService {
@@ -57,5 +62,18 @@ export class ProfileServiceImpl implements ProfileService {
       this.tokenRepository.removeToken();
     }
     return '회원 탈퇴되었습니다';
+  };
+
+  imageUpload = async (formData: FormData) => {
+    const { data } = await this.httpClient.post<{ url: string }, FormData>(
+      '/members/member-image',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    return data.url;
   };
 }
