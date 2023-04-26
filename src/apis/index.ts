@@ -6,6 +6,7 @@ import { ExternalServiceImpl } from './externalService';
 import { ProfileServiceImpl } from './profileService';
 import { BookServiceImpl } from './bookService';
 import { MemoServiceImpl } from './memoService';
+import { CommunityServiceImpl } from './communityService';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
@@ -21,3 +22,4 @@ export const profileService = new ProfileServiceImpl(
 );
 export const bookService = new BookServiceImpl(httpClientAuth);
 export const memoService = new MemoServiceImpl(httpClientAuth);
+export const communityService = new CommunityServiceImpl(httpClientAuth);

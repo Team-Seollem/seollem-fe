@@ -15,4 +15,5 @@ export const CACHE_KEYS = {
   abandonBooks: ['abandonBooks'],
   readEndBooks: (year: number, month: number) => ['readEndBooks', year, month],
   myProfile: ['myProfile'],
+  community: ['community'],
 };
