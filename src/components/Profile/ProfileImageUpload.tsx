@@ -5,18 +5,11 @@ import { toast } from 'react-toastify';
 import { profileService } from '@apis/index';
 import { Avatar, Button } from '@components/common';
 import { CACHE_KEYS } from '@constants';
+import useMyProfile from './hook/useMyProfile';
 
-type Props = {
-  src: string;
-};
-
-const defaultAvatarImage = new URL(
-  '../../assets/default/avatarDefault.png',
-  import.meta.url
-).href;
-
-export default function ProfileImageUpload({ src }: Props) {
-  const [imageUrl, setImageUrl] = useState(src || defaultAvatarImage);
+export default function ProfileImageUpload() {
+  const { data: src, isLoading } = useMyProfile();
+  const [imageUrl, setImageUrl] = useState(src.url);
   const inputEl = useRef<HTMLInputElement | null>(null);
   const queryClient = useQueryClient();
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +35,12 @@ export default function ProfileImageUpload({ src }: Props) {
 
   return (
     <>
-      <Avatar src={imageUrl} width="9rem" />
+      {isLoading ? (
+        <Avatar src={imageUrl} width="9rem" />
+      ) : (
+        <Avatar src={src.url} width="9rem" />
+      )}
+
       <input
         hidden
         ref={inputEl}
