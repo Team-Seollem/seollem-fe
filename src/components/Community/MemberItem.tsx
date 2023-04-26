@@ -1,18 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '@components/common';
-import { Member } from '../../apis/communityService';
+import { Member } from '@apis/communityService';
+import type { SuffixType } from './Members';
 
 type Props = {
   member: Member;
+  suffix: SuffixType;
 };
 
-export default function MemberItem({ member }: Props) {
+export default function MemberItem({ member, suffix }: Props) {
   const navigate = useNavigate();
   return (
     <ListItem onClick={() => navigate(`/community/member/${member.memberId}`)}>
       <Avatar src={member.url} />
       <Text>{member.name}</Text>
+      <Suffix>
+        {member.count} {suffix}
+      </Suffix>
     </ListItem>
   );
 }
@@ -38,4 +43,10 @@ const Text = styled.h3`
     font-size: ${({ theme }) => theme.fontSize.sm};
     margin-left: 0.5rem;
   }
+`;
+
+const Suffix = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  margin-left: 1rem;
+  vertical-align: baseline;
 `;
