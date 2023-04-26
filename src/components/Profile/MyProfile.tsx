@@ -5,11 +5,11 @@ import EditField from './EditField';
 import Field from './Field';
 
 export default function MyProfile() {
-  const { data, isLoading } = useMyProfile();
+  const { data } = useMyProfile();
 
   return (
     <Boxcontainer>
-      {!isLoading && <ProfileImageUpload src={data.url} />}
+      <ProfileImageUpload />
       <EditField field="name" value={data.name} />
       <Field field="email" fieldText={data.email} />
       <EditField field="content" value={data.content} />

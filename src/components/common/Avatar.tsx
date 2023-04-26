@@ -4,8 +4,14 @@ type Props = {
   src: string;
   width?: string;
 };
+
+const defaultAvatarImage = new URL(
+  '../../assets/default/avatarDefault.png',
+  import.meta.url
+).href;
+
 export default function Avatar({ src, width = '2rem' }: Props) {
-  return <Img src={src} alt="avatar" width={width} />;
+  return <Img src={src || defaultAvatarImage} alt="avatar" width={width} />;
 }
 
 const Img = styled.img<Props>`
