@@ -15,3 +15,4 @@ export { default as UpdatePostBookPage } from './UpdatePostBookPage';
 export { default as Stats } from './Stats';
 export { default as MyPage } from './MyPage';
 export { default as Community } from './Community';
+export { default as MemberProfile } from './MemberProfile';
