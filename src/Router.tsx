@@ -16,6 +16,7 @@ import {
   UpdatePostBookPage,
   Stats,
   MyPage,
+  Community,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import { PAGE_URL } from './constants';
@@ -162,6 +163,14 @@ const Router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <MyPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.COMMUNITY,
+    element: (
+      <PrivateRoute>
+        <Community />
       </PrivateRoute>
     ),
   },

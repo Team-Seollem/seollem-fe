@@ -5,7 +5,7 @@ import { RiMedalLine } from 'react-icons/ri';
 import {
   HiOutlineBookOpen,
   HiOutlineCalendar,
-  HiOutlineChatAlt2,
+  HiOutlineUsers,
 } from 'react-icons/hi';
 import { PAGE_URL } from '@constants';
 
@@ -29,8 +29,8 @@ export default function GNB() {
         통계
       </NavButton>
       <NavButton to={PAGE_URL.COMMUNITY}>
-        <HiOutlineChatAlt2 />
-        커뮤니티
+        <HiOutlineUsers />
+        명예의전당
       </NavButton>
     </SNav>
   );
