@@ -1,13 +1,13 @@
 import { HttpClientAuthImpl } from './httpClientAuth';
 
-type Member = {
+export type Member = {
   memberId: number;
   url: string;
   name: string;
   count: number;
 };
 
-type MemberResponse = {
+export type MemberResponse = {
   mostReadMember: Member[];
   mostMemoedMember: Member[];
 };
