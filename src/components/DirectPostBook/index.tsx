@@ -1,4 +1,4 @@
-import { bookService } from '@apis';
+import { bookService, memoService } from '@apis';
 import {
   BookCoverItem,
   BookDetailInfoItem,
@@ -10,13 +10,14 @@ import { bookStatusList, CACHE_KEYS, PAGE_URL } from '@constants';
 import { SearchBookInfo } from '@projects/types/basic';
 import { BookStatus } from '@projects/types/library';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 type DirectPostBookProps = {
   directBookInfoData: SearchBookInfo;
 };
+
 export default function DirectPostBook({
   directBookInfoData,
 }: DirectPostBookProps) {
@@ -24,12 +25,11 @@ export default function DirectPostBook({
     ...directBookInfoData,
   });
 
-  const [cover, setCover] = useState<string>(directBookInfoData.cover);
+  const [cover, setCover] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [bookStatus, setBookStatus] = useState<BookStatus>('YET');
   const [readStartDate, setReadStartDate] = useState<string | null>(null);
   const [readEndDate, setReadEndDate] = useState<string | null>(null);
-
   const handleChangeBasicBookInfoData = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -51,6 +51,7 @@ export default function DirectPostBook({
 
   const postBookInfoData = {
     ...directBasicBookInfoData,
+    cover,
     currentPage,
     bookStatus,
     readStartDate,
@@ -62,6 +63,7 @@ export default function DirectPostBook({
   const queryClient = useQueryClient();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('postBookInfoData:', postBookInfoData);
     mutate(postBookInfoData, {
       onSuccess() {
         queryClient.invalidateQueries(CACHE_KEYS.library(bookStatus));
@@ -82,6 +84,20 @@ export default function DirectPostBook({
       setReadEndDate(null);
     }
   };
+
+  const handleChangeCover = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (e.target.files !== null) {
+        const file = e.target.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        const imageUrl = await memoService.imageUpload(formData);
+        setCover(imageUrl);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <PageTitle title="책 등록 페이지" />
@@ -89,6 +105,13 @@ export default function DirectPostBook({
         <BookCoverItem src={cover} />
         <BookDetailInfoItem>
           <form onSubmit={handleSubmit}>
+            <label htmlFor="cover">책 이미지</label>
+            <input
+              id="cover"
+              type="file"
+              accept="image/*"
+              onChange={handleChangeCover}
+            />
             <label htmlFor="title">책 제목</label>
             <input
               id="title"
