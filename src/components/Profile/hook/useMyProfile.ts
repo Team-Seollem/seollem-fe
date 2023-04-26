@@ -11,10 +11,10 @@ const fallback: Profile = {
 };
 
 export default function useMyProfile() {
-  const { data = fallback } = useQuery({
+  const { data = fallback, isLoading } = useQuery({
     queryKey: CACHE_KEYS.myProfile,
     queryFn: profileService.getProfile,
     staleTime: 1000 * 60 * 5,
   });
-  return { data };
+  return { data, isLoading };
 }
