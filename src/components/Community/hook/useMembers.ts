@@ -12,7 +12,6 @@ export default function useMembers() {
   const { data = fallback } = useQuery({
     queryKey: CACHE_KEYS.community,
     queryFn: communityService.getMembers,
-    staleTime: 1000 * 60 * 5,
   });
 
   return { data };
