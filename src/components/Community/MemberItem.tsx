@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '@components/common';
 import { Member } from '../../apis/communityService';
@@ -7,8 +8,9 @@ type Props = {
 };
 
 export default function MemberItem({ member }: Props) {
+  const navigate = useNavigate();
   return (
-    <ListItem onClick={() => console.log(member.memberId)}>
+    <ListItem onClick={() => navigate(`/community/member/${member.memberId}`)}>
       <Avatar src={member.url} />
       <Text>{member.name}</Text>
     </ListItem>
