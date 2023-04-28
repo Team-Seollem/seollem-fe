@@ -15,4 +15,5 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   border: 1px solid ${({ theme }) => theme.color.gray02};
   border-radius: 0.3rem;
+  line-height: 1rem;
 `;
