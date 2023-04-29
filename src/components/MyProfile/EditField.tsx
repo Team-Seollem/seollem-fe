@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@components/common';
-import Field, { fieldType, type FieldType } from './Field';
+import Field, { fieldType, type FieldType } from '../common/Field';
 import * as S from './styles';
 import useEditMyProfile from './hook/useEditMyProfile';
 

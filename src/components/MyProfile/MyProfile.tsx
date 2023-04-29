@@ -1,8 +1,7 @@
-import { Boxcontainer } from '@components/common';
+import { Boxcontainer, Field } from '@components/common';
 import useMyProfile from './hook/useMyProfile';
 import ProfileImageUpload from './ProfileImageUpload';
 import EditField from './EditField';
-import Field from './Field';
 import WithdrawlConfirmButton from './WithdrawlConfirmButton';
 
 export default function MyProfile() {
