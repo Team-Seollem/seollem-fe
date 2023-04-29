@@ -7,7 +7,7 @@ export interface HttpClient {
   ) => Promise<AxiosResponse<T>>;
   post: <T, D>(
     endPoint: string,
-    data: D,
+    data?: D,
     config?: AxiosRequestConfig
   ) => Promise<AxiosResponse<T>>;
   patch: <T, D>(
@@ -35,7 +35,7 @@ export class HttpClientImpl implements HttpClient {
     return this.instance.get<T>(endPoint, config);
   };
 
-  post = <T, D>(endPoint: string, data: D, config?: AxiosRequestConfig<D>) => {
+  post = <T, D>(endPoint: string, data?: D, config?: AxiosRequestConfig<D>) => {
     return this.instance.post<T, AxiosResponse<T>, D>(endPoint, data, config);
   };
 
