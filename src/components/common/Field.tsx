@@ -1,4 +1,4 @@
-import * as S from './styles';
+import * as S from '../MyProfile/styles';
 
 export const fieldType = {
   name: '이름',
