@@ -26,7 +26,7 @@ export default function useMemobookDetail({
       memoService.getMemoBooksByBookId(
         bookId,
         pageParam,
-        2,
+        10,
         memoType,
         memoAuthority
       ),
