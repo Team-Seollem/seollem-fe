@@ -5,7 +5,6 @@ import 'swiper/css';
 import Modal from '@components/common/Modal';
 import useModal from '@hooks/useModal';
 import { ReadEndBook } from '@projects/types/library';
-import { BookCoverItem } from '@components/common';
 
 type Props = {
   readEndBooks: ReadEndBook[];
@@ -21,16 +20,15 @@ export default function CalendarModal({ readEndBooks }: Props) {
 
   return (
     <>
-      <OpenModalButton src={readEndBooks[0].cover} onClick={toggle} />
+      <BookCoverButton src={readEndBooks[0].cover} onClick={toggle} />
       <Modal isOpen={isOpen} closeModal={toggle}>
         <h1>다 읽은 책 보러가기</h1>
         <Container>
-          <Swiper spaceBetween={1} slidesPerView={3}>
+          <Swiper spaceBetween={3} slidesPerView={3.5}>
             {readEndBooks.map((book) => (
               <SwiperSlide key={book.bookId}>
-                <BookCoverItem
+                <BookCoverButton
                   src={book.cover}
-                  width="3rem"
                   onClick={() => handleBookClick(book.bookId)}
                 />
               </SwiperSlide>
@@ -41,7 +39,7 @@ export default function CalendarModal({ readEndBooks }: Props) {
     </>
   );
 }
-const OpenModalButton = styled.img`
+const BookCoverButton = styled.img`
   width: 80%;
   height: auto;
   max-height: 100%;
@@ -54,11 +52,10 @@ const OpenModalButton = styled.img`
 `;
 
 const Container = styled.div`
-  width: 100%;
+  width: 20rem;
   z-index: 0;
   .swiper-wrapper {
     align-items: baseline;
-    justify-content: center;
     margin: 1rem;
   }
 `;
