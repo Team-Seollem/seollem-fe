@@ -22,6 +22,7 @@ export default function MemoBookViewer() {
     useMemobookDetail({
       bookId: Number(bookId),
       memoType: memoBookType,
+      memoAuthority: 'ALL',
     });
 
   return (
