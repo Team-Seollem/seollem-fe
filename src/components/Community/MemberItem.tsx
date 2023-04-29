@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '@components/common';
 import type { Member } from '@projects/types/library';
-import useMyProfile from '@components/Profile/hook/useMyProfile';
+import useMyProfile from '@components/MyProfile/hook/useMyProfile';
 import { PAGE_URL } from '@constants';
 import type { SuffixType } from './Members';
 
