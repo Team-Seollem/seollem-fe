@@ -1,5 +1,5 @@
 import { PageTitle } from '@components/common';
-import MyProfile from '../components/Profile/MyProfile';
+import MyProfile from '../components/MyProfile/MyProfile';
 
 export default function MyPage() {
   return (
