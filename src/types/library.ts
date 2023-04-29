@@ -125,3 +125,30 @@ export type ReadEndBook = {
 };
 
 export type ReadEndBookDateMap = Record<number, ReadEndBook[]>;
+
+export type MemberLibraryBook = Pick<
+  BasicBook,
+  'bookId' | 'author' | 'title' | 'cover'
+>;
+
+export type MemberProfileResponse = {
+  name: string;
+  url: string;
+  content: string;
+  otherLibrary: MemberLibraryBook[];
+  pageInfo: PageInfo;
+};
+
+export type MemberMemo = Omit<
+  MemoBookDetail,
+  'createdAt' | 'updatedAt' | 'memoAuthority'
+> & { memoLikeDone: boolean };
+
+export type MemberMemoResonse = Omit<
+  RegisterBook,
+  'readStartDate' | 'readEndDate'
+> & {
+  bookStatus: BookStatus;
+  memosList: MemberMemo[];
+  pageInfo: PageInfo;
+};
