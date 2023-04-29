@@ -1,8 +1,22 @@
-import type { MemberResponse } from '@projects/types/library';
+import type {
+  MemberMemoResponse,
+  MemberProfileResponse,
+  MemberResponse,
+} from '@projects/types/library';
 import { HttpClientAuthImpl } from './httpClientAuth';
 
 interface CommunityService {
   getMembers: () => Promise<MemberResponse>;
+  getMemberProfile: (
+    memberId: number,
+    page: number,
+    size: number
+  ) => Promise<MemberProfileResponse>;
+  getMemberMemo: (
+    memberId: number,
+    page: number,
+    size: number
+  ) => Promise<MemberMemoResponse>;
 }
 
 export class CommunityServiceImpl implements CommunityService {
@@ -11,6 +25,32 @@ export class CommunityServiceImpl implements CommunityService {
   getMembers = async () => {
     const { data } = await this.httpClient.get<MemberResponse>(
       '/members/hall-of-fame'
+    );
+    return data;
+  };
+
+  getMemberProfile = async (memberId: number, page: number, size: number) => {
+    const { data } = await this.httpClient.get<MemberProfileResponse>(
+      `/members/other/${memberId}`,
+      {
+        params: {
+          page,
+          size,
+        },
+      }
+    );
+    return data;
+  };
+
+  getMemberMemo = async (memberId: number, page: number, size: number) => {
+    const { data } = await this.httpClient.get<MemberMemoResponse>(
+      `/members/other/books/${memberId}`,
+      {
+        params: {
+          page,
+          size,
+        },
+      }
     );
     return data;
   };
