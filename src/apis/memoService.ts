@@ -1,4 +1,5 @@
 import type {
+  MemoAuthority,
   MemoBasic,
   MemoBookDetail,
   MemoBookDetailResponse,
@@ -20,7 +21,8 @@ interface MemoService {
     bookId: number,
     page: number,
     size: number,
-    memoType: MemoBookType
+    memoType: MemoBookType,
+    memoAuthority: MemoAuthority | 'ALL'
   ) => Promise<MemoBookDetailResponse>;
   getRandomMemo: () => Promise<MemoBasic>;
   imageUpload: (formData: FormData) => Promise<string>;
@@ -67,7 +69,8 @@ export class MemoServiceImpl implements MemoService {
     bookId: number,
     page: number,
     size: number,
-    memoType: MemoBookType
+    memoType: MemoBookType,
+    memoAuthority: MemoAuthority | 'ALL'
   ) => {
     const { data } = await this.httpClient.get<MemoBookDetailResponse>(
       `/books/${bookId}/memos`,
@@ -76,6 +79,7 @@ export class MemoServiceImpl implements MemoService {
           page,
           size,
           memoType,
+          memoAuthority,
         },
       }
     );
