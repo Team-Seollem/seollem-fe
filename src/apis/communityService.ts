@@ -1,16 +1,5 @@
+import type { MemberResponse } from '@projects/types/library';
 import { HttpClientAuthImpl } from './httpClientAuth';
-
-export type Member = {
-  memberId: number;
-  url: string;
-  name: string;
-  count: number;
-};
-
-export type MemberResponse = {
-  mostReadMember: Member[];
-  mostMemoedMember: Member[];
-};
 
 interface CommunityService {
   getMembers: () => Promise<MemberResponse>;

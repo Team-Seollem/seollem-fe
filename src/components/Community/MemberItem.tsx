@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '@components/common';
-import { Member } from '@apis/communityService';
+import type { Member } from '@projects/types/library';
 import type { SuffixType } from './Members';
 
 type Props = {

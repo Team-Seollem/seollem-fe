@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { CACHE_KEYS } from '@constants';
 import { communityService } from '@apis/index';
-import type { MemberResponse } from '@apis/communityService';
+import type { MemberResponse } from '@projects/types/library';
 
 const fallback: MemberResponse = {
   mostReadMember: [],
