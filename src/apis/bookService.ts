@@ -43,9 +43,7 @@ export class BookServiceImpl implements BookService {
   };
 
   getBookDetail = async (bookId: number) => {
-    const { data } = await this.httpClient.get<DetailBook>(`/books/${bookId}`, {
-      params: { memoAuthority: 'ALL' },
-    });
+    const { data } = await this.httpClient.get<DetailBook>(`/books/${bookId}`);
     return data;
   };
 
