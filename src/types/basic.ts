@@ -43,6 +43,7 @@ export interface UserInfo {
 export type Profile = Pick<UserInfo, 'email' | 'name'> & {
   content: string;
   url: string;
+  memberId: number;
 };
 export type SignInInput = Pick<UserInfo, 'email' | 'password'>;
 export type SignUpInput = Omit<UserInfo, 'password_confirm'>;

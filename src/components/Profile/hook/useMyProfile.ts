@@ -4,6 +4,7 @@ import { Profile } from '@projects/types/basic';
 import { useQuery } from '@tanstack/react-query';
 
 const fallback: Profile = {
+  memberId: 0,
   email: '',
   name: '',
   content: '',
