@@ -1,20 +1,35 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { memoService } from '@apis/index';
 import { CACHE_KEYS } from '@constants';
-import type { MemoBookDetail, MemoBookType } from '@projects/types/library';
+import type {
+  MemoAuthority,
+  MemoBookDetail,
+  MemoBookType,
+} from '@projects/types/library';
 
 type Props = {
   bookId: number;
   memoType: MemoBookType;
+  memoAuthority: MemoAuthority | 'ALL';
 };
 
 const fallback: MemoBookDetail[] = [];
 
-export default function useMemobookDetail({ bookId, memoType }: Props) {
+export default function useMemobookDetail({
+  bookId,
+  memoType,
+  memoAuthority,
+}: Props) {
   const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
     CACHE_KEYS.memoBooksDetail(bookId, memoType),
     ({ pageParam = 1 }) =>
-      memoService.getMemoBooksByBookId(bookId, pageParam, 10, memoType),
+      memoService.getMemoBooksByBookId(
+        bookId,
+        pageParam,
+        2,
+        memoType,
+        memoAuthority
+      ),
     {
       getNextPageParam: (lastpage) => {
         const { pageInfo } = lastpage;

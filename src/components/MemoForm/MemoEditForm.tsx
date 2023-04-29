@@ -7,14 +7,19 @@ import {
   useMemoState,
   useEditMemo,
 } from '@components/MemoForm';
-import useBookDetail from '@components/LibraryBook/hooks/useBookDetail';
 import { memoTypeList } from '@constants';
+import useMemobookDetail from '@components/MemoBookDetail/hooks/useMemobookDetail';
 import * as S from './styles';
 
 export default function MemoEditForm() {
   const { bookId, memoId } = useParams();
-  const { memosList } = useBookDetail({ bookId: Number(bookId) });
-  const prevMemo = memosList.find((memo) => memo.memoId === Number(memoId)) || {
+  const { memoBooks } = useMemobookDetail({
+    bookId: Number(bookId),
+    memoType: 'ALL',
+    memoAuthority: 'ALL',
+  });
+
+  const prevMemo = memoBooks.find((memo) => memo.memoId === Number(memoId)) || {
     memoAuthority: 'PRIVATE',
     memoBookPage: 0,
     memoType: 'BOOK_CONTENT',

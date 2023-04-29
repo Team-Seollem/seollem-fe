@@ -2,15 +2,25 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { TbPlus } from 'react-icons/tb';
 import { Button } from '@components/common';
+import useMemobookDetail from '@components/MemoBookDetail/hooks/useMemobookDetail';
+import useIntersectionObserver from '@hooks/useIntersectionObserver';
+import { useEffect } from 'react';
 import MemoItem from './MemoItem';
-import useBookDetail from './hooks/useBookDetail';
 import useDeleteMemo from './hooks/useDeleteMemo';
 
 export default function MemoList() {
   const { bookId } = useParams();
   const navigate = useNavigate();
 
-  const { memosList } = useBookDetail({ bookId: Number(bookId) });
+  const { memoBooks, isLoading, hasNextPage, fetchNextPage } =
+    useMemobookDetail({
+      bookId: Number(bookId),
+      memoType: 'ALL',
+      memoAuthority: 'ALL',
+    });
+
+  const { ref, isIntersect } = useIntersectionObserver({ threshold: 0.2 });
+
   const deleteMemo = useDeleteMemo();
 
   const handleAddMemo = () => {
@@ -25,11 +35,16 @@ export default function MemoList() {
     if (!bookId) return;
     deleteMemo({ bookId: Number(bookId), memoId });
   };
+  useEffect(() => {
+    if (hasNextPage && isIntersect) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, isIntersect, fetchNextPage]);
 
   return (
     <Section>
       <BoxTitle>
-        {memosList.length ? (
+        {memoBooks.length ? (
           <Title>내가 작성한 메모</Title>
         ) : (
           <Title>📝 첫번째 메모 남기기</Title>
@@ -45,7 +60,7 @@ export default function MemoList() {
         </Button>
       </BoxTitle>
       <List>
-        {memosList.map((memo) => (
+        {memoBooks.map((memo) => (
           <MemoItem
             key={memo.memoId}
             memo={memo}
@@ -53,6 +68,7 @@ export default function MemoList() {
             handleDeleteMemo={handleDeleteMemo}
           />
         ))}
+        {!isLoading && hasNextPage && <div ref={ref} />}
       </List>
     </Section>
   );

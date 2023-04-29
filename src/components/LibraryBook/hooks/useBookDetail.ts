@@ -21,7 +21,6 @@ const fallback: DetailBook = {
   memoCount: 0,
   readStartDate: null,
   readEndDate: null,
-  memosList: [],
 };
 
 export default function useBookDetail({ bookId }: Props) {

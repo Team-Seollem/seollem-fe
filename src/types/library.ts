@@ -60,6 +60,7 @@ export type MemoBasic = {
 export type MemoBookDetail = MemoBasic & {
   memoAuthority: MemoAuthority;
   memoLikesCount: number;
+  memoLikeDone: boolean;
 };
 
 export type MemoBookDetailResponse = PageableApiResponse<MemoBookDetail>;
@@ -80,7 +81,6 @@ export type MemoRequest = Pick<
 export type DetailBook = LibraryBook & {
   readStartDate: string | null;
   readEndDate: string | null;
-  memosList: MemoBookDetail[];
 };
 
 export type RegisterBook = {
