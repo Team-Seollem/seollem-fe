@@ -8,8 +8,8 @@ import { CACHE_KEYS } from '@constants';
 import useMyProfile from './hook/useMyProfile';
 
 export default function ProfileImageUpload() {
-  const { data: src, isLoading } = useMyProfile();
-  const [imageUrl, setImageUrl] = useState(src.url);
+  const { data: profile, isLoading } = useMyProfile();
+  const [imageUrl, setImageUrl] = useState(profile.url);
   const inputEl = useRef<HTMLInputElement | null>(null);
   const queryClient = useQueryClient();
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ export default function ProfileImageUpload() {
       {isLoading ? (
         <Avatar src={imageUrl} width="9rem" />
       ) : (
-        <Avatar src={src.url} width="9rem" />
+        <Avatar src={profile.url} width="9rem" />
       )}
 
       <input

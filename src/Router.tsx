@@ -17,7 +17,7 @@ import {
   Stats,
   MyPage,
   Community,
-  MemberProfile,
+  MemberProfilePage,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import { PAGE_URL } from './constants';
@@ -179,7 +179,7 @@ const Router = createBrowserRouter([
     path: PAGE_URL.MEMBER_PROFILE,
     element: (
       <PrivateRoute>
-        <MemberProfile />
+        <MemberProfilePage />
       </PrivateRoute>
     ),
   },
