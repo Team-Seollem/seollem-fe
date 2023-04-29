@@ -144,7 +144,7 @@ export type MemberMemo = Omit<
   'createdAt' | 'updatedAt' | 'memoAuthority'
 > & { memoLikeDone: boolean };
 
-export type MemberMemoResonse = Omit<
+export type MemberMemoResponse = Omit<
   RegisterBook,
   'readStartDate' | 'readEndDate'
 > & {
