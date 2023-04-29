@@ -152,3 +152,15 @@ export type MemberMemoResonse = Omit<
   memosList: MemberMemo[];
   pageInfo: PageInfo;
 };
+
+export type Member = {
+  memberId: number;
+  url: string;
+  name: string;
+  count: number;
+};
+
+export type MemberResponse = {
+  mostReadMember: Member[];
+  mostMemoedMember: Member[];
+};
