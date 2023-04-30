@@ -18,6 +18,7 @@ import {
   MyPage,
   Community,
   MemberProfilePage,
+  MemberMemoBook,
 } from '@pages';
 import { PrivateRoute, PublicRoute } from '@components/layout';
 import { PAGE_URL } from './constants';
@@ -180,6 +181,14 @@ const Router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <MemberProfilePage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: PAGE_URL.MEMBER_MEMOBOOK,
+    element: (
+      <PrivateRoute>
+        <MemberMemoBook />
       </PrivateRoute>
     ),
   },

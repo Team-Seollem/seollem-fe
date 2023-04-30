@@ -11,6 +11,7 @@ type Props<T extends Book> = {
   books: T[];
   onBookCoverClick: (bookId: number) => void;
   onReachEnd: () => void;
+  carouselWidth?: string;
   bookCoverWidth?: string;
   navigation?: boolean;
   bookShelf?: boolean;
@@ -18,13 +19,14 @@ type Props<T extends Book> = {
 export default function BookCarousel<T extends Book>({
   books,
   onBookCoverClick,
+  onReachEnd,
+  carouselWidth,
   bookCoverWidth,
   navigation,
-  onReachEnd,
   bookShelf,
 }: Props<T>) {
   return (
-    <Container>
+    <Container carouselWidth={carouselWidth || '100%'}>
       <Swiper
         modules={navigation ? [Navigation] : []}
         navigation={navigation}
@@ -49,8 +51,8 @@ export default function BookCarousel<T extends Book>({
   );
 }
 
-const Container = styled.div`
-  width: 100%;
+const Container = styled.div<{ carouselWidth: string }>`
+  width: ${({ carouselWidth }) => carouselWidth};
   z-index: 0;
   margin-bottom: 1rem;
   .swiper-wrapper {
@@ -60,7 +62,7 @@ const Container = styled.div`
   }
   .swiper-button-prev,
   .swiper-button-next {
-    color: ${({ theme }) => theme.color.white};
+    color: ${({ theme }) => theme.color.gray03};
   }
 `;
 
