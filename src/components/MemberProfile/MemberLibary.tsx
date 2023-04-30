@@ -30,9 +30,9 @@ export default function MemberLibary({ memberId }: Props) {
             fetchNextPage();
           }
         }}
-        carouselWidth="80%"
-        bookCoverWidth="5rem"
-        navigation
+        carouselWidth="100%"
+        bookCoverWidth="4.5rem"
+        bookShelf
       />
     </>
   );
