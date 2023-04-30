@@ -148,6 +148,7 @@ export type MemberMemoResponse = Omit<
   RegisterBook,
   'readStartDate' | 'readEndDate'
 > & {
+  star: number;
   bookStatus: BookStatus;
   memosList: MemberMemo[];
   pageInfo: PageInfo;
