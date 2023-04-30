@@ -21,4 +21,9 @@ export const CACHE_KEYS = {
     'memberProfile',
     memberId,
   ],
+  memberMemoBook: (memberId: number, bookId: number) => [
+    ...CACHE_KEYS.memberProfile(memberId),
+    'memoBook',
+    bookId,
+  ],
 };
