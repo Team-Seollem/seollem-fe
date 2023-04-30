@@ -16,3 +16,4 @@ export { default as Stats } from './Stats';
 export { default as MyPage } from './MyPage';
 export { default as Community } from './Community';
 export { default as MemberProfilePage } from './MemberProfilePage';
+export { default as MemberMemoBook } from './MemberMemoBook';
