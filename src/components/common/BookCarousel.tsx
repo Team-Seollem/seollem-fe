@@ -58,7 +58,7 @@ const Container = styled.div<{ carouselWidth: string }>`
   .swiper-wrapper {
     align-items: baseline;
     padding: 0 1rem;
-    min-height: 8rem;
+    min-height: 6.5rem;
   }
   .swiper-button-prev,
   .swiper-button-next {
