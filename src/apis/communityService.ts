@@ -13,7 +13,7 @@ interface CommunityService {
     size: number
   ) => Promise<MemberProfileResponse>;
   getMemberMemo: (
-    memberId: number,
+    bookId: number,
     page: number,
     size: number
   ) => Promise<MemberMemoResponse>;
@@ -42,9 +42,9 @@ export class CommunityServiceImpl implements CommunityService {
     return data;
   };
 
-  getMemberMemo = async (memberId: number, page: number, size: number) => {
+  getMemberMemo = async (bookId: number, page: number, size: number) => {
     const { data } = await this.httpClient.get<MemberMemoResponse>(
-      `/members/other/books/${memberId}`,
+      `/members/other/books/${bookId}`,
       {
         params: {
           page,
