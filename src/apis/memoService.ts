@@ -27,7 +27,7 @@ interface MemoService {
   getRandomMemo: () => Promise<MemoBasic>;
   imageUpload: (formData: FormData) => Promise<string>;
   addMemoLike: (memoId: number) => Promise<string>;
-  removeMemoLike: (memoId: number) => Promise<string>;
+  deleteMemoLike: (memoId: number) => Promise<string>;
 }
 
 export class MemoServiceImpl implements MemoService {
@@ -111,7 +111,7 @@ export class MemoServiceImpl implements MemoService {
     return '좋아요 등록';
   };
 
-  removeMemoLike = async (memoId: number) => {
+  deleteMemoLike = async (memoId: number) => {
     await this.httpClient.delete(`/memo-like/${memoId}`);
     return '좋아요 취소';
   };
