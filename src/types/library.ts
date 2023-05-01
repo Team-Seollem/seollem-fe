@@ -150,7 +150,7 @@ export type MemberMemoResponse = Omit<
 > & {
   star: number;
   bookStatus: BookStatus;
-  memosList: MemberMemo[];
+  memoList: MemberMemo[];
   pageInfo: PageInfo;
 };
 
