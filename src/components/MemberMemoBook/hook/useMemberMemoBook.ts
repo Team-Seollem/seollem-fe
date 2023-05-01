@@ -36,7 +36,7 @@ export default function useMemberMemoBook({ memberId, bookId }: Props) {
   };
 
   const memoList: MemberMemo[] =
-    data?.pages.flatMap((page) => page.memosList) ?? [];
+    data?.pages.flatMap((page) => page.memoList) ?? [];
 
   return { bookInfo, memoList, isLoading, hasNextPage, fetchNextPage };
 }
