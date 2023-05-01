@@ -10,6 +10,7 @@ import { Button } from '@components/common';
 import MemoAuthorityType from '@components/LibraryBook/MemoAuthorityType';
 import DeleteConfirmButton from './DeleteConfirmButton';
 import MemoLikes from './MemoLikes';
+import useMemoLike from './hooks/useMemoLike';
 
 type Props = {
   memo: MemoBookDetail;
@@ -22,6 +23,7 @@ export default function MemoItem({
   handleEditMemo,
   handleDeleteMemo,
 }: Props) {
+  const { likeMyMemo, unlikeMyMemo } = useMemoLike();
   return (
     <Wrapper>
       <InfoContainer>
@@ -52,7 +54,14 @@ export default function MemoItem({
       </MemoContent>
       <BadgeContainer>
         <MemoAuthorityType authority={memo.memoAuthority} />
-        <MemoLikes likesCount={memo.memoLikesCount} />
+        <MemoLikes
+          memoLikeDone={memo.memoLikeDone}
+          likesCount={memo.memoLikesCount}
+          isMymemo
+          memoId={memo.memoId}
+          likeMemo={() => likeMyMemo(memo.memoId)}
+          unlikeMemo={() => unlikeMyMemo(memo.memoId)}
+        />
       </BadgeContainer>
     </Wrapper>
   );
