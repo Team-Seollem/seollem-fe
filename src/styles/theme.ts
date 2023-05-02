@@ -21,8 +21,6 @@ const fontSize = {
   md: '1.25rem',
   lg: '1.5rem',
 } as const;
-const boxShadow = {};
-
 export type ColorType = typeof color;
 export type FontSizeType = typeof fontSize;
 

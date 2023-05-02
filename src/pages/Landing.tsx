@@ -1,9 +1,5 @@
-import { Button } from '@components/common';
+import ServiceInfo from '@components/Landing/ServiceInfo';
 
 export default function Landing() {
-  return (
-    <Button type="button" styleType="solidPositive" size="medium">
-      서비스 체험하기
-    </Button>
-  );
+  return <ServiceInfo />;
 }
