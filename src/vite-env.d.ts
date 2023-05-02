@@ -3,6 +3,8 @@
 
 interface ImportMetaEnv {
   readonly VITE_APP_BASE_URL: string;
+  readonly VITE_APP_GUEST_USER_ID: string;
+  readonly VITE_APP_GUEST_USER_PASSWORD: string;
 }
 
 interface ImportMeta {
