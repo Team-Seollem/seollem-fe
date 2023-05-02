@@ -26,7 +26,6 @@ export default function BookSlider({ bookStatus: status }: Props) {
       <BookCarousel
         books={books}
         onBookCoverClick={(bookId) => navigate(`${PAGE_URL.LIBRARY}/${bookId}`)}
-        navigation
         onReachEnd={() => {
           if (hasNextPage) {
             fetchNextPage();
