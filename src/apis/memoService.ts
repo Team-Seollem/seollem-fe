@@ -5,6 +5,7 @@ import type {
   MemoBookDetailResponse,
   MemoBooksResponse,
   MemoBookType,
+  MemoEditRequest,
   MemoRequest,
 } from '@projects/types/library';
 import type { HttpClientAuthImpl } from './httpClientAuth';
@@ -41,11 +42,11 @@ export class MemoServiceImpl implements MemoService {
     return data;
   };
 
-  editMemo = async (memoId: number, memoData: MemoRequest) => {
-    const { data } = await this.httpClient.patch<MemoBookDetail, MemoRequest>(
-      `/memos/${memoId}`,
-      memoData
-    );
+  editMemo = async (memoId: number, memoData: MemoEditRequest) => {
+    const { data } = await this.httpClient.patch<
+      MemoBookDetail,
+      MemoEditRequest
+    >(`/memos/${memoId}`, memoData);
     return data;
   };
 

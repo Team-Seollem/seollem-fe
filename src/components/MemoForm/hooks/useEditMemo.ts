@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { CACHE_KEYS } from '@constants';
 import { memoService } from '@apis/index';
-import type { MemoRequest } from '@projects/types/library';
+import type { MemoEditRequest } from '@projects/types/library';
 
 export default function useEditMemo() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function useEditMemo() {
     async (variables: {
       bookId: number;
       memoId: number;
-      memoData: MemoRequest;
+      memoData: MemoEditRequest;
     }) => {
       const { memoId, memoData } = variables;
       const data = await memoService.editMemo(memoId, memoData);
@@ -22,7 +22,7 @@ export default function useEditMemo() {
     {
       onSuccess: (data, variables) => {
         const { bookId } = variables;
-        queryClient.invalidateQueries(CACHE_KEYS.bookDetail(bookId));
+
         queryClient.invalidateQueries(CACHE_KEYS.memoBooks);
         navigate(`/book/library/${bookId}`);
       },

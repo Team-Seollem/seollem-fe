@@ -78,6 +78,8 @@ export type MemoRequest = Pick<
   'memoType' | 'memoBookPage' | 'memoContent' | 'memoAuthority'
 >;
 
+export type MemoEditRequest = Partial<MemoRequest>;
+
 export type DetailBook = LibraryBook & {
   readStartDate: string | null;
   readEndDate: string | null;
