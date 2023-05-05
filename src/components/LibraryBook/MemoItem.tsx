@@ -53,14 +53,17 @@ export default function MemoItem({
         />
       </MemoContent>
       <BadgeContainer>
-        <MemoAuthorityType authority={memo.memoAuthority} />
+        <MemoAuthorityType
+          authority={memo.memoAuthority}
+          memoId={memo.memoId}
+        />
         <MemoLikes
           memoLikeDone={memo.memoLikeDone}
           likesCount={memo.memoLikesCount}
           isMymemo
           memoId={memo.memoId}
-          likeMemo={() => likeMyMemo(memo.memoId)}
-          unlikeMemo={() => unlikeMyMemo(memo.memoId)}
+          likeMemo={likeMyMemo}
+          unlikeMemo={unlikeMyMemo}
         />
       </BadgeContainer>
     </Wrapper>
