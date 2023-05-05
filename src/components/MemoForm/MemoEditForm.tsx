@@ -25,7 +25,7 @@ export default function MemoEditForm() {
     memoContent: '',
   };
 
-  const { editMemoMutation } = useEditMemo();
+  const { editMemo } = useEditMemo();
   const { memo, handlePageChange, handleTypeChange, handleContentChange } =
     useMemoState({
       memoAuthority: prevMemo.memoAuthority,
@@ -40,11 +40,7 @@ export default function MemoEditForm() {
       return;
     }
 
-    editMemoMutation({
-      bookId: Number(bookId),
-      memoId: Number(memoId),
-      memoData: memo,
-    });
+    editMemo(Number(bookId), Number(memoId), memo);
   };
 
   return (

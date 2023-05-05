@@ -20,13 +20,8 @@ export default function useEditMemo() {
       return data;
     },
     {
-      onSuccess: (data, variables) => {
-        const { bookId } = variables;
-
+      onSuccess: () => {
         queryClient.invalidateQueries(CACHE_KEYS.memoBooks);
-        if (!variables.memoData.memoAuthority) {
-          navigate(`/book/library/${bookId}`);
-        }
       },
     }
   );
@@ -39,5 +34,20 @@ export default function useEditMemo() {
     editMemoMutation({ bookId, memoId, memoData: { memoAuthority } });
   };
 
-  return { editMemoMutation, toggleMemoAuthoryty, isLoading };
+  const editMemo = (
+    bookId: number,
+    memoId: number,
+    memoData: MemoEditRequest
+  ) => {
+    editMemoMutation(
+      { bookId, memoId, memoData },
+      {
+        onSuccess: () => {
+          navigate(`/book/library/${bookId}`);
+        },
+      }
+    );
+  };
+
+  return { editMemo, toggleMemoAuthoryty, isLoading };
 }
