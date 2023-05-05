@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { FcLikePlaceholder, FcLike } from 'react-icons/fc';
 import Badge from '@components/common/Badge';
 import type { LikeMemoFn, LikeMyMemoFn } from './hooks/useMemoLike';
@@ -49,13 +48,8 @@ export default function MemoLikes(props: Props) {
   };
 
   return (
-    <Wrapper onClick={memoLikeDone ? handleMemoUnlike : handleMemoLike}>
-      <Badge>
-        {memoLikeDone ? <FcLike /> : <FcLikePlaceholder />} {likesCount}
-      </Badge>
-    </Wrapper>
+    <Badge onClick={memoLikeDone ? handleMemoUnlike : handleMemoLike}>
+      {memoLikeDone ? <FcLike /> : <FcLikePlaceholder />} {likesCount}
+    </Badge>
   );
 }
-const Wrapper = styled.div`
-  cursor: pointer;
-`;
