@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import {
   MemoTypeSelect,
-  MemoAuthoritySelect,
   MemoPageInput,
   MemoContentEditor,
   useMemoState,
@@ -27,18 +26,13 @@ export default function MemoEditForm() {
   };
 
   const { editMemoMutation } = useEditMemo();
-  const {
-    memo,
-    handleAuthorityChange,
-    handlePageChange,
-    handleTypeChange,
-    handleContentChange,
-  } = useMemoState({
-    memoAuthority: prevMemo.memoAuthority,
-    memoBookPage: prevMemo.memoBookPage,
-    memoType: prevMemo.memoType,
-    memoContent: prevMemo.memoContent,
-  });
+  const { memo, handlePageChange, handleTypeChange, handleContentChange } =
+    useMemoState({
+      memoAuthority: prevMemo.memoAuthority,
+      memoBookPage: prevMemo.memoBookPage,
+      memoType: prevMemo.memoType,
+      memoContent: prevMemo.memoContent,
+    });
 
   const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,10 +49,6 @@ export default function MemoEditForm() {
 
   return (
     <S.Form onSubmit={handleSumbit}>
-      <MemoAuthoritySelect
-        authority={memo.memoAuthority}
-        onChange={handleAuthorityChange}
-      />
       <MemoPageInput page={memo.memoBookPage} onChange={handlePageChange} />
       <MemoTypeSelect
         typeList={memoTypeList}
