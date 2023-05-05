@@ -25,7 +25,9 @@ export default function MemoEditForm() {
     memoContent: '',
   };
 
+
   const { editMemo } = useEditMemo();
+
   const { memo, handlePageChange, handleTypeChange, handleContentChange } =
     useMemoState({
       memoAuthority: prevMemo.memoAuthority,
