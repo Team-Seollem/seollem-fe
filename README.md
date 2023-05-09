@@ -1,7 +1,7 @@
 <h1><img width="30px" height="30px" src="https://user-images.githubusercontent.com/96093996/236802731-cc5d4b82-9094-41b2-93a5-477a0c7dc6ee.png" alt="seollem-logo"/> 나만의 작은 설렘</h1>
 
 <div align="center">
-  <img height="300px" src="https://user-images.githubusercontent.com/96093996/236801545-e889c97d-17db-4595-bdb9-e71f1646be27.png" alt="seollem-logo" />
+  <img width='80%' src="https://user-images.githubusercontent.com/96093996/236801545-e889c97d-17db-4595-bdb9-e71f1646be27.png" alt="seollem-logo" />
   <h4>"나만의 작은 설렘 서비스와 함께 독서의 즐거움을 경험해 보세요"</ㅗ>
 </div>
 
