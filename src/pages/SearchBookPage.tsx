@@ -7,11 +7,11 @@ import { PageTitle } from '@components/common';
 function SearchBookPage() {
   const [keyword, setKeyword] = useState('');
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const { value } = e.target;
     setKeyword(value);
   };
 
-  const searchQuery = useDebounce(keyword, 200);
+  const searchQuery = useDebounce(keyword.trim(), 200);
 
   return (
     <>
