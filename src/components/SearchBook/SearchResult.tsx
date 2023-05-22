@@ -1,20 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 
 import type { SearchBookInfo } from '@projects/types/basic';
-import { SearchBookQuery } from '@hooks/query';
 import {
   BookAddButton,
   BookCoverItem,
   BookInfoItem,
   Boxcontainer,
 } from '@components/common';
+import useSearchBooks from './hook/useSearchBooks';
 
 type Props = {
   searchQuery: string;
 };
 
 function SearchResult({ searchQuery }: Props) {
-  const { data, isSuccess } = SearchBookQuery(searchQuery);
+  const { data, isSuccess } = useSearchBooks(searchQuery);
   const navigate = useNavigate();
   return (
     <>
