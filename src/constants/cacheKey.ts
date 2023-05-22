@@ -1,3 +1,4 @@
+import { RecommendSort } from '@projects/types/basic';
 import { BookStatus, MemoBookType } from '@projects/types/library';
 
 export const CACHE_KEYS = {
@@ -26,4 +27,5 @@ export const CACHE_KEYS = {
     'memoBook',
     bookId,
   ],
+  recommendBooks: (sort: RecommendSort) => ['recommendBooks', sort],
 };
