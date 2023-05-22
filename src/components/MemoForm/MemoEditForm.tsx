@@ -24,8 +24,6 @@ export default function MemoEditForm() {
     memoType: 'BOOK_CONTENT',
     memoContent: '',
   };
-
-
   const { editMemo } = useEditMemo();
 
   const { memo, handlePageChange, handleTypeChange, handleContentChange } =
