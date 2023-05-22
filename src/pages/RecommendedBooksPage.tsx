@@ -15,7 +15,7 @@ function RecommendedBooksPage() {
 
   return (
     <>
-      <PageTitle title="추천" />
+      <PageTitle title="추천책" />
       <RecommendedSort selectedSort={sort} onChangeList={onChangeList} />
       <RecommendedResult sort={sort} />
     </>
