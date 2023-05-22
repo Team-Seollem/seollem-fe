@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { BookCoverItem, BookInfoItem, Boxcontainer } from '@components/common';
-import { RecommendedBooksQuery } from '@hooks/query';
 import type { RecommendSort, SearchBookInfo } from '@projects/types/basic';
+import { useRecommendBooks } from './hook/useRecommendBooks';
 
 type Props = {
   sort: RecommendSort;
 };
 
 function RecommendedResult({ sort }: Props) {
-  const { data, isSuccess } = RecommendedBooksQuery(sort);
+  const { data, isSuccess } = useRecommendBooks(sort);
   const navigate = useNavigate();
   return (
     <div>
