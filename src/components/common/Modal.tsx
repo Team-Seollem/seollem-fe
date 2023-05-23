@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GrClose } from 'react-icons/gr';
 import Button from './Button';
 import ReactPortal from './ReactPortal';
 
@@ -27,7 +28,7 @@ export default function Modal({
               size="small"
               onClick={closeModal}
             >
-              X
+              <GrClose />
             </CloseButton>
             {children}
           </ModalContainer>
