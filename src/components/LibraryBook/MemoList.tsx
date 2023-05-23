@@ -5,7 +5,6 @@ import { TbPlus } from 'react-icons/tb';
 import { Button } from '@components/common';
 import useMemobookDetail from '@components/MemoBookDetail/hooks/useMemobookDetail';
 import useIntersectionObserver from '@hooks/useIntersectionObserver';
-import useDeleteMemo from './hooks/useDeleteMemo';
 import MemoItem from './MemoItem';
 
 export default function MemoList() {
@@ -21,20 +20,10 @@ export default function MemoList() {
 
   const { ref, isIntersect } = useIntersectionObserver({ threshold: 0.2 });
 
-  const deleteMemo = useDeleteMemo();
-
   const handleAddMemo = () => {
     navigate(`/book/library/${bookId}/memo`);
   };
 
-  const handleEditMemo = (memoId: number) => {
-    navigate(`/book/library/${bookId}/memo/${memoId}`);
-  };
-
-  const handleDeleteMemo = (memoId: number) => {
-    if (!bookId) return;
-    deleteMemo({ bookId: Number(bookId), memoId });
-  };
   useEffect(() => {
     if (hasNextPage && isIntersect) {
       fetchNextPage();
@@ -61,12 +50,7 @@ export default function MemoList() {
       </BoxTitle>
       <List>
         {memoBooks.map((memo) => (
-          <MemoItem
-            key={memo.memoId}
-            memo={memo}
-            handleEditMemo={handleEditMemo}
-            handleDeleteMemo={handleDeleteMemo}
-          />
+          <MemoItem key={memo.memoId} memo={memo} bookId={Number(bookId)} />
         ))}
         {!isLoading && hasNextPage && <div ref={ref} />}
       </List>
