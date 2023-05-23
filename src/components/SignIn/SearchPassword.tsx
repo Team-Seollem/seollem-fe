@@ -32,7 +32,11 @@ function SearchPassword() {
   return (
     <>
       <SSearchPw onClick={toggle}>비밀번호 찾기</SSearchPw>
-      <Modal isOpen={isOpen} closeModal={toggle}>
+      <Modal
+        isOpen={isOpen}
+        closeModal={toggle}
+        modalWrapperId="password-search-modal"
+      >
         <Sform
           onSubmit={(e) => {
             e.stopPropagation();
