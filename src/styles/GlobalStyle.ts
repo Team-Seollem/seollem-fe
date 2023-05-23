@@ -24,6 +24,13 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+
 
   *{
     box-sizing: border-box;
@@ -37,10 +44,15 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Pretendard-Regular';
+    overflow: scroll;
+    background-color: ${({ theme }) => theme.color.white};
+  }
+
+  #root {
     max-width: 40rem;
     margin: 0 auto;
     padding-bottom: 0px;
     min-height: 100vh;
-    overflow: scroll;
+    min-width: 375px;
   }
 `;

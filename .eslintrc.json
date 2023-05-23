@@ -20,14 +20,27 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "no-var": "error",
-    "no-multiple-empty-lines": "error",
     "eqeqeq": ["error", "always", { "null": "ignore" }],
-    "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "no-multiple-empty-lines": "error",
+    "no-use-before-define": "off",
+    "import/prefer-default-export": "off",
     "react/display-name": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
-    "import/prefer-default-export": "off"
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      { "labelAttributes": ["htmlFor"] }
+    ],
+    "react/no-array-index-key": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "variables": false }
+    ],
+    "no-alert": "off"
   }
 }
