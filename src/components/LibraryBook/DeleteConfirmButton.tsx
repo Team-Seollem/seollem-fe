@@ -16,7 +16,11 @@ export default function DeleteConfirmButton({ onConfirm, memoId }: Props) {
       <OpenConfirmModalButton styleType="ghost" size="small" onClick={toggle}>
         <BsTrashFill />
       </OpenConfirmModalButton>
-      <Modal isOpen={isOpen} closeModal={toggle} modalId={memoId}>
+      <Modal
+        isOpen={isOpen}
+        closeModal={toggle}
+        modalWrapperId={`memo${memoId}-delete-modal`}
+      >
         정말 메모를 삭제하시겠습니까?
         <ButtonGroup>
           <SButton styleType="neutral" size="small" onClick={toggle}>

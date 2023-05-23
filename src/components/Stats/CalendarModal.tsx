@@ -21,7 +21,11 @@ export default function CalendarModal({ readEndBooks }: Props) {
   return (
     <>
       <BookCoverButton src={readEndBooks[0].cover} onClick={toggle} />
-      <Modal isOpen={isOpen} closeModal={toggle}>
+      <Modal
+        isOpen={isOpen}
+        closeModal={toggle}
+        modalWrapperId="calendar-modal"
+      >
         <h1>다 읽은 책 보러가기</h1>
         <Container>
           <Swiper spaceBetween={3} slidesPerView={3.5}>

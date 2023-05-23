@@ -13,11 +13,15 @@ export default function WithdrawlConfirmButton() {
   };
 
   return (
-    <Wrapper>
+    <>
       <Button onClick={toggle} styleType="solidNegative" size="small">
         회원탈퇴
       </Button>
-      <Modal isOpen={isOpen} closeModal={toggle}>
+      <Modal
+        isOpen={isOpen}
+        closeModal={toggle}
+        modalWrapperId="withdrawl-modal"
+      >
         정말 탈퇴하시겠습니까?
         <ButtonGroup>
           <SButton onClick={toggle} styleType="neutral" size="small">
@@ -32,19 +36,9 @@ export default function WithdrawlConfirmButton() {
           </SButton>
         </ButtonGroup>
       </Modal>
-    </Wrapper>
+    </>
   );
 }
-
-const Wrapper = styled.div`
-  width: 80%;
-  display: flex;
-  justify-content: flex-end;
-  margin: 1.5rem 0;
-  @media (max-width: 410px) {
-    width: 100%;
-  }
-`;
 
 const ButtonGroup = styled.div`
   width: 100%;
