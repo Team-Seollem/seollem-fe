@@ -5,17 +5,18 @@ import useModal from '@hooks/useModal';
 import Modal from '@components/common/Modal';
 
 type Props = {
+  memoId: number;
   onConfirm: () => void;
 };
 
-export default function DeleteConfirmButton({ onConfirm }: Props) {
+export default function DeleteConfirmButton({ onConfirm, memoId }: Props) {
   const { isOpen, toggle } = useModal();
   return (
     <>
       <OpenConfirmModalButton styleType="ghost" size="small" onClick={toggle}>
         <BsTrashFill />
       </OpenConfirmModalButton>
-      <Modal isOpen={isOpen} closeModal={toggle}>
+      <Modal isOpen={isOpen} closeModal={toggle} modalId={memoId}>
         정말 메모를 삭제하시겠습니까?
         <ButtonGroup>
           <SButton styleType="neutral" size="small" onClick={toggle}>

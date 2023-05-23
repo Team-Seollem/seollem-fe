@@ -38,6 +38,7 @@ export default function MemoItem({
           </Button>
           <DeleteConfirmButton
             onConfirm={() => handleDeleteMemo(memo.memoId)}
+            memoId={memo.memoId}
           />
         </div>
       </InfoContainer>
