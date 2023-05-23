@@ -6,10 +6,16 @@ interface Props {
   isOpen: boolean;
   closeModal: () => void;
   children: React.ReactNode;
+  modalId?: number;
 }
-export default function Modal({ closeModal, isOpen, children }: Props) {
+export default function Modal({
+  closeModal,
+  isOpen,
+  children,
+  modalId,
+}: Props) {
   return (
-    <ReactPortal wrapperId="modal-root">
+    <ReactPortal wrapperId={`modal-wrapper-${modalId}`}>
       {isOpen && (
         <ModalBackground onClick={closeModal}>
           <ModalContainer
