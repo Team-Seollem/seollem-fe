@@ -14,3 +14,4 @@ export { default as Tooltip } from './Tooltip';
 export { default as Avatar } from './Avatar';
 export { default as Field } from './Field';
 export { default as BookCarousel } from './BookCarousel';
+export { default as Modal } from './Modal';
