@@ -17,7 +17,11 @@ export default function WithdrawlConfirmButton() {
       <Button onClick={toggle} styleType="solidNegative" size="small">
         회원탈퇴
       </Button>
-      <Modal isOpen={isOpen} closeModal={toggle}>
+      <Modal
+        isOpen={isOpen}
+        closeModal={toggle}
+        modalWrapperId="withdrawl-modal"
+      >
         정말 탈퇴하시겠습니까?
         <ButtonGroup>
           <SButton onClick={toggle} styleType="neutral" size="small">

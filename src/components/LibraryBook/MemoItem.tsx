@@ -1,8 +1,9 @@
 /* eslint-disable react/no-danger */
 import styled from 'styled-components';
 import DOMPurify from 'dompurify';
-
+import { useNavigate } from 'react-router-dom';
 import { FaPen } from 'react-icons/fa';
+
 import { MEMO_TYPES } from '@constants';
 import { getLatestUpdateDate } from '@utils';
 import type { MemoBookDetail } from '@projects/types/library';
@@ -11,19 +12,26 @@ import MemoAuthorityType from '@components/LibraryBook/MemoAuthorityType';
 import DeleteConfirmButton from './DeleteConfirmButton';
 import MemoLikes from './MemoLikes';
 import useMemoLike from './hooks/useMemoLike';
+import useDeleteMemo from './hooks/useDeleteMemo';
 
 type Props = {
   memo: MemoBookDetail;
-  handleEditMemo: (memoId: number) => void;
-  handleDeleteMemo: (memoId: number) => void;
+  bookId: number;
 };
 
-export default function MemoItem({
-  memo,
-  handleEditMemo,
-  handleDeleteMemo,
-}: Props) {
+export default function MemoItem({ memo, bookId }: Props) {
+  const navigate = useNavigate();
   const { likeMyMemo, unlikeMyMemo } = useMemoLike();
+  const deleteMemo = useDeleteMemo();
+
+  const handleEditMemo = (memoId: number) => {
+    navigate(`/book/library/${bookId}/memo/${memoId}`);
+  };
+
+  const handleDeleteMemo = (memoId: number) => {
+    if (!bookId) return;
+    deleteMemo({ bookId: Number(bookId), memoId });
+  };
   return (
     <Wrapper>
       <InfoContainer>
@@ -38,6 +46,7 @@ export default function MemoItem({
           </Button>
           <DeleteConfirmButton
             onConfirm={() => handleDeleteMemo(memo.memoId)}
+            memoId={memo.memoId}
           />
         </div>
       </InfoContainer>

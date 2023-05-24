@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GrClose } from 'react-icons/gr';
 import Button from './Button';
 import ReactPortal from './ReactPortal';
 
@@ -6,10 +7,16 @@ interface Props {
   isOpen: boolean;
   closeModal: () => void;
   children: React.ReactNode;
+  modalWrapperId: string;
 }
-export default function Modal({ closeModal, isOpen, children }: Props) {
+export default function Modal({
+  closeModal,
+  isOpen,
+  children,
+  modalWrapperId,
+}: Props) {
   return (
-    <ReactPortal wrapperId="modal-root">
+    <ReactPortal wrapperId={modalWrapperId}>
       {isOpen && (
         <ModalBackground onClick={closeModal}>
           <ModalContainer
@@ -21,7 +28,7 @@ export default function Modal({ closeModal, isOpen, children }: Props) {
               size="small"
               onClick={closeModal}
             >
-              X
+              <GrClose />
             </CloseButton>
             {children}
           </ModalContainer>
