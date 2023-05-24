@@ -1,8 +1,8 @@
-import { profileService } from '@apis/index';
-import useLogout from '@components/layout/hook/useLogout';
-import { CACHE_KEYS } from '@constants';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { CACHE_KEYS } from '@constants';
+import { profileService } from '@apis/index';
+import useLogout from '@components/layout/hook/useLogout';
 
 export default function useEditMyProfile() {
   const queryClient = useQueryClient();
