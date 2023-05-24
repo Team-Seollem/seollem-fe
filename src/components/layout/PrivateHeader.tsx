@@ -1,29 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { IoMenu } from 'react-icons/io5';
 
 import { PAGE_URL } from '@constants';
-import { authService } from '@apis';
-import { loginState } from '@state/atom';
 import { Dropdown } from '@components/common';
-import { useQueryClient } from '@tanstack/react-query';
 import * as S from './styles';
 import Logo from './Logo';
+import useLogout from './hook/useLogout';
 
 export default function PrivateHeader() {
-  const setIsLoggedIn = useSetRecoilState(loginState);
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const logout = useLogout();
 
   const handleMyPage = () => {
     navigate(PAGE_URL.MYPAGE);
-  };
-
-  const handleLogout = () => {
-    authService.signOut();
-    queryClient.clear();
-    setIsLoggedIn(false);
-    navigate(PAGE_URL.ROOT);
   };
 
   return (
@@ -31,15 +20,12 @@ export default function PrivateHeader() {
       <Logo to={PAGE_URL.LIBRARY} />
 
       <S.Menu>
-        {/* <IoNotifications /> */}
         <Dropdown target={<IoMenu />}>
           <S.DropdownMenuWrapper>
             <S.DropdownMenuItem onClick={handleMyPage}>
               마이 페이지
             </S.DropdownMenuItem>
-            <S.DropdownMenuItem onClick={handleLogout}>
-              로그아웃
-            </S.DropdownMenuItem>
+            <S.DropdownMenuItem onClick={logout}>로그아웃</S.DropdownMenuItem>
           </S.DropdownMenuWrapper>
         </Dropdown>
       </S.Menu>
