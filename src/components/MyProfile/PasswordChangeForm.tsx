@@ -1,9 +1,9 @@
-import { Button, SignInput } from '@components/common';
-import { PASSWORD_REGEX } from '@constants';
-import { UserInfo } from '@projects/types/basic';
 import { useRef } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import { Button, SignInput } from '@components/common';
+import { PASSWORD_REGEX } from '@constants';
+import { UserInfo } from '@projects/types/basic';
 
 type Props = {
   onSubmit: SubmitHandler<Pick<UserInfo, 'password'>>;
