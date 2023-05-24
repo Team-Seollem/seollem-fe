@@ -34,7 +34,7 @@ function App() {
         </RecoilRoot>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
-      <ToastContainer position="top-center" pauseOnFocusLoss theme="light" />
+      <ToastContainer position="top-center" theme="light" />
     </QueryClientProvider>
   );
 }
