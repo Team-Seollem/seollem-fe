@@ -13,10 +13,10 @@ export default function EditField({ field, value }: Props) {
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(value);
 
-  const { mutate } = useEditMyProfile();
+  const { editProfileMutation } = useEditMyProfile();
 
   const handleEdit = () => {
-    mutate({ [field]: text });
+    editProfileMutation({ [field]: text });
     setEditing(false);
   };
 

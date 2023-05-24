@@ -13,7 +13,7 @@ export default function WithdrawlConfirmButton() {
   };
 
   return (
-    <>
+    <Wrapper>
       <Button onClick={toggle} styleType="solidNegative" size="small">
         회원탈퇴
       </Button>
@@ -36,9 +36,19 @@ export default function WithdrawlConfirmButton() {
           </SButton>
         </ButtonGroup>
       </Modal>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.5rem 0;
+  @media (max-width: 410px) {
+    width: 100%;
+  }
+`;
 
 const ButtonGroup = styled.div`
   width: 100%;
